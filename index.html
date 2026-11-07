@@ -3,16 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>SKILLPOP V8 — by BROT2YOU</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<title>SKILLPOP V8.1 — by BROT2YOU</title>
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; frame-src 'none'; worker-src 'none'; form-action 'none'; base-uri 'none'">
+<meta name="referrer" content="no-referrer">
 <style>
 :root{
   --ink:#1D2340;--ink2:#2B3358;--muted:#626A86;--bg:#EEF1F8;--surface:#FFFFFF;--line:#DCE1EE;--soft:#F5F7FC;
   --pop:#FF4F7B;--teal:#0FA191;--violet:#7A5AF0;
   --m1:#D9434A;--m2:#E8892A;--m3:#8FB12A;--m4:#1F9460;
-  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --display:"Avenir Next","Segoe UI Variable Display","Segoe UI",system-ui,-apple-system,Roboto,sans-serif;
   --body:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
 }
 *{box-sizing:border-box}
@@ -160,6 +159,25 @@ tr.clickable:hover td{background:#FAFBFF}
 .hidden{display:none!important}
 .span2{grid-column:span 2}
 @media (max-width:560px){.span2{grid-column:auto}}
+.ctl{align-items:flex-end}
+.tools{display:flex;gap:8px;flex-wrap:wrap}
+.tools .btn{min-height:42px;padding:9px 13px;font-size:14px}
+/* écran de verrouillage */
+.auth{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px 16px;background:var(--ink)}
+.auth-box{background:#fff;border-radius:24px;padding:28px;width:100%;max-width:430px;border:2px solid var(--ink);box-shadow:8px 8px 0 var(--pop)}
+.auth-brand{font-family:var(--display);font-weight:800;font-size:38px;letter-spacing:-1px;line-height:1;margin-bottom:22px}
+.auth-brand span{color:var(--pop)}
+.auth-brand small{display:block;font-family:var(--body);font-size:12px;font-weight:500;letter-spacing:0;color:var(--muted);margin-top:6px}
+.auth-box h2{font-size:24px;margin-bottom:8px}
+.auth-box p{margin:0 0 14px;line-height:1.5}
+.auth-box .field{margin-bottom:12px}
+.auth-warn{background:#FFF7E6;border:1px solid #F1DDA8;color:#5E4A1F;border-radius:12px;padding:10px 12px;font-size:13px}
+.btn.wide{width:100%;min-height:48px;font-size:16px}
+.showpw{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin:-4px 0 14px}
+.showpw input{width:auto;min-height:0}
+.auth-links{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:14px}
+.auth-msg{color:#B3363D;font-weight:650;font-size:14px;min-height:1px;margin:12px 0 0!important}
+.auth-foot{margin:14px 0 0!important;text-align:center}
 .print-title{display:none}
 
 /* ---------- responsive ---------- */
@@ -184,6 +202,8 @@ tr.clickable:hover td{background:#FAFBFF}
   .mbrand span{color:var(--pop)}
   .ctl{width:100%}
   .ctl .field{flex:1;min-width:0}
+  .ctl .tools{width:100%}
+  .ctl .tools .btn{flex:1}
   .cols{grid-template-columns:minmax(0,1fr)}
   .hero{padding:16px;box-shadow:5px 5px 0 var(--ink);border-radius:20px}
   .figs{gap:7px}
@@ -212,11 +232,12 @@ tr.clickable:hover td{background:#FAFBFF}
 </style>
 </head>
 <body>
-<div class="shell">
+<div class="auth hidden" id="auth"></div>
+<div class="shell hidden" id="shell">
   <aside class="side">
     <div class="brand">SKILL<span>POP</span><small>by BROT2YOU</small></div>
     <nav class="nav" id="nav" aria-label="Navigation principale"></nav>
-    <div class="side-foot">V8, données gardées sur cet appareil</div>
+    <div class="side-foot">V8.1, données chiffrées sur cet appareil</div>
   </aside>
   <main class="main" id="main">
     <div class="topbar">
@@ -238,12 +259,13 @@ tr.clickable:hover td{background:#FAFBFF}
 </div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <input type="file" id="importFile" class="hidden" accept=".json,application/json" onchange="importJSON(this)">
+<input type="file" id="restoreFile" class="hidden" accept=".json,application/json" onchange="handleRestoreFile(this)">
 <script type="application/json" id="skillpop-config">{"labels":["Maîtrise insuffisante","Maîtrise fragile","Maîtrise satisfaisante","Très bonne maîtrise"],"colors":["#D9434A","#E8892A","#8FB12A","#1F9460"],"axes":["Compréhension orale","Compréhension écrite","Expression orale","Interaction orale","Expression écrite","Médiation"],"short":["Écouter","Lire","Parler","Interagir","Écrire","Médiation"],"extraAxes":["Compétences culturelles","Autre"],"life":[["Comportement","Respect des règles et des autres"],["Attitude face au travail","Engagement, autonomie, sérieux"],["Participation","Contribution aux échanges et aux activités"]],"grades":["6e","5e","4e","3e"],"gradeRefs":{"6e":"A1 / A1+","5e":"A1+ / A2","4e":"A2","3e":"A2 / B1 selon le parcours"},"noteCats":["Travail","Autonomie","Participation","Organisation","Progrès","Accompagnement","Entretien","Professeur principal"],"descriptors":{"6e":["Repérer des mots familiers dans un message oral court","Comprendre des consignes et des textes très courts","Se présenter avec des énoncés simples","Répondre à des questions sur des sujets familiers","Rédiger quelques phrases simples","Transmettre une information très simple d’une langue à l’autre"],"5e":["Comprendre l’essentiel d’un message oral simple","Repérer des informations dans un texte court","Décrire une personne, un lieu ou une habitude","Échanger des informations simples","Produire un court texte organisé","Expliquer à un camarade l’essentiel d’un document court"],"4e":["Identifier les informations essentielles d’un document oral","Comprendre un texte narratif ou informatif accessible","Présenter et raconter une expérience","Participer à un échange sur un sujet familier","Rédiger un récit ou une description structurée","Reformuler et transmettre les informations clés d’un document"],"3e":["Comprendre les idées principales d’un document oral accessible","Comprendre des informations et des points de vue simples","Présenter un propos suivi et justifié","Échanger, réagir et expliquer son point de vue","Rédiger un texte cohérent et argumenté","Résumer et expliquer un document pour un destinataire précis"]}}</script>
 <script type="application/json" id="skillpop-advice">{"Compréhension orale":{"c1":[["Écouter un message très court et lever la main dès qu’on reconnaît un mot connu.","S’aider des images et du ton de la voix pour deviner de quoi on parle."],["Repérer qui parle, où et de quoi avant de chercher les détails.","Réécouter avec une seule consigne à la fois : un prénom, un chiffre, un lieu."],["Noter quelques mots-clés pendant l’écoute puis reformuler le message en français.","Utiliser les mots transparents pour comprendre les passages nouveaux."],["Écouter des documents un peu plus longs et relever des détails précis.","Expliquer à un camarade quels indices ont permis de comprendre."]],"c2":[["Anticiper le contenu à partir du titre et des images avant l’écoute.","Repérer d’abord les mots accentués, ceux qui portent le sens."],["Compléter une grille qui, quoi, où, quand, pourquoi au fil des écoutes.","S’entraîner chez soi avec de courtes vidéos sous-titrées en anglais."],["Relier les informations entre elles pour dégager l’idée principale du document.","Repérer l’intention et le ton du locuteur : humour, colère, ironie."],["Écouter des documents authentiques variés, podcasts ou extraits de séries, sans sous-titres.","Distinguer faits et opinions et justifier son interprétation."]]},"Compréhension écrite":{"c1":[["Repérer le titre, les images et les noms propres avant de lire.","Chercher une seule information précise dans un texte court."],["Surligner les mots connus et les mots transparents pour deviner le thème.","Répondre à des questions simples en retrouvant la phrase du texte."],["Reformuler en français l’idée principale de chaque paragraphe.","Deviner le sens d’un mot nouveau grâce au contexte avant d’ouvrir le dictionnaire."],["Lire en autonomie des textes plus longs, petites histoires ou articles simplifiés.","Justifier chaque réponse avec une citation du texte."]],"c2":[["Identifier la nature du document, article, message ou récit, avant de lire.","Lire une première fois pour le thème, une deuxième fois pour les détails."],["Repérer les connecteurs (but, so, because) pour suivre la logique du texte.","Construire une liste de mots-clés par paragraphe."],["Distinguer l’explicite de l’implicite et formuler des hypothèses.","Résumer le texte en quelques phrases."],["Lire des textes authentiques, presse ou extraits de romans, et comparer des points de vue.","Analyser les choix de l’auteur : vocabulaire, ton, structure."]]},"Expression orale":{"c1":[["Apprendre deux ou trois phrases modèles et les répéter à voix haute.","S’appuyer sur des images ou un support pour parler."],["Enchaîner trois ou quatre phrases avec and, but, because.","S’enregistrer puis se réécouter pour améliorer la prononciation."],["Présenter un sujet familier en s’aidant seulement de mots-clés.","Ajouter des détails et des exemples pour enrichir son propos."],["Parler plus longtemps sans notes en variant le vocabulaire.","Travailler l’intonation et le rythme pour rendre son propos vivant."]],"c2":[["Préparer un court propos à partir d’une trame : introduction, idées, conclusion.","S’entraîner plusieurs fois à voix haute avant de passer devant la classe."],["Organiser son propos avec des connecteurs (first, then, finally).","Remplacer la lecture des notes par une carte mentale."],["Justifier ses idées avec des arguments et des exemples précis.","S’enregistrer et repérer ses erreurs récurrentes pour les corriger."],["Nuancer son propos (I’m not sure, on the other hand) et l’adapter à son public.","Prendre la parole spontanément sur un sujet d’actualité."]]},"Interaction orale":{"c1":[["Répondre à une question simple par une phrase courte.","Savoir dire « Can you repeat, please? » quand on ne comprend pas."],["Poser des questions simples à un camarade et noter ses réponses.","S’entraîner en binôme avec des cartes de dialogue."],["Réagir aux réponses de l’autre (Really? Me too!) pour faire vivre l’échange.","Relancer la conversation avec une nouvelle question."],["Tenir une conversation plus longue sans support écrit.","Prendre l’initiative de l’échange et changer de sujet si besoin."]],"c2":[["Garder sous les yeux une liste de formules utiles pour être d’accord, ne pas l’être, demander de l’aide.","Préparer deux ou trois questions avant un dialogue."],["Demander des précisions (What do you mean?) et reformuler ce que l’autre a dit.","S’entraîner aux jeux de rôle en binôme A/B."],["Exprimer son accord ou son désaccord en justifiant.","Rebondir sur les idées des autres au lieu de réciter les siennes."],["Participer à un débat en défendant un point de vue avec nuance.","Gérer les imprévus d’une conversation spontanée."]]},"Expression écrite":{"c1":[["Écrire des phrases courtes à partir d’un modèle et d’une banque de mots.","Relire chaque phrase en vérifiant majuscule, verbe et point."],["Écrire un petit texte de quatre ou cinq phrases dans un ordre logique.","Utiliser and, but, because pour relier ses idées."],["Organiser son texte en paragraphes, une idée par paragraphe.","Relire avec une grille de critères avant de rendre son travail."],["Enrichir ses textes avec des adjectifs, des adverbes et des connecteurs variés.","Écrire des textes plus longs en autonomie."]],"c2":[["Préparer un plan simple avant d’écrire.","Réutiliser les structures vues en cours dans ses propres phrases."],["Varier les connecteurs et vérifier les temps verbaux.","Utiliser le code de correction pour corriger ses propres erreurs."],["Développer et argumenter ses idées avec des exemples.","Relire en ciblant ses erreurs fréquentes : accords, temps, ordre des mots."],["Varier les structures (relatives, passif, modaux) et nuancer ses idées.","Adapter le registre au type de texte et au destinataire."]]},"Médiation":{"c1":[["Transmettre en français une information très simple entendue ou lue en anglais.","Montrer, mimer ou dessiner pour aider un camarade à comprendre."],["Expliquer à un camarade l’essentiel d’un document court.","Reformuler une consigne avec ses propres mots."],["Résumer un document court pour quelqu’un qui ne l’a pas lu.","Choisir les informations utiles selon la personne à qui l’on s’adresse."],["Expliquer un document en anglais en simplifiant les passages difficiles.","Aider un groupe à se mettre d’accord en reformulant les idées de chacun."]],"c2":[["Repérer les informations essentielles à transmettre avant de reformuler.","Utiliser un schéma ou une liste pour transmettre une information."],["Résumer un document pour un destinataire précis : un ami, un touriste, un parent.","Passer d’une langue à l’autre sans traduire mot à mot."],["Adapter le niveau de langue et les explications au destinataire.","Expliquer les références culturelles qui pourraient bloquer la compréhension."],["Synthétiser plusieurs documents pour un public précis.","Faciliter un échange de groupe en reformulant et en clarifiant les points de vue."]]},"Comportement":{"all":[["Choisir une règle de vie précise et un geste concret pour la respecter.","Faire un point rapide en fin d’heure sur ce qui s’est bien passé."],["Se fixer un objectif simple pour la semaine : arriver prêt, lever la main.","Repérer les moments plus difficiles et prévoir comment réagir."],["Garder les bonnes habitudes installées.","Aider à maintenir un climat calme dans le groupe."],["Continuer à être un appui pour le groupe.","Prendre des responsabilités dans la classe : rôle de groupe, tutorat."]]},"Attitude face au travail":{"all":[["Découper le travail en petites étapes et commencer par la première.","Vérifier son matériel en début d’heure."],["Utiliser une liste de vérification pour terminer chaque tâche.","Noter les devoirs et les relire le soir."],["Gagner en autonomie en relisant seul les consignes.","Anticiper le travail à rendre."],["Approfondir avec des activités supplémentaires.","Partager ses méthodes de travail avec les autres."]]},"Participation":{"all":[["Préparer une réponse courte par écrit avant la mise en commun.","Participer d’abord en binôme avant de parler devant la classe."],["Se fixer l’objectif d’intervenir au moins une fois par séance.","S’appuyer sur un camarade pour préparer ses interventions."],["Varier ses interventions : questions, réponses, réactions.","Prendre un rôle dans le travail de groupe : porte-parole, secrétaire."],["Approfondir ses interventions avec des exemples et des arguments.","Encourager les autres à participer."]]}}</script>
 <script type="application/json" id="skillpop-seed">{"periodMode":"trimestre","dates":["2026-09-01","2026-12-01","2027-03-01","2027-07-05"],"classes":[{"id":"c1","name":"5e B","grade":"5e","subject":"Anglais","year":"2026-2027"},{"id":"c2","name":"3e A","grade":"3e","subject":"Anglais","year":"2026-2027"}],"students":[{"id":"s1","name":"Camille Martin","classId":"c1"},{"id":"s2","name":"Alex Bernard","classId":"c1"},{"id":"s3","name":"Sam Dupont","classId":"c1"},{"id":"s4","name":"Inès Moreau","classId":"c1"},{"id":"s5","name":"Noah Laurent","classId":"c1"},{"id":"s6","name":"Jade Roux","classId":"c1"},{"id":"s7","name":"Lina Petit","classId":"c2"},{"id":"s8","name":"Hugo Garcia","classId":"c2"},{"id":"s9","name":"Maël Fontaine","classId":"c2"},{"id":"s10","name":"Zoé Lambert","classId":"c2"}],"assessments":[{"id":"a1","classId":"c1","skillId":"ref-5e-0","title":"Listening: daily life","date":"2026-09-22"},{"id":"a2","classId":"c1","skillId":"ref-5e-1","title":"Reading: my routine","date":"2026-10-06"},{"id":"a3","classId":"c1","skillId":"ref-5e-2","title":"My presentation","date":"2026-10-13"},{"id":"a4","classId":"c1","skillId":"ref-5e-3","title":"Pair interview","date":"2026-10-15"},{"id":"a5","classId":"c1","skillId":"ref-5e-4","title":"My week","date":"2026-11-03"},{"id":"a6","classId":"c1","skillId":"ref-5e-5","title":"Tell your friend","date":"2026-11-05"},{"id":"a7","classId":"c1","skillId":"ref-5e-0","title":"Listening checkpoint","date":"2026-11-06"},{"id":"a8","classId":"c2","skillId":"ref-3e-0","title":"Listening: news","date":"2026-10-09"},{"id":"a9","classId":"c2","skillId":"ref-3e-2","title":"Pitch your project","date":"2026-10-16"},{"id":"a10","classId":"c2","skillId":"ref-3e-4","title":"Opinion essay","date":"2026-11-04"}],"ratingTable":{"s1":{"a1":2,"a2":3,"a3":3,"a4":2,"a5":2,"a6":3,"a7":3},"s2":{"a1":1,"a2":2,"a3":2,"a4":2,"a5":1,"a6":2,"a7":2},"s3":{"a1":3,"a2":4,"a3":4,"a4":3,"a5":3,"a6":4,"a7":4},"s4":{"a1":2,"a2":2,"a3":3,"a4":3,"a5":2,"a6":2,"a7":3},"s5":{"a1":3,"a2":3,"a3":2,"a4":2,"a5":3,"a6":3,"a7":3},"s6":{"a1":1,"a2":1,"a3":2,"a4":1,"a5":2,"a6":1,"a7":2},"s7":{"a8":3,"a9":3,"a10":2},"s8":{"a8":2,"a9":2,"a10":3},"s9":{"a8":4,"a9":3,"a10":4},"s10":{"a8":2,"a9":1,"a10":2}},"notes":[{"id":"n1","studentId":"s1","date":"2026-10-18","category":"Progrès","body":"Participation plus régulière. Continuer à encourager la prise de parole."},{"id":"n2","studentId":"s6","date":"2026-11-02","category":"Accompagnement","body":"Travail en binôme avec un camarade tuteur pendant les activités d’écoute."}],"lifeRatings":[{"id":"l1","studentId":"s1","category":"Participation","date":"2026-10-20","value":3},{"id":"l2","studentId":"s1","category":"Comportement","date":"2026-10-20","value":4},{"id":"l3","studentId":"s1","category":"Attitude face au travail","date":"2026-10-20","value":3},{"id":"l4","studentId":"s6","category":"Participation","date":"2026-10-20","value":2},{"id":"l5","studentId":"s6","category":"Attitude face au travail","date":"2026-10-20","value":2}]}</script>
 <script>
 'use strict';
-/* SKILLPOP V8 — by BROT2YOU. ES5 uniquement (compatibilité iOS Safari). */
+/* SKILLPOP V8.1 — by BROT2YOU. ES5 uniquement (compatibilité iOS Safari). */
 
 function readJSON(id){ return JSON.parse(document.getElementById(id).textContent); }
 var CFG = readJSON('skillpop-config');
@@ -298,7 +320,7 @@ function defaultDates(mode, year){
 }
 function seedDb(){
   var d = clone(SEED);
-  d.version = 8; d.demo = true; d.skills = refSkills(); d.ratings = [];
+  d.version = 8; d.demo = true; d.lastExport = ''; d.settings = { hideNames: false }; d.skills = refSkills(); d.ratings = [];
   Object.keys(d.ratingTable).forEach(function(sid){
     Object.keys(d.ratingTable[sid]).forEach(function(aid){
       d.ratings.push({ id: sid + '-' + aid, studentId: sid, assessmentId: aid, value: d.ratingTable[sid][aid] });
@@ -308,7 +330,7 @@ function seedDb(){
   return d;
 }
 function emptyDb(){
-  return { version: 8, demo: false, classes: [], students: [], skills: refSkills(), assessments: [], ratings: [], lifeRatings: [], notes: [], periodMode: 'trimestre', dates: defaultDates('trimestre', '2026-2027') };
+  return { version: 8, demo: false, lastExport: '', settings: { hideNames: false }, classes: [], students: [], skills: refSkills(), assessments: [], ratings: [], lifeRatings: [], notes: [], periodMode: 'trimestre', dates: defaultDates('trimestre', '2026-2027') };
 }
 function migrate(x){
   if (!x || typeof x !== 'object') return null;
@@ -328,27 +350,22 @@ function migrate(x){
   if (x.periodMode !== 'trimestre' && x.periodMode !== 'semestre') x.periodMode = 'trimestre';
   var len = x.periodMode === 'semestre' ? 3 : 4;
   if (!Array.isArray(x.dates) || x.dates.length !== len || !x.dates.every(isDate)) x.dates = defaultDates(x.periodMode, x.classes[0] && x.classes[0].year);
-  return x;
+  for (var di = 1; di < x.dates.length; di++) { if (x.dates[di] <= x.dates[di - 1]) { x.dates = defaultDates(x.periodMode, x.classes[0] && x.classes[0].year); break; } }
+  return sanitize(x);
 }
-function load(){
+function loadLegacyPlain(){
   var raw = null, keys = [KEY].concat(OLD_KEYS);
-  try {
-    for (var i = 0; i < keys.length && !raw; i++) raw = localStorage.getItem(keys[i]);
-  } catch (e) { raw = null; }
-  if (raw) { try { var m = migrate(JSON.parse(raw)); if (m) return m; } catch (e2) {} }
-  return seedDb();
+  try { for (var i = 0; i < keys.length && !raw; i++) raw = localStorage.getItem(keys[i]); } catch (e) { raw = null; }
+  if (!raw) return null;
+  try { return migrate(JSON.parse(raw)); } catch (e2) { return null; }
 }
-var db = load();
+var db = null;
 var storageOk = true;
-function save(){
-  try { localStorage.setItem(KEY, JSON.stringify(db)); storageOk = true; }
-  catch (e) { if (storageOk) toast('Enregistrement impossible sur ce navigateur. Exporte tes données dans Réglages.'); storageOk = false; }
-}
-save();
+function save(){ queueSave(); }
 
 /* ---------- état d'interface ---------- */
 var page = 'accueil';
-var classId = db.classes[0] ? db.classes[0].id : '';
+var classId = '';
 var studentId = '';
 var assessmentId = '';
 var period = 'Année entière';
@@ -483,10 +500,11 @@ function setClass(id){ classId = id; studentId = ''; assessmentId = ''; adviceDr
 function setPeriod(p){ period = p; if (comparison === p) comparison = 'Aucune'; render(); }
 function openStudent(id){ studentId = id; studentTab = 'profil'; go('eleves'); }
 function topControls(){
-  if (!db.classes.length) return '';
+  var tools = '<div class="tools"><button class="btn ghost" type="button" aria-pressed="' + !!db.settings.hideNames + '" onclick="toggleNames()">' + (db.settings.hideNames ? 'Afficher les noms' : 'Masquer les noms') + '</button><button class="btn ghost" type="button" onclick="lockApp(false)" title="Verrouiller SkillPop">🔒 Verrouiller</button></div>';
+  if (!db.classes.length) return tools;
   var h = field('Classe', '<select onchange="setClass(this.value)">' + options(db.classes.map(function(c){ return [c.id, c.name]; }), classId) + '</select>');
   if (page !== 'reglages' && page !== 'classes' && page !== 'referentiel') h += field('Période', '<select onchange="setPeriod(this.value)">' + options(['Année entière'].concat(periodNames()), period) + '</select>');
-  return h;
+  return h + tools;
 }
 function demoBanner(){
   if (!db.demo) return '';
@@ -513,7 +531,7 @@ function pageAccueil(){
   else if (!used.length) grid = emptyState('Aucune évaluation sur cette période.', '<button class="btn" type="button" onclick="go(\'evaluer\')">Créer une évaluation</button>');
   else {
     grid = '<div class="tablewrap"><table class="grid-table"><thead><tr><th>Élève</th>' + used.map(function(k){ return '<th title="' + esc(k.name) + '">' + esc(axisShort(k.axis)) + '<span class="sk">' + esc(k.name) + '</span></th>'; }).join('') + '</tr></thead><tbody>' +
-      st.map(function(s){ return '<tr class="clickable" onclick="openStudent(\'' + s.id + '\')"><td class="name">' + esc(s.name) + '</td>' + used.map(function(k){ return '<td>' + chip(latest(s.id, k.id)) + '</td>'; }).join('') + '</tr>'; }).join('') +
+      st.map(function(s){ return '<tr class="clickable" onclick="openStudent(\'' + s.id + '\')"><td class="name">' + esc(dn(s)) + '</td>' + used.map(function(k){ return '<td>' + chip(latest(s.id, k.id)) + '</td>'; }).join('') + '</tr>'; }).join('') +
       '</tbody></table></div><p class="tiny">Clique sur un élève pour ouvrir son dossier.</p>';
   }
   return h + panel('Grille de maîtrise', grid);
@@ -537,7 +555,7 @@ function pageClasses(){
   if (c) {
     var st = classStudents();
     var sl = st.length ? st.map(function(s){
-      return '<div class="list-item"><b>' + esc(s.name) + '</b><div class="row"><button class="link" type="button" onclick="openStudent(\'' + s.id + '\')">Dossier</button><button class="link" type="button" onclick="renameStudent(\'' + s.id + '\')">Renommer</button><button class="link del" type="button" onclick="deleteStudent(\'' + s.id + '\')">Supprimer</button></div></div>';
+      return '<div class="list-item"><b>' + esc(dn(s)) + '</b><div class="row"><button class="link" type="button" onclick="openStudent(\'' + s.id + '\')">Dossier</button><button class="link" type="button" onclick="renameStudent(\'' + s.id + '\')">Renommer</button><button class="link del" type="button" onclick="deleteStudent(\'' + s.id + '\')">Supprimer</button></div></div>';
     }).join('') : emptyState('Aucun élève dans cette classe. Colle ta liste ci-dessous.');
     var imp = '<div class="cols"><div>' + field('Coller une liste d’élèves', '<textarea id="imp-list" placeholder="Un élève par ligne, par exemple copié depuis Pronote ou un tableur&#10;MARTIN Camille&#10;BERNARD Alex"></textarea>') +
       '<div class="row" style="margin-top:10px"><button class="btn" type="button" onclick="importStudents()">Importer la liste</button><span class="tiny">Les doublons sont ignorés.</span></div></div>' +
@@ -615,7 +633,7 @@ function renameStudent(id){
 }
 function deleteStudent(id){
   var s = byId(db.students, id); if (!s) return;
-  confirmBox('Supprimer ' + esc(s.name) + ' ?', 'Ses niveaux, ses observations et son suivi de vie de classe seront effacés. Cette action est définitive.', 'Supprimer l’élève', true, function(){
+  confirmBox('Supprimer ' + esc(dn(s)) + ' ?', 'Ses niveaux, ses observations et son suivi de vie de classe seront effacés. Cette action est définitive.', 'Supprimer l’élève', true, function(){
     db.students = db.students.filter(function(x){ return x.id !== id; });
     db.ratings = db.ratings.filter(function(r){ return r.studentId !== id; });
     db.notes = db.notes.filter(function(n){ return n.studentId !== id; });
@@ -682,7 +700,7 @@ function pageEvaluer(){
       '<div class="between" style="margin-bottom:6px">' + legend() + '<span class="small"><b>' + done + '</b> / ' + st.length + ' élèves évalués</span></div>' +
       (st.length ? '<div class="tablewrap"><table><thead><tr><th>Élève</th><th>Niveau</th><th class="res">Résultat</th></tr></thead><tbody>' + st.map(function(s){
         var v = val(s.id, a.id);
-        return '<tr><td class="name">' + esc(s.name) + '</td><td><div class="lvlbtns">' + [1, 2, 3, 4].map(function(i){ return '<button type="button" class="lvlbtn l' + i + (v === i ? ' on' : '') + '" aria-pressed="' + (v === i) + '" aria-label="' + esc(s.name) + ' : ' + esc(CFG.labels[i - 1]) + '" onclick="rate(\'' + s.id + '\',\'' + a.id + '\',' + i + ')">' + i + '</button>'; }).join('') + '</div></td><td class="res">' + pill(v) + '</td></tr>';
+        return '<tr><td class="name">' + esc(dn(s)) + '</td><td><div class="lvlbtns">' + [1, 2, 3, 4].map(function(i){ return '<button type="button" class="lvlbtn l' + i + (v === i ? ' on' : '') + '" aria-pressed="' + (v === i) + '" aria-label="' + esc(dn(s)) + ' : ' + esc(CFG.labels[i - 1]) + '" onclick="rate(\'' + s.id + '\',\'' + a.id + '\',' + i + ')">' + i + '</button>'; }).join('') + '</div></td><td class="res">' + pill(v) + '</td></tr>';
       }).join('') + '</tbody></table></div><p class="tiny">Touche une seconde fois le niveau choisi pour l’effacer.</p>' : emptyState('Ajoute des élèves à la classe pour saisir des niveaux.', '<button class="btn" type="button" onclick="go(\'classes\')">Ajouter des élèves</button>')));
   } else {
     h += panel('Saisie express', emptyState(period === 'Année entière' ? 'Aucune évaluation pour cette classe. Crée la première ci-dessous.' : 'Aucune évaluation sur ' + period + '. Change de période ou crée une évaluation.'));
@@ -734,7 +752,7 @@ function studentPicker(){
   var st = classStudents(), i = -1;
   for (var j = 0; j < st.length; j++) { if (st[j].id === studentId) i = j; }
   return '<div class="stepper noprint"><button class="btn ghost" type="button" aria-label="Élève précédent" onclick="stepStudent(-1)"' + (i <= 0 ? ' disabled' : '') + '>‹</button>' +
-    field('Élève', '<select onchange="studentId=this.value;adviceDraft=null;render()">' + options(st.map(function(s){ return [s.id, s.name]; }), studentId) + '</select>') +
+    field('Élève', '<select onchange="studentId=this.value;adviceDraft=null;render()">' + options(st.map(function(s){ return [s.id, dn(s)]; }), studentId) + '</select>') +
     '<button class="btn ghost" type="button" aria-label="Élève suivant" onclick="stepStudent(1)"' + (i < 0 || i >= st.length - 1 ? ' disabled' : '') + '>›</button></div>';
 }
 function stepStudent(d){ var st = classStudents(); for (var j = 0; j < st.length; j++) { if (st[j].id === studentId && st[j + d]) { studentId = st[j + d].id; adviceDraft = null; render(); return; } } }
@@ -749,7 +767,7 @@ function pageEleves(){
   else if (studentTab === 'vie') body += lifeTab(s);
   else if (studentTab === 'obs') body += notesTab(s);
   else body += historyTab(s);
-  return h + panel(esc(s.name), body);
+  return h + panel(esc(dn(s)), body);
 }
 function profileTab(s){
   var vals = axisValues(s.id), prior = comparison === 'Aucune' ? null : axisValues(s.id, comparison);
@@ -841,7 +859,7 @@ function pageConseils(){
   var c = cls(); if (!c) return noClass();
   ensureStudent(); var s = student(), txt = adviceText(), shown = adviceDraft == null ? txt : adviceDraft;
   var axes = Object.keys(ADVICE);
-  var h = panel('Choisir un conseil', '<div class="between" style="align-items:flex-end;margin-bottom:14px">' + (s ? studentPicker() : '<span class="muted">Aucun élève dans la classe.</span>') + (s ? '<button class="btn ghost" type="button" onclick="fromProfile(false)">Partir du profil de ' + esc(s.name.split(' ')[0]) + '</button>' : '') + '</div>' +
+  var h = panel('Choisir un conseil', '<div class="between" style="align-items:flex-end;margin-bottom:14px">' + (s ? studentPicker() : '<span class="muted">Aucun élève dans la classe.</span>') + (s ? '<button class="btn ghost" type="button" onclick="fromProfile(false)">Partir du profil de ' + esc(dn(s).split(' ')[0]) + '</button>' : '') + '</div>' +
     '<div class="form">' + field('Domaine', '<select onchange="setAdvice(\'axis\',this.value)">' + options(axes, advice.axis) + '</select>') +
     field('Niveau de maîtrise', '<select onchange="setAdvice(\'level\',Number(this.value))">' + options(CFG.labels.map(function(l, i){ return [String(i + 1), (i + 1) + ', ' + l]; }), String(advice.level)) + '</select>') +
     field('Formulation', '<select onchange="setAdvice(\'style\',this.value)">' + options([['Élève', 'Pour l’élève'], ['Famille', 'Pour la famille'], ['Bilan', 'Pour un bilan']], advice.style) + '</select>') + '</div>' +
@@ -849,16 +867,16 @@ function pageConseils(){
     '<div class="row"><button class="btn ghost" type="button" onclick="advice.index++;adviceDraft=null;render()">Autre suggestion</button><button class="btn" type="button" onclick="copyText(adviceText())">Copier</button></div>');
   h += panel('Adapter et enregistrer', field('Ta version', '<textarea id="advice-edit" oninput="adviceDraft=this.value">' + esc(shown) + '</textarea>') +
     '<div class="row" style="margin-top:10px"><button class="btn ghost" type="button" onclick="copyText($(\'advice-edit\').value)">Copier ma version</button>' +
-    (s ? '<button class="btn pop" type="button" onclick="saveAdvice()">Ajouter aux observations de ' + esc(s.name) + '</button>' : '') + '</div>' +
+    (s ? '<button class="btn pop" type="button" onclick="saveAdvice()">Ajouter aux observations de ' + esc(dn(s)) + '</button>' : '') + '</div>' +
     '<p class="tiny">Le conseil est enregistré dans l’onglet Observations de l’élève, avec la date du jour. Vérifie qu’il correspond à la situation réelle.</p>');
   return h;
 }
 function saveAdvice(){
   var s = student(), body = $('advice-edit').value.trim();
   if (!s || !body) { toast('Le conseil est vide.'); return; }
-  confirmBox('Enregistrer ce conseil ?', 'Il sera ajouté aux observations de <b>' + esc(s.name) + '</b>.', 'Enregistrer', false, function(){
+  confirmBox('Enregistrer ce conseil ?', 'Il sera ajouté aux observations de <b>' + esc(dn(s)) + '</b>.', 'Enregistrer', false, function(){
     db.notes.push({ id: uid(), studentId: s.id, date: today(), category: 'Conseil, ' + advice.axis.toLowerCase(), body: body });
-    save(); render(); toast('Conseil ajouté au dossier de ' + s.name);
+    save(); render(); toast('Conseil ajouté au dossier de ' + dn(s));
   });
 }
 function copyText(txt){
@@ -877,7 +895,7 @@ function copyText(txt){
 function bilanBlock(s){
   var c = byId(db.classes, s.classId), used = usedSkills(s.classId, period);
   var notes = db.notes.filter(function(n){ return n.studentId === s.id && inPeriod(n.date); }).sort(function(a, b){ return a.date < b.date ? 1 : -1; }).slice(0, 3);
-  return '<article class="bilan" id="bilan-' + s.id + '"><div class="bilan-head"><h3>' + esc(s.name) + '</h3><span class="small muted">' + esc(c.name) + ', ' + esc(c.subject) + ', ' + esc(period) + '</span></div>' +
+  return '<article class="bilan" id="bilan-' + s.id + '"><div class="bilan-head"><h3>' + esc(dn(s)) + '</h3><span class="small muted">' + esc(c.name) + ', ' + esc(c.subject) + ', ' + esc(period) + '</span></div>' +
     '<div class="cols"><div>' + radar(axisValues(s.id)) + bars(axisValues(s.id)) + '</div><div>' +
     '<h3>Compétences évaluées</h3>' + (used.length ? '<ul>' + used.map(function(k){ return '<li><span>' + esc(k.name) + '</span>' + chip(latest(s.id, k.id)) + '</li>'; }).join('') + '</ul>' : '<p class="tiny">Aucune évaluation sur cette période.</p>') +
     '<h3 style="margin-top:14px">Vie de classe</h3><ul>' + CFG.life.map(function(l){ var r = lifeLatest(s.id, l[0]); return '<li><span>' + esc(l[0]) + '</span>' + chip(r ? r.value : 0) + '</li>'; }).join('') + '</ul>' +
@@ -887,7 +905,7 @@ function bilanBlock(s){
 function pageBilans(){
   var c = cls(); if (!c) return noClass();
   var st = classStudents();
-  var h = '<div class="row noprint" style="margin-bottom:16px"><button class="btn pop" type="button" onclick="printAll()"' + (st.length ? '' : ' disabled') + '>Imprimer tous les bilans</button><button class="btn ghost" type="button" onclick="exportCSV()"' + (st.length ? '' : ' disabled') + '>Exporter en CSV</button><span class="tiny">Un élève par page à l’impression. Choisis « Enregistrer en PDF » pour obtenir un fichier.</span></div>';
+  var h = '<div class="row noprint" style="margin-bottom:16px"><button class="btn pop" type="button" onclick="printAll()"' + (st.length ? '' : ' disabled') + '>Imprimer tous les bilans</button><button class="btn ghost" type="button" onclick="exportCSV()"' + (st.length ? '' : ' disabled') + '>Exporter en CSV (non chiffré)</button><span class="tiny">Un élève par page à l’impression. Choisis « Enregistrer en PDF » pour obtenir un fichier.</span></div>';
   h += '<div class="print-title">SKILLPOP, bilans ' + esc(c.name) + ', ' + esc(period) + '</div>';
   return h + (st.length ? st.map(bilanBlock).join('') : panel('', emptyState('Aucun élève dans cette classe.')));
 }
@@ -924,12 +942,19 @@ function exportCSV(){ var c = cls(); download('skillpop-' + slug(c.name) + '-' +
 /* ---------- Réglages ---------- */
 function pageReglages(){
   var names = db.periodMode === 'semestre' ? ['Début de l’année', 'Début du semestre 2', 'Fin de l’année'] : ['Début de l’année', 'Début du trimestre 2', 'Début du trimestre 3', 'Fin de l’année'];
-  var h = panel('Périodes', '<div class="form">' + field('Organisation', '<select onchange="setMode(this.value)">' + options([['trimestre', '3 trimestres'], ['semestre', '2 semestres']], db.periodMode) + '</select>') +
+  var n = daysSince(db.lastExport), al = appSettings().autoLock;
+  var h = panel('Sécurité', '<p class="small" style="margin-top:0"><b>Données chiffrées sur cet appareil</b> (AES-256, clé tirée de ton mot de passe). Sans le mot de passe, elles sont illisibles, y compris pour tes autres applis BROT2YOU.</p>' +
+    '<div class="form">' + field('Verrouillage automatique', '<select onchange="setAutoLock(this.value)">' + options([['5', 'Après 5 min sans activité'], ['15', 'Après 15 min sans activité'], ['30', 'Après 30 min sans activité'], ['60', 'Après 1 h sans activité']], String(al)) + '</select>') +
+    '<button class="btn" type="button" onclick="lockApp(false)">Verrouiller maintenant</button><button class="btn ghost" type="button" onclick="changePassword()">Changer le mot de passe</button></div>');
+  h += panel('Sauvegarde', '<p class="small muted" style="margin-top:0">Dernière sauvegarde : ' + (n < 0 ? 'jamais' : n === 0 ? 'aujourd’hui' : 'il y a ' + plural(n, 'jour', 'jours')) + '. La sauvegarde chiffrée sert aussi à passer d’un appareil à un autre : il faudra le mot de passe en vigueur au moment de l’export.</p>' +
+    '<div class="row"><button class="btn pop" type="button" onclick="exportEncrypted()">Exporter une sauvegarde chiffrée</button><button class="btn ghost" type="button" onclick="$(\'importFile\').click()">Importer une sauvegarde</button><button class="link" type="button" onclick="exportPlain()">Exporter sans chiffrement</button></div>' +
+    (isIOS() ? '<p class="note" style="margin-bottom:0">Sur iPhone et iPad, Safari efface les données d’un site non ouvert depuis 7 jours. Ajoute SkillPop à l’écran d’accueil (bouton Partager, puis « Sur l’écran d’accueil ») et exporte régulièrement.</p>' : ''));
+  h += panel('Affichage', '<label class="row small"><input type="checkbox" style="width:auto;min-height:0" ' + (db.settings.hideNames ? 'checked ' : '') + 'onchange="toggleNames()"> Afficher seulement les initiales des élèves (pratique pour projeter l’écran)</label><p class="tiny">Les observations que tu as rédigées peuvent contenir des noms : ce réglage ne les modifie pas. L’export CSV contient toujours les noms complets et n’est pas chiffré.</p>');
+  h += panel('Périodes', '<div class="form">' + field('Organisation', '<select onchange="setMode(this.value)">' + options([['trimestre', '3 trimestres'], ['semestre', '2 semestres']], db.periodMode) + '</select>') +
     db.dates.map(function(d, i){ return field(names[i], '<input type="date" value="' + esc(d) + '" onchange="setDate(' + i + ',this)">'); }).join('') + '</div><p class="tiny">La date de fin est exclue de la période. Les filtres s’appliquent aux résultats, aux radars et aux bilans.</p>');
-  h += panel('Sauvegarde', '<p class="small muted" style="margin-top:0">Tes données restent dans ce navigateur, sur cet appareil. Exporte régulièrement une sauvegarde : elle permet aussi de passer d’un ordinateur à un autre.</p><div class="row"><button class="btn" type="button" onclick="exportJSON()">Exporter une sauvegarde</button><button class="btn ghost" type="button" onclick="$(\'importFile\').click()">Importer une sauvegarde</button></div>' +
-    '<h3 style="margin-top:20px">Repartir de zéro</h3><div class="row"><button class="btn ghost" type="button" onclick="startEmpty()">Effacer toutes les données</button><button class="btn ghost" type="button" onclick="reloadDemo()">Recharger les exemples</button></div>');
-  h += panel('Confidentialité', '<div class="note">Aucune donnée ne quitte l’appareil : pas de compte, pas de serveur. Les données sont stockées en clair dans le navigateur, sans mot de passe. Utilise de préférence un appareil professionnel, des prénoms ou initiales plutôt que des noms complets, et des observations factuelles. Pour un usage généralisé dans l’établissement, rapproche-toi de ton chef d’établissement et du DPD académique.</div>');
-  h += panel('Références', '<p class="small" style="margin-top:0">Les repères et conseils sont des propositions pédagogiques à adapter. Les niveaux 1 à 4 correspondent aux niveaux de maîtrise du livret scolaire, pas aux niveaux du CECRL.</p><p class="small"><a href="https://eduscol.education.gouv.fr/" target="_blank" rel="noopener">Éduscol</a>, <a href="https://www.education.gouv.fr/bo" target="_blank" rel="noopener">Bulletin officiel</a>, <a href="https://www.coe.int/fr/web/common-european-framework-reference-languages" target="_blank" rel="noopener">CECRL</a></p><p class="tiny">SKILLPOP V8, by BROT2YOU</p>');
+  h += panel('Repartir de zéro', '<p class="small muted" style="margin-top:0">Ton mot de passe est conservé.</p><div class="row"><button class="btn ghost" type="button" onclick="startEmpty()">Effacer toutes les données</button><button class="btn ghost" type="button" onclick="reloadDemo()">Recharger les exemples</button></div>');
+  h += panel('Confidentialité', '<div class="note">Aucune donnée ne quitte l’appareil : pas de compte, pas de serveur, aucune ressource chargée depuis Internet. Les données sont chiffrées dans le navigateur. Restent en clair : l’écran quand l’app est déverrouillée, les impressions, les PDF et l’export CSV. Privilégie des observations factuelles, sans information de santé ni situation familiale. Pour un usage partagé dans l’établissement, informe ton chef d’établissement, responsable des traitements, afin que l’outil figure au registre.</div>');
+  h += panel('Références', '<p class="small" style="margin-top:0">Les repères et conseils sont des propositions pédagogiques à adapter. Les niveaux 1 à 4 correspondent aux niveaux de maîtrise du livret scolaire, pas aux niveaux du CECRL.</p><p class="small"><a href="https://eduscol.education.gouv.fr/" target="_blank" rel="noopener noreferrer">Éduscol</a>, <a href="https://www.education.gouv.fr/bo" target="_blank" rel="noopener noreferrer">Bulletin officiel</a>, <a href="https://www.coe.int/fr/web/common-european-framework-reference-languages" target="_blank" rel="noopener noreferrer">CECRL</a></p><p class="tiny">SKILLPOP V8.1, by BROT2YOU</p>');
   return h;
 }
 function setMode(m){
@@ -944,20 +969,6 @@ function setDate(i, el){
   if (!ok) { toast('Les dates doivent se suivre dans l’ordre.'); render(); return; }
   db.dates = d; save(); toast('Dates enregistrées');
 }
-function exportJSON(){ download('skillpop-sauvegarde-' + today() + '.json', JSON.stringify(db, null, 2), 'application/json'); toast('Sauvegarde exportée'); }
-function importJSON(input){
-  var file = input.files && input.files[0]; if (!file) return;
-  var reader = new FileReader();
-  reader.onload = function(){
-    var x = null; try { x = migrate(JSON.parse(reader.result)); } catch (e) { x = null; }
-    input.value = '';
-    if (!x) { toast('Ce fichier n’est pas une sauvegarde SkillPop.'); return; }
-    confirmBox('Remplacer les données actuelles ?', 'La sauvegarde contient ' + plural(x.classes.length, 'classe', 'classes') + ' et ' + plural(x.students.length, 'élève', 'élèves') + '. Les données actuelles seront remplacées.', 'Importer', true, function(){
-      db = x; resetState(); save(); go('accueil'); toast('Sauvegarde importée');
-    });
-  };
-  reader.readAsText(file);
-}
 function resetState(){ classId = db.classes[0] ? db.classes[0].id : ''; studentId = ''; assessmentId = ''; period = 'Année entière'; comparison = 'Aucune'; adviceDraft = null; ensureStudent(); }
 function startEmpty(){
   confirmBox('Effacer toutes les données ?', db.demo ? 'Les exemples seront supprimés. Tu repars avec le référentiel de compétences et aucune classe.' : 'Toutes tes classes, tes élèves, tes évaluations et tes observations seront effacés. Exporte une sauvegarde avant si besoin. Cette action est définitive.', 'Tout effacer', true, function(){
@@ -970,20 +981,306 @@ function reloadDemo(){
   });
 }
 
+
+/* ---------- nettoyage des données importées ---------- */
+var SAFE_ID = /^[A-Za-z0-9_-]{1,64}$/;
+function str(v, max){ return String(v == null ? '' : v).replace(/[\u0000-\u001f\u007f]/g, ' ').replace(/\s+/g, ' ').trim().slice(0, max); }
+function textBlock(v, max){ return String(v == null ? '' : v).replace(/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/g, '').trim().slice(0, max); }
+function sanitize(x){
+  var seen = {}, C = {}, S = {}, K = {}, A = {};
+  function fresh(o, prefix){ if (!o || typeof o !== 'object' || !SAFE_ID.test(String(o.id)) || seen[prefix + o.id]) return false; seen[prefix + o.id] = true; return true; }
+  var lifeCats = CFG.life.map(function(l){ return l[0]; });
+  var out = { version: 8, demo: !!x.demo, periodMode: x.periodMode, dates: x.dates, lastExport: isDate(x.lastExport) ? x.lastExport : '', settings: { hideNames: !!(x.settings && x.settings.hideNames) } };
+  out.classes = x.classes.filter(function(c){ return fresh(c, 'c'); }).map(function(c){
+    C[c.id] = true;
+    return { id: c.id, name: str(c.name, 40) || 'Classe', grade: CFG.grades.indexOf(c.grade) >= 0 ? c.grade : '5e', subject: str(c.subject, 60) || 'Anglais', year: str(c.year, 20) || '2026-2027' };
+  });
+  out.students = x.students.filter(function(s){ return fresh(s, 's') && C[s.classId]; }).map(function(s){ S[s.id] = true; return { id: s.id, name: str(s.name, 80) || 'Élève', classId: s.classId }; });
+  out.skills = x.skills.filter(function(k){ return fresh(k, 'k') && CFG.grades.indexOf(k.grade) >= 0; }).map(function(k){
+    K[k.id] = true;
+    var ref = String(k.id).indexOf('ref-') === 0;
+    return { id: k.id, grade: k.grade, subject: ref || k.subject == null ? null : str(k.subject, 60), axis: ALL_AXES.indexOf(k.axis) >= 0 ? k.axis : 'Autre', name: str(k.name, 220) || 'Compétence', custom: !ref };
+  });
+  out.assessments = x.assessments.filter(function(a){ return fresh(a, 'a') && C[a.classId] && K[a.skillId] && isDate(a.date); }).map(function(a){ A[a.id] = true; return { id: a.id, classId: a.classId, skillId: a.skillId, title: str(a.title, 120) || 'Évaluation', date: a.date }; });
+  var rk = {};
+  out.ratings = x.ratings.filter(function(r){
+    var v = r && r.value, key = r && (r.studentId + '|' + r.assessmentId);
+    if (!r || !S[r.studentId] || !A[r.assessmentId] || [1, 2, 3, 4].indexOf(v) < 0 || rk[key]) return false;
+    rk[key] = true; return true;
+  }).map(function(r){ return { id: SAFE_ID.test(String(r.id)) ? r.id : uid(), studentId: r.studentId, assessmentId: r.assessmentId, value: r.value }; });
+  out.lifeRatings = (x.lifeRatings || []).filter(function(l){ return l && S[l.studentId] && lifeCats.indexOf(l.category) >= 0 && isDate(l.date) && [1, 2, 3, 4].indexOf(l.value) >= 0; })
+    .map(function(l){ return { id: SAFE_ID.test(String(l.id)) ? l.id : uid(), studentId: l.studentId, category: l.category, date: l.date, value: l.value }; });
+  out.notes = (x.notes || []).filter(function(n){ return n && S[n.studentId] && isDate(n.date) && textBlock(n.body, 2500); })
+    .map(function(n){ return { id: SAFE_ID.test(String(n.id)) ? n.id : uid(), studentId: n.studentId, date: n.date, category: str(n.category, 80) || 'Observation', body: textBlock(n.body, 2500) }; });
+  return out;
+}
+
+/* ---------- coffre chiffré (AES-GCM 256, clé dérivée du mot de passe par PBKDF2-SHA256) ---------- */
+var VAULT_KEY = 'skillpop-vault', SETTINGS_KEY = 'skillpop-settings', ITER = 310000;
+var cryptoKey = null, vaultSalt = null, vaultIter = ITER, saveChain = null, pendingSaves = 0;
+var authState = 'unlock', authMsg = '', authBusy = false, pendingEnv = null, pendingPlain = null, failCount = 0, lockUntil = 0, lastActivity = Date.now();
+
+function cryptoReady(){ return !!(window.crypto && window.crypto.subtle && window.crypto.getRandomValues && window.TextEncoder && window.TextDecoder && window.Promise); }
+function encUtf8(s){ return new TextEncoder().encode(s); }
+function decUtf8(b){ return new TextDecoder().decode(b); }
+function b64(bytes){ var s = '', CH = 0x8000; for (var i = 0; i < bytes.length; i += CH) s += String.fromCharCode.apply(null, bytes.subarray(i, i + CH)); return btoa(s); }
+function unb64(t){ var bin = atob(t), out = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) out[i] = bin.charCodeAt(i); return out; }
+function randomBytes(n){ return window.crypto.getRandomValues(new Uint8Array(n)); }
+function deriveKey(pass, salt, iter){
+  return window.crypto.subtle.importKey('raw', encUtf8(pass), 'PBKDF2', false, ['deriveKey']).then(function(base){
+    return window.crypto.subtle.deriveKey({ name: 'PBKDF2', salt: salt, iterations: iter, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['encrypt', 'decrypt']);
+  });
+}
+function seal(text, key, salt, iter, format){
+  var iv = randomBytes(12);
+  return window.crypto.subtle.encrypt({ name: 'AES-GCM', iv: iv }, key, encUtf8(text)).then(function(ct){
+    return { format: format, v: 1, kdf: 'PBKDF2-SHA256', cipher: 'AES-256-GCM', iter: iter, salt: b64(salt), iv: b64(iv), ct: b64(new Uint8Array(ct)) };
+  });
+}
+function openEnvelope(env, key){ return window.crypto.subtle.decrypt({ name: 'AES-GCM', iv: unb64(env.iv) }, key, unb64(env.ct)).then(function(buf){ return JSON.parse(decUtf8(buf)); }); }
+function isEnvelope(x){ return !!x && (x.format === 'skillpop-vault' || x.format === 'skillpop-backup') && typeof x.salt === 'string' && typeof x.iv === 'string' && typeof x.ct === 'string' && x.iter >= 10000 && x.iter <= 5000000; }
+function readVault(){ try { var v = JSON.parse(localStorage.getItem(VAULT_KEY)); return isEnvelope(v) ? v : null; } catch (e) { return null; } }
+function writeVault(text, key, salt, iter){ return seal(text, key, salt, iter, 'skillpop-vault').then(function(env){ localStorage.setItem(VAULT_KEY, JSON.stringify(env)); }); }
+function removeLegacy(){ try { [KEY].concat(OLD_KEYS).forEach(function(k){ localStorage.removeItem(k); }); } catch (e) {} }
+function queueSave(){
+  if (!cryptoKey || !db) return;
+  var text = JSON.stringify(db), key = cryptoKey, salt = vaultSalt, iter = vaultIter;
+  pendingSaves++;
+  saveChain = (saveChain || Promise.resolve()).then(function(){ return writeVault(text, key, salt, iter); }).then(
+    function(){ pendingSaves--; storageOk = true; },
+    function(){ pendingSaves--; if (storageOk) toast('Enregistrement impossible sur cet appareil. Exporte une sauvegarde dans Réglages.'); storageOk = false; });
+  return saveChain;
+}
+window.addEventListener('beforeunload', function(e){ if (pendingSaves > 0) { e.preventDefault(); e.returnValue = ''; } });
+
+function appSettings(){
+  var s = {}; try { s = JSON.parse(localStorage.getItem(SETTINGS_KEY)) || {}; } catch (e) { s = {}; }
+  if ([5, 15, 30, 60].indexOf(s.autoLock) < 0) s.autoLock = 15;
+  return s;
+}
+function setAutoLock(m){ var s = appSettings(); s.autoLock = Number(m); try { localStorage.setItem(SETTINGS_KEY, JSON.stringify(s)); } catch (e) {} toast('Verrouillage automatique après ' + m + ' min'); }
+function touchActivity(){ lastActivity = Date.now(); }
+function checkIdle(){ if (cryptoKey && Date.now() - lastActivity > appSettings().autoLock * 60000) lockApp(true); }
+document.addEventListener('pointerdown', touchActivity, true);
+document.addEventListener('keydown', touchActivity, true);
+document.addEventListener('visibilitychange', checkIdle);
+setInterval(checkIdle, 10000);
+
+/* ---------- écrans de verrouillage ---------- */
+function showAuth(state, msg){
+  authState = state; authMsg = msg || ''; authBusy = false;
+  $('shell').className = 'shell hidden'; $('auth').className = 'auth';
+  renderAuth();
+}
+function showApp(){
+  $('auth').className = 'auth hidden'; $('auth').innerHTML = ''; $('shell').className = 'shell';
+  pendingEnv = null; pendingPlain = null; failCount = 0; lastActivity = Date.now();
+  page = 'accueil'; resetState(); render(); window.scrollTo(0, 0);
+}
+function pwField(id, label, auto){ return field(label, '<input type="password" id="' + id + '" autocomplete="' + auto + '" required>'); }
+function renderAuth(){
+  var h = '<div class="auth-box"><div class="auth-brand">SKILL<span>POP</span><small>by BROT2YOU</small></div>';
+  var vault = !!readVault();
+  if (authState === 'nocrypto') {
+    h += '<h2>Chiffrement indisponible</h2><p>Ce navigateur ne propose pas le module de chiffrement nécessaire. Ouvre SkillPop depuis son adresse en https (GitHub Pages) avec un navigateur à jour : Safari, Chrome, Edge ou Firefox récents.</p>';
+  } else if (authState === 'setup') {
+    h += '<h2>Protège tes données</h2><p>' + (pendingPlain ? 'Tes données SkillPop existantes vont être chiffrées sur cet appareil.' : 'Choisis un mot de passe. Il chiffre toutes les données gardées sur cet appareil.') + '</p>' +
+      '<form onsubmit="authSubmit(event)" autocomplete="on">' + pwField('pw1', 'Mot de passe (8 caractères minimum)', 'new-password') + pwField('pw2', 'Confirme le mot de passe', 'new-password') + showToggle() +
+      '<p class="auth-warn">Sans ce mot de passe, personne ne pourra récupérer les données, pas même l’auteur de l’app. Note-le en lieu sûr.</p>' +
+      '<button class="btn pop wide" type="submit">Chiffrer et ouvrir SkillPop</button></form>' +
+      '<div class="auth-links"><button class="link" type="button" onclick="pickRestore()">Restaurer une sauvegarde</button></div>';
+  } else if (authState === 'unlock') {
+    h += '<h2>SkillPop est verrouillé</h2><p>Saisis ton mot de passe pour déchiffrer tes données.</p>' +
+      '<form onsubmit="authSubmit(event)">' + pwField('pw', 'Mot de passe', 'current-password') + showToggle() + '<button class="btn pop wide" type="submit">Déverrouiller</button></form>' +
+      '<div class="auth-links"><button class="link" type="button" onclick="pickRestore()">Restaurer une sauvegarde</button><button class="link" type="button" onclick="showAuth(\'forgot\')">Mot de passe oublié</button></div>';
+  } else if (authState === 'restore-pass') {
+    h += '<h2>Sauvegarde chiffrée</h2><p>Saisis le mot de passe utilisé au moment de l’export. Il deviendra le mot de passe de SkillPop sur cet appareil.' + (vault ? ' Les données actuelles de cet appareil seront remplacées.' : '') + '</p>' +
+      '<form onsubmit="authSubmit(event)">' + pwField('pw', 'Mot de passe de la sauvegarde', 'current-password') + showToggle() + '<button class="btn pop wide" type="submit">Restaurer</button></form>' +
+      '<div class="auth-links"><button class="link" type="button" onclick="cancelRestore()">Annuler</button></div>';
+  } else if (authState === 'restore-new') {
+    h += '<h2>Sauvegarde non chiffrée</h2><p>Elle contient ' + plural(pendingPlain.classes.length, 'classe', 'classes') + ' et ' + plural(pendingPlain.students.length, 'élève', 'élèves') + '. Choisis un mot de passe pour la chiffrer sur cet appareil.' + (vault ? ' Les données actuelles de cet appareil seront remplacées.' : '') + '</p>' +
+      '<form onsubmit="authSubmit(event)">' + pwField('pw1', 'Mot de passe (8 caractères minimum)', 'new-password') + pwField('pw2', 'Confirme le mot de passe', 'new-password') + showToggle() + '<button class="btn pop wide" type="submit">Chiffrer et restaurer</button></form>' +
+      '<div class="auth-links"><button class="link" type="button" onclick="cancelRestore()">Annuler</button></div>';
+  } else if (authState === 'forgot') {
+    h += '<h2>Mot de passe oublié</h2><p>Les données sont chiffrées : sans le mot de passe, elles ne peuvent pas être récupérées.</p><p>Si tu as une sauvegarde chiffrée et que tu connais <b>son</b> mot de passe, restaure-la. Sinon, tu peux effacer les données de cet appareil et repartir de zéro.</p>' +
+      '<button class="btn ghost wide" type="button" onclick="pickRestore()">Restaurer une sauvegarde</button>' +
+      '<form onsubmit="authSubmit(event)" style="margin-top:18px">' + field('Pour tout effacer, écris EFFACER', '<input id="wipe" autocomplete="off" autocapitalize="characters">') + '<button class="btn danger wide" type="submit">Effacer définitivement</button></form>' +
+      '<div class="auth-links"><button class="link" type="button" onclick="showAuth(\'unlock\')">Retour</button></div>';
+  }
+  h += '<p class="auth-msg" id="auth-msg" role="alert">' + esc(authMsg) + '</p><p class="tiny auth-foot">Chiffrement AES-256 dans ton navigateur. Rien n’est envoyé sur Internet.</p></div>';
+  $('auth').innerHTML = h;
+  var first = $('auth').querySelector('input');
+  if (first) setTimeout(function(){ first.focus(); }, 30);
+}
+function showToggle(){ return '<label class="showpw"><input type="checkbox" onchange="togglePw(this.checked)"> Afficher</label>'; }
+function togglePw(on){ var l = $('auth').querySelectorAll('input[type=password],input[data-pw]'); for (var i = 0; i < l.length; i++) { l[i].setAttribute('data-pw', '1'); l[i].type = on ? 'text' : 'password'; } }
+function authError(m){ authBusy = false; authMsg = m; var el = $('auth-msg'); if (el) el.textContent = m; var b = $('auth').querySelector('button[type=submit]'); if (b) { b.disabled = false; b.textContent = b.getAttribute('data-label') || b.textContent; } }
+function authWorking(label){ authBusy = true; var b = $('auth').querySelector('button[type=submit]'); if (b) { b.setAttribute('data-label', b.textContent); b.disabled = true; b.textContent = label; } var el = $('auth-msg'); if (el) el.textContent = ''; }
+function checkNewPw(a, b){ if (a.length < 8) return 'Le mot de passe doit faire au moins 8 caractères.'; if (a !== b) return 'Les deux mots de passe ne sont pas identiques.'; return ''; }
+function authSubmit(e){
+  e.preventDefault(); if (authBusy) return;
+  if (authState === 'setup' || authState === 'restore-new') {
+    var p1 = $('pw1').value, p2 = $('pw2').value, err = checkNewPw(p1, p2);
+    if (err) { authError(err); return; }
+    createVault(p1, pendingPlain || seedDb(), authState === 'restore-new' ? 'Sauvegarde restaurée et chiffrée' : 'Données chiffrées sur cet appareil');
+  } else if (authState === 'unlock') {
+    if (Date.now() < lockUntil) { authError('Trop d’essais. Réessaie dans ' + Math.ceil((lockUntil - Date.now()) / 1000) + ' secondes.'); return; }
+    unlockWith($('pw').value, readVault(), false);
+  } else if (authState === 'restore-pass') {
+    unlockWith($('pw').value, pendingEnv, true);
+  } else if (authState === 'forgot') {
+    if (String($('wipe').value).trim().toUpperCase() !== 'EFFACER') { authError('Écris EFFACER pour confirmer.'); return; }
+    try { localStorage.removeItem(VAULT_KEY); } catch (e2) {}
+    pendingPlain = null; showAuth('setup', 'Données effacées. Choisis un nouveau mot de passe.');
+  }
+}
+function createVault(pass, data, msg){
+  authWorking('Chiffrement…');
+  var salt = randomBytes(16), m = migrate(clone(data));
+  if (!m) { authError('Données illisibles.'); return; }
+  deriveKey(pass, salt, ITER).then(function(key){
+    return writeVault(JSON.stringify(m), key, salt, ITER).then(function(){ cryptoKey = key; vaultSalt = salt; vaultIter = ITER; db = m; });
+  }).then(function(){ removeLegacy(); showApp(); toast(msg); }, function(){ authError('Le chiffrement a échoué. Vérifie que le navigateur autorise le stockage local.'); });
+}
+function unlockWith(pass, env, restoring){
+  if (!env) { authError('Aucune donnée chiffrée trouvée.'); return; }
+  authWorking(restoring ? 'Restauration…' : 'Déchiffrement…');
+  var salt = unb64(env.salt), iter = env.iter, k = null;
+  deriveKey(pass, salt, iter).then(function(key){ k = key; return openEnvelope(env, key); }).then(function(obj){
+    var m = migrate(obj); if (!m) throw new Error('format');
+    if (!restoring) { cryptoKey = k; vaultSalt = salt; vaultIter = iter; db = m; return null; }
+    return writeVault(JSON.stringify(m), k, salt, iter).then(function(){ cryptoKey = k; vaultSalt = salt; vaultIter = iter; db = m; removeLegacy(); });
+  }).then(function(){ showApp(); if (restoring) toast('Sauvegarde restaurée'); }, function(){
+    if (!restoring) { failCount++; if (failCount >= 5) lockUntil = Date.now() + Math.min(300000, 30000 * Math.pow(2, failCount - 5)); }
+    authError(restoring ? 'Mot de passe incorrect pour cette sauvegarde.' : 'Mot de passe incorrect.');
+  });
+}
+function pickRestore(){ $('restoreFile').value = ''; $('restoreFile').click(); }
+function cancelRestore(){ pendingEnv = null; pendingPlain = readVault() ? null : loadLegacyPlain(); showAuth(readVault() ? 'unlock' : 'setup'); }
+function handleRestoreFile(input){
+  var file = input.files && input.files[0]; if (!file) return;
+  var r = new FileReader();
+  r.onload = function(){
+    var x = null; try { x = JSON.parse(r.result); } catch (e) { x = null; }
+    if (isEnvelope(x)) { pendingEnv = x; showAuth('restore-pass'); return; }
+    var m = null; try { m = migrate(x); } catch (e2) { m = null; }
+    if (m) { pendingPlain = m; showAuth('restore-new'); return; }
+    authError('Ce fichier n’est pas une sauvegarde SkillPop.');
+  };
+  r.readAsText(file);
+}
+function lockApp(auto){
+  if (!cryptoKey) return;
+  function finish(){
+    cryptoKey = null; vaultSalt = null; db = null;
+    closeModal(); clearPrint();
+    $('view').innerHTML = ''; $('topctl').innerHTML = ''; $('nav').innerHTML = ''; $('heading').textContent = '';
+    document.title = 'SKILLPOP V8.1';
+    showAuth('unlock', auto ? 'Verrouillé automatiquement après inactivité.' : '');
+  }
+  (saveChain || Promise.resolve()).then(finish, finish);
+}
+
+/* ---------- sécurité dans l’app ---------- */
+function verifyPassword(pass){
+  var env = readVault(); if (!env) return Promise.resolve(false);
+  return deriveKey(pass, unb64(env.salt), env.iter).then(function(key){ return openEnvelope(env, key); }).then(function(){ return true; }, function(){ return false; });
+}
+function modalError(m){ var el = $('m-err'); if (el) el.textContent = m; var b = $('m-ok'); b.disabled = false; }
+function changePassword(){
+  openModal({ title: 'Changer le mot de passe', ok: 'Changer', html:
+    field('Mot de passe actuel', '<input type="password" id="cp-cur" autocomplete="current-password">') +
+    field('Nouveau mot de passe (8 caractères minimum)', '<input type="password" id="cp-n1" autocomplete="new-password">') +
+    field('Confirme le nouveau mot de passe', '<input type="password" id="cp-n2" autocomplete="new-password">') +
+    '<p class="tiny">Les sauvegardes déjà exportées gardent l’ancien mot de passe.</p><p class="auth-msg" id="m-err" role="alert"></p>',
+    onOk: function(){
+      var cur = $('cp-cur').value, n1 = $('cp-n1').value, err = checkNewPw(n1, $('cp-n2').value);
+      if (err) { modalError(err); return false; }
+      $('m-ok').disabled = true; $('m-err').textContent = 'Vérification…';
+      var salt = randomBytes(16);
+      saveChain = (saveChain || Promise.resolve()).then(function(){ return verifyPassword(cur); }).then(function(ok){
+        if (!ok) throw new Error('bad');
+        return deriveKey(n1, salt, ITER).then(function(key){ return writeVault(JSON.stringify(db), key, salt, ITER).then(function(){ cryptoKey = key; vaultSalt = salt; vaultIter = ITER; }); });
+      });
+      saveChain.then(function(){ $('m-ok').disabled = false; closeModal(); toast('Mot de passe changé'); }, function(e){ modalError(e && e.message === 'bad' ? 'Mot de passe actuel incorrect.' : 'Le changement a échoué.'); });
+      saveChain = saveChain.then(null, function(){});
+      return false;
+    } });
+}
+function exportEncrypted(){
+  db.lastExport = today();
+  var text = JSON.stringify(db);
+  seal(text, cryptoKey, vaultSalt, vaultIter, 'skillpop-backup').then(function(env){
+    env.exportedAt = today();
+    download('skillpop-sauvegarde-chiffree-' + today() + '.json', JSON.stringify(env), 'application/json');
+    save(); render(); toast('Sauvegarde chiffrée exportée');
+  }, function(){ toast('L’export a échoué.'); });
+}
+function exportPlain(){
+  confirmBox('Exporter sans chiffrement ?', 'Le fichier sera lisible par toute personne qui l’ouvre : noms, niveaux et observations en clair. Réserve cet export à un transfert ponctuel et supprime le fichier ensuite.', 'Exporter en clair', true, function(){
+    db.lastExport = today();
+    download('skillpop-sauvegarde-NON-CHIFFREE-' + today() + '.json', JSON.stringify(db, null, 2), 'application/json');
+    save(); render(); toast('Sauvegarde non chiffrée exportée');
+  });
+}
+function importJSON(input){
+  var file = input.files && input.files[0]; if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(){
+    var x = null; try { x = JSON.parse(reader.result); } catch (e) { x = null; }
+    input.value = '';
+    if (isEnvelope(x)) {
+      openModal({ title: 'Sauvegarde chiffrée', ok: 'Importer', danger: true, html: '<p>Saisis le mot de passe utilisé au moment de l’export. Les données actuelles seront remplacées, puis chiffrées avec ton mot de passe actuel.</p>' + field('Mot de passe de la sauvegarde', '<input type="password" id="ip-pass" autocomplete="off">') + '<p class="auth-msg" id="m-err" role="alert"></p>', onOk: function(){
+        $('m-ok').disabled = true; $('m-err').textContent = 'Déchiffrement…';
+        deriveKey($('ip-pass').value, unb64(x.salt), x.iter).then(function(key){ return openEnvelope(x, key); }).then(function(obj){
+          var m = migrate(obj); if (!m) throw new Error('format');
+          $('m-ok').disabled = false; closeModal(); db = m; resetState(); save(); go('accueil'); toast('Sauvegarde importée');
+        }, function(){ modalError('Mot de passe incorrect pour cette sauvegarde.'); });
+        return false;
+      } });
+      return;
+    }
+    var m = null; try { m = migrate(x); } catch (e3) { m = null; }
+    if (!m) { toast('Ce fichier n’est pas une sauvegarde SkillPop.'); return; }
+    confirmBox('Remplacer les données actuelles ?', 'La sauvegarde contient ' + plural(m.classes.length, 'classe', 'classes') + ' et ' + plural(m.students.length, 'élève', 'élèves') + '. Elle sera chiffrée avec ton mot de passe actuel.', 'Importer', true, function(){
+      db = m; resetState(); save(); go('accueil'); toast('Sauvegarde importée et chiffrée');
+    });
+  };
+  reader.readAsText(file);
+}
+function isIOS(){ var ua = navigator.userAgent || ''; return /iPhone|iPad|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1); }
+function daysSince(d){ if (!isDate(d)) return -1; var a = new Date(d + 'T00:00:00'), b = new Date(today() + 'T00:00:00'); return Math.round((b - a) / 86400000); }
+function backupBanner(){
+  if (db.demo || !db.students.length) return '';
+  var n = daysSince(db.lastExport);
+  if (n >= 0 && n <= 7) return '';
+  return '<div class="demo noprint"><span>' + (n < 0 ? 'Aucune sauvegarde exportée pour l’instant.' : 'Dernière sauvegarde il y a ' + n + ' jours.') + (isIOS() && !navigator.standalone ? ' Sur iPhone et iPad, Safari peut effacer les données d’un site non ouvert depuis 7 jours : ajoute SkillPop à l’écran d’accueil.' : '') + '</span><button class="btn" type="button" onclick="exportEncrypted()">Exporter une sauvegarde chiffrée</button></div>';
+}
+function dn(s){ if (!s) return ''; if (db && db.settings && db.settings.hideNames) return s.name.split(' ').filter(function(w){ return w; }).map(function(w){ return w.charAt(0).toUpperCase() + '.'; }).join(' '); return s.name; }
+function toggleNames(){ db.settings = db.settings || {}; db.settings.hideNames = !db.settings.hideNames; save(); render(); toast(db.settings.hideNames ? 'Noms masqués : initiales seulement' : 'Noms affichés'); }
+
 /* ---------- rendu ---------- */
 var TITLES = { accueil: 'Accueil', classes: 'Classes et élèves', referentiel: 'Référentiel', evaluer: 'Évaluer', eleves: 'Dossier élève', conseils: 'Conseils', bilans: 'Bilans', reglages: 'Réglages' };
 var VIEWS = { accueil: pageAccueil, classes: pageClasses, referentiel: pageReferentiel, evaluer: pageEvaluer, eleves: pageEleves, conseils: pageConseils, bilans: pageBilans, reglages: pageReglages };
 function render(){
+  if (!db) return;
+  if (!db.settings) db.settings = { hideNames: false };
   if (!byId(db.classes, classId)) classId = db.classes[0] ? db.classes[0].id : '';
   if (period !== 'Année entière' && periodNames().indexOf(period) < 0) period = 'Année entière';
   if (comparison !== 'Aucune' && periodNames().indexOf(comparison) < 0) comparison = 'Aucune';
   ensureStudent(); indexRatings(); nav();
   $('heading').textContent = TITLES[page];
   $('topctl').innerHTML = topControls();
-  $('view').innerHTML = demoBanner() + (VIEWS[page] || pageAccueil)();
-  document.title = TITLES[page] + ' — SKILLPOP V8';
+  $('view').innerHTML = demoBanner() + backupBanner() + (VIEWS[page] || pageAccueil)();
+  document.title = TITLES[page] + ' — SKILLPOP V8.1';
 }
-render();
+function boot(){
+  if (!cryptoReady()) { showAuth('nocrypto'); return; }
+  if (readVault()) { showAuth('unlock'); return; }
+  pendingPlain = loadLegacyPlain();
+  showAuth('setup');
+}
+boot();
 </script>
 </body>
 </html>
