@@ -1,116 +1,989 @@
-<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>SKILLPOP V7 • by BROT2YOU</title><style>
-:root{font-family:Inter,ui-rounded,system-ui,sans-serif;color:#263452;background:#f5f7ff;--blue:#4167e8;--mint:#15b5a5;--coral:#ff786d;--lav:#9477e7;--gold:#f5be47}*{box-sizing:border-box}body{margin:0}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #75baf8;outline-offset:2px}.shell{display:flex;min-height:100vh}.side{width:244px;flex-shrink:0;background:white;border-right:1px solid #e6eaf5;padding:24px 13px;position:sticky;top:0;height:100vh}.brand{font-weight:950;font-size:29px;letter-spacing:-1.5px;margin:6px 12px 0}.brand b{color:var(--coral)}.by{margin:0 12px 24px;color:#7885a2;font-size:12px}.nav button{display:flex;align-items:center;gap:12px;width:100%;padding:13px 15px;border:0;border-radius:13px;background:transparent;text-align:left;color:#53607c;font-weight:700;margin-bottom:4px}.nav button.active{background:#eaf0ff;color:#315de0}.main{flex:1;min-width:0;padding:27px clamp(15px,3vw,44px);max-width:1500px}.top{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:20px}.top h1{font-size:clamp(23px,3vw,34px);letter-spacing:-1px;margin:0}.tag{border-radius:30px;background:#e8faf7;color:#098c7e;padding:8px 12px;font-size:12px;font-weight:750}.hero{background:linear-gradient(110deg,#4267e9,#8d72e7 70%,#ff8d83);color:white;border-radius:25px;padding:27px;margin-bottom:19px;display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;box-shadow:0 15px 35px #4267e922}.hero h2{margin:0 0 8px;font-size:29px}.hero p{margin:0;max-width:570px}.card{background:white;border:1px solid #e7ebf7;border-radius:22px;padding:21px;margin-bottom:17px;box-shadow:0 8px 25px #26345208}.card h2{margin:0 0 16px;font-size:18px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}.stat{background:white;border:1px solid #e7ebf7;border-radius:17px;padding:17px}.stat strong{display:block;font-size:28px}.muted{color:#7a87a2;font-size:13px}.btn{background:var(--blue);color:white;border:0;border-radius:12px;padding:11px 16px;font-weight:750;min-height:42px}.btn.alt{background:#eaf0ff;color:#315de0}.btn.mint{background:#12aa9b}.btn.danger{background:#fff0ef;color:#b53f3c}.toolbar{display:flex;align-items:end;flex-wrap:wrap;gap:12px;margin-bottom:15px}.field{display:flex;flex-direction:column;gap:6px;min-width:150px;flex:1}.field label{font-size:12px;font-weight:750;color:#65718b}input,select,textarea{width:100%;background:#fbfcff;border:1px solid #dbe1ef;border-radius:11px;padding:10px;color:#263452;min-height:41px}textarea{min-height:95px;resize:vertical}.row{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.split{display:flex;align-items:center;justify-content:space-between;gap:12px}.tablewrap{overflow-x:auto}table{width:100%;border-collapse:collapse;min-width:620px}th,td{text-align:left;border-bottom:1px solid #edf0f8;padding:12px 10px;font-size:13px}th{color:#65718b;background:#fafbff}td:first-child{font-weight:700}.pill{display:inline-flex;align-items:center;gap:6px;border-radius:9px;padding:6px 9px;font-size:12px;font-weight:800}.levels{display:flex;gap:7px;flex-wrap:wrap}.level{border:2px solid transparent;border-radius:10px;padding:9px 12px;min-width:49px;font-weight:850;color:white}.level.selected{outline:3px solid #273451;outline-offset:2px}.level:not(.selected){opacity:.65}.mini{font-size:12px;color:#6f7c98}.notice{background:#fff6e5;border:1px solid #f3dfac;color:#6c5426;border-radius:14px;padding:13px;font-size:13px;line-height:1.5;margin-top:14px}.success{background:#e8f8ef;border-color:#c2e6d1;color:#216c49}.radar{width:100%;max-width:490px;display:block;margin:auto}.legend{display:flex;gap:10px;flex-wrap:wrap}.legend span{display:inline-flex;align-items:center;gap:6px;font-size:12px}.dot{width:12px;height:12px;border-radius:50%}.progress{height:12px;border-radius:20px;background:#e8edf7;overflow:hidden;min-width:85px}.progress>i{display:block;height:100%;border-radius:20px}.item{padding:12px 0;border-bottom:1px solid #edf0f8}.item:last-child{border-bottom:0}.empty{padding:28px;color:#8190aa;text-align:center}.smallbtn{border:1px solid #dce3f4;background:white;color:#4167e8;border-radius:9px;padding:7px 10px;font-size:12px;font-weight:750}.tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}.tabs button{border:1px solid #dce3f4;background:white;border-radius:10px;padding:10px;font-weight:700}.tabs button.active{background:#e9efff;color:#315de0;border-color:#9fb6fa}.footer{color:#8894a9;font-size:12px;margin:25px 0}.ref{background:#f4f6fc;border-radius:10px;padding:9px;font-size:12px;margin:6px 0}.formgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.chartbar{display:flex;align-items:center;gap:12px;margin:11px 0}.chartbar label{width:135px;font-size:12px}.chartbar .progress{flex:1}.chartbar b{width:30px;font-size:13px}.hide{display:none}@media(max-width:950px){.side{width:74px;padding:18px 7px}.brand{font-size:14px;letter-spacing:-1px;margin:8px 4px}.brand b{display:block}.by,.nav .txt{display:none}.nav button{justify-content:center;font-size:21px}.stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:680px){.shell{display:block}.side{width:100%;height:auto;position:sticky;top:0;z-index:5;padding:7px 9px;display:flex;align-items:center;box-shadow:0 3px 12px #26345212}.brand{font-size:18px;white-space:nowrap}.brand b{display:inline}.nav{display:flex;overflow-x:auto;gap:3px;flex:1}.nav button{min-width:44px;padding:9px;margin:0}.main{padding:18px 12px}.grid,.formgrid{grid-template-columns:1fr}.hero{padding:21px}.hero h2{font-size:23px}.card{padding:15px}.stats{gap:7px}.stat{padding:12px}.stat strong{font-size:22px}.level{padding:9px;min-width:43px}}@media print{.side,.toolbar,.btn,.tabs,.notice,.smallbtn{display:none!important}.main{padding:0}.card{break-inside:avoid;box-shadow:none}}
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SKILLPOP V8 — by BROT2YOU</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#1D2340;--ink2:#2B3358;--muted:#626A86;--bg:#EEF1F8;--surface:#FFFFFF;--line:#DCE1EE;--soft:#F5F7FC;
+  --pop:#FF4F7B;--teal:#0FA191;--violet:#7A5AF0;
+  --m1:#D9434A;--m2:#E8892A;--m3:#8FB12A;--m4:#1F9460;
+  --display:"Bricolage Grotesque","Avenir Next","Segoe UI",system-ui,sans-serif;
+  --body:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 var(--body);overflow-x:hidden}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:#3550D8}
+:focus-visible{outline:3px solid #5B8DEF;outline-offset:2px}
 
-/* SKILLPOP V5: stable responsive layout, no floating page or horizontal viewport drift */
-html{width:100%;overflow-x:clip;scroll-behavior:auto}body{width:100%;max-width:100%;overflow-x:clip;overscroll-behavior-x:none}.shell{width:100%;max-width:100%;min-width:0}.main,.card,.grid,.grid>*,.toolbar,.field,.stat,.hero{min-width:0;max-width:100%}.side{overflow-y:auto;overscroll-behavior:contain}.card{overflow-wrap:anywhere}.grid>*,.formgrid>*{min-width:0}.tablewrap{width:100%;max-width:100%;overscroll-behavior-x:contain}.radar{height:auto;max-width:100%}input,select,textarea{max-width:100%;font-size:16px}.toolbar>.field{min-width:min(160px,100%)}
-@media(max-width:680px){.shell{display:flex;flex-direction:column}.side{position:relative;top:auto;height:auto;width:100%;max-width:100%;flex-shrink:0;overflow:visible;display:block;padding:12px}.brand{margin:0 4px 5px}.nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;overflow:visible;width:100%}.nav button{width:100%;min-width:0;min-height:43px;font-size:13px;padding:7px 3px;gap:4px;justify-content:center}.nav button .txt{display:inline;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.nav button>span:first-child{font-size:15px}.main{width:100%;padding:14px 10px;flex:1}.top{align-items:flex-start}.hero{display:block}.hero .btn{margin-top:14px}.toolbar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:end;gap:9px}.toolbar>.field{min-width:0}.toolbar>.btn{min-width:0}.card{padding:13px;border-radius:16px}.grid,.formgrid{grid-template-columns:minmax(0,1fr)}.chartbar{gap:5px}.chartbar label{width:100px;flex-shrink:0;font-size:11px}.chartbar .progress{min-width:0}.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.level{min-width:39px}.tablewrap table{min-width:590px}.split{flex-wrap:wrap}}
-@media(max-width:370px){.nav{grid-template-columns:repeat(2,minmax(0,1fr))}.toolbar{grid-template-columns:minmax(0,1fr)}}
-.life-note{border-left:4px solid #15b5a5;padding-left:10px}.advice-box{background:#f0f9f7;border:1px solid #b9e8de;border-radius:17px;padding:18px;margin:16px 0;line-height:1.6}.advice-box p{font-size:16px}.advice-box .split{flex-wrap:wrap}@media(max-width:680px){.advice-box{padding:13px}}
-</style></head><body><div class="shell"><aside class="side"><div><div class="brand">SKILL<b>POP</b></div><div class="by">by BROT2YOU</div></div><nav class="nav" id="nav"></nav></aside><main class="main"><div class="top"><h1 id="heading"></h1><span class="tag">✦ Classroom Pop • Démonstration</span></div><div id="view"></div><div class="footer">SKILLPOP by BROT2YOU • Démonstration avec données fictives uniquement • Aucun service distant</div></main></div><script>
+/* ---------- structure ---------- */
+.shell{display:flex;min-height:100vh}
+.side{width:228px;flex-shrink:0;background:var(--ink);color:#fff;position:sticky;top:0;height:100vh;padding:24px 14px;display:flex;flex-direction:column;gap:22px;overflow-y:auto}
+.brand{font-family:var(--display);font-weight:800;font-size:31px;line-height:1;letter-spacing:-1px;padding:0 10px}
+.brand span{color:var(--pop)}
+.brand small{display:block;font-family:var(--body);font-weight:500;font-size:12px;letter-spacing:0;color:#A9B0CF;margin-top:6px}
+.nav{display:flex;flex-direction:column;gap:3px}
+.nav button{display:flex;align-items:center;gap:12px;width:100%;border:0;background:transparent;color:#C3C9E4;padding:11px 12px;border-radius:12px;text-align:left;font-weight:650;position:relative}
+.nav button .ic{width:22px;text-align:center;font-size:17px}
+.nav button:hover{background:rgba(255,255,255,.06);color:#fff}
+.nav button.on{background:rgba(255,255,255,.1);color:#fff}
+.nav button.on:before{content:"";position:absolute;left:-14px;top:9px;bottom:9px;width:4px;border-radius:0 4px 4px 0;background:var(--pop)}
+.side-foot{margin-top:auto;font-size:11px;color:#8890B4;padding:0 10px}
+.main{flex:1;min-width:0;padding:26px clamp(14px,3vw,40px) 48px;max-width:1280px}
+.topbar{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:14px;margin-bottom:20px}
+.mbrand{display:none}
+h1{font-family:var(--display);font-weight:800;font-size:clamp(26px,3.2vw,36px);letter-spacing:-.8px;line-height:1.05;margin:0}
+h2{font-family:var(--display);font-weight:800;font-size:20px;letter-spacing:-.3px;margin:0 0 14px;line-height:1.2}
+h3{font-size:16px;margin:0 0 8px}
+.ctl{display:flex;gap:10px;flex-wrap:wrap}
+.field{display:flex;flex-direction:column;gap:5px;min-width:0}
+.field>span{font-size:12px;font-weight:650;color:var(--muted)}
+input,select,textarea{background:var(--surface);border:1px solid #CDD4E6;border-radius:11px;padding:9px 11px;min-height:42px;font-size:16px;max-width:100%;width:100%}
+.ctl .field{width:auto;min-width:150px}
+textarea{min-height:110px;resize:vertical;line-height:1.5}
+select{padding-right:28px}
+
+/* ---------- blocks ---------- */
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px}
+.panel>h2 .count{font-family:var(--body);font-size:13px;font-weight:600;color:var(--muted);margin-left:6px}
+.muted{color:var(--muted)}
+.small{font-size:13px}
+.tiny{font-size:12px;color:var(--muted)}
+.row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.between{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.form{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;align-items:end}
+.list-item{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:11px 0;border-bottom:1px solid #EDF0F7;flex-wrap:wrap}
+.list-item:last-child{border-bottom:0}
+.list-item.sel{background:linear-gradient(90deg,#FFF0F4,transparent 70%);margin:0 -12px;padding-left:12px;padding-right:12px;border-radius:10px}
+.empty{padding:26px 10px;text-align:center;color:var(--muted)}
+.empty .btn{margin-top:12px}
+.note{background:#FFF7E6;border:1px solid #F1DDA8;color:#5E4A1F;border-radius:14px;padding:13px 15px;font-size:13.5px;line-height:1.55}
+.demo{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;background:var(--ink);color:#fff;border-radius:14px;padding:12px 16px;margin-bottom:16px;font-size:14px}
+.demo .btn{background:#fff;color:var(--ink)}
+
+/* ---------- buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;border:0;border-radius:12px;padding:10px 16px;min-height:42px;font-weight:750;background:var(--ink);color:#fff;text-decoration:none;white-space:nowrap}
+.btn:hover{background:var(--ink2)}
+.btn.pop{background:var(--pop)}
+.btn.pop:hover{background:#F03D6B}
+.btn.ghost{background:#E6EAF5;color:var(--ink)}
+.btn.ghost:hover{background:#DADFEE}
+.btn.danger{background:#C9373F}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.link{border:0;background:none;padding:6px 8px;border-radius:8px;color:#3550D8;font-weight:650;font-size:13px}
+.link:hover{background:#EEF2FF}
+.link.del{color:#B3363D}
+.link.del:hover{background:#FFF0F0}
+
+/* ---------- mastery ---------- */
+.chip{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;font-weight:800;color:#fff;font-size:14px}
+.chip.l1,.lvlbtn.l1,.seg.l1{background:var(--m1)}
+.chip.l2,.lvlbtn.l2,.seg.l2{background:var(--m2)}
+.chip.l3,.lvlbtn.l3,.seg.l3{background:var(--m3)}
+.chip.l4,.lvlbtn.l4,.seg.l4{background:var(--m4)}
+.chip.none{background:#EEF1F7;color:#A2A9C0}
+.pill{display:inline-flex;align-items:center;gap:7px;border-radius:999px;padding:4px 11px 4px 4px;font-size:12.5px;font-weight:700;background:var(--soft)}
+.pill .chip{width:22px;height:22px;border-radius:999px;font-size:12px}
+.pill.none{padding:4px 11px;color:var(--muted);font-weight:600}
+.lvlbtns{display:flex;gap:7px}
+.lvlbtn{width:44px;height:44px;border-radius:12px;border:3px solid transparent;color:#fff;font-weight:800;font-size:16px;opacity:.38;transition:opacity .12s,transform .12s}
+.lvlbtn:hover{opacity:.75}
+.lvlbtn.on{opacity:1;border-color:var(--ink);transform:scale(1.06)}
+.legend{display:flex;flex-wrap:wrap;gap:8px}
+
+/* ---------- hero ---------- */
+.hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:26px;align-items:center;background:var(--surface);border:2px solid var(--ink);border-radius:24px;padding:22px 26px;margin-bottom:22px;box-shadow:7px 7px 0 var(--ink)}
+.hero h2{font-size:clamp(26px,3vw,34px);margin:0}
+.hero .meta{color:var(--muted);margin:4px 0 18px}
+.figs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:18px}
+.fig{background:var(--soft);border-radius:14px;padding:12px}
+.fig b{display:block;font-family:var(--display);font-size:28px;line-height:1.1}
+.fig span{font-size:12.5px;color:var(--muted)}
+.dist{display:flex;height:16px;border-radius:999px;overflow:hidden;background:#EEF1F7;margin:8px 0 10px}
+.seg{height:100%}
+.radar{display:block;width:100%;max-width:470px;height:auto;margin:0 auto}
+
+/* ---------- bars ---------- */
+.bar{display:grid;grid-template-columns:130px minmax(0,1fr) 34px;align-items:center;gap:10px;margin:10px 0;font-size:13px}
+.track{height:12px;background:#EEF1F7;border-radius:999px;overflow:hidden}
+.track i{display:block;height:100%;border-radius:999px}
+.bar b{text-align:right}
+
+/* ---------- tables ---------- */
+.tablewrap{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -4px;padding:0 4px}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:10px 9px;border-bottom:1px solid #EDF0F7;font-size:13.5px;vertical-align:middle}
+th{font-size:12px;color:var(--muted);font-weight:650;background:var(--soft)}
+th .sk{display:block;max-width:130px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+td.name{font-weight:700;white-space:nowrap}
+tr.clickable{cursor:pointer}
+tr.clickable:hover td{background:#FAFBFF}
+.grid-table td:not(.name){text-align:center}
+.grid-table th:not(:first-child){text-align:center}
+
+/* ---------- tabs / student ---------- */
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px;border-bottom:1px solid var(--line)}
+.tabs button{border:0;background:none;padding:10px 12px;font-weight:700;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-1px}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--pop)}
+.stepper{display:flex;gap:6px;align-items:flex-end}
+.stepper .btn{padding:0 12px}
+.skill-axis{display:inline-block;font-size:12px;font-weight:700;color:#3550D8;background:#EEF2FF;border-radius:7px;padding:2px 8px;margin-bottom:5px}
+.obs p{margin:6px 0 0;white-space:pre-wrap}
+.advice{background:#F0FBF8;border:1px solid #BDE8DE;border-radius:16px;padding:18px;margin:16px 0}
+.advice p{font-size:17px;margin:8px 0 0;line-height:1.55}
+
+/* ---------- bilans ---------- */
+.bilan{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;margin-bottom:16px}
+.bilan-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;border-bottom:2px solid var(--ink);padding-bottom:8px;margin-bottom:12px}
+.bilan-head h3{font-family:var(--display);font-size:22px;margin:0}
+.bilan .cols{align-items:start}
+.bilan .radar{max-width:330px}
+.bilan ul{list-style:none;margin:0;padding:0}
+.bilan li{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid #EDF0F7;font-size:13px}
+
+/* ---------- modal / toast ---------- */
+.modal{position:fixed;inset:0;background:rgba(20,24,46,.5);display:none;align-items:center;justify-content:center;padding:16px;z-index:50}
+.modal.open{display:flex}
+.modal-box{background:#fff;border-radius:20px;padding:22px;width:100%;max-width:460px;max-height:90vh;overflow:auto;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink)}
+.modal-box .field{margin-bottom:12px}
+.modal-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:16px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--ink);color:#fff;padding:11px 18px;border-radius:12px;font-weight:650;font-size:14px;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s;z-index:60;max-width:90vw;text-align:center}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+.hidden{display:none!important}
+.span2{grid-column:span 2}
+@media (max-width:560px){.span2{grid-column:auto}}
+.print-title{display:none}
+
+/* ---------- responsive ---------- */
+@media (max-width:980px){
+  .side{width:76px;padding:20px 8px}
+  .brand{font-size:15px;padding:0;text-align:center}
+  .brand span{display:block}
+  .brand small,.nav .tx,.side-foot{display:none}
+  .nav button{justify-content:center;padding:12px 0}
+  .nav button.on:before{left:-8px}
+  .hero{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .side{position:fixed;left:0;right:0;bottom:0;top:auto;width:auto;height:auto;flex-direction:row;padding:4px 4px calc(4px + env(safe-area-inset-bottom,0px));z-index:30;gap:0;overflow:visible}
+  .brand{display:none}
+  .nav{flex-direction:row;width:100%;gap:0}
+  .nav button{flex:1;flex-direction:column;gap:1px;padding:7px 0 5px;font-size:10px;border-radius:10px;min-width:0}
+  .nav .tx{display:block;font-size:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .nav button.on:before{left:30%;right:30%;top:0;bottom:auto;width:auto;height:3px;border-radius:0 0 3px 3px}
+  .main{padding:14px 12px 96px}
+  .mbrand{display:block;font-family:var(--display);font-weight:800;font-size:18px;margin-bottom:2px}
+  .mbrand span{color:var(--pop)}
+  .ctl{width:100%}
+  .ctl .field{flex:1;min-width:0}
+  .cols{grid-template-columns:minmax(0,1fr)}
+  .hero{padding:16px;box-shadow:5px 5px 0 var(--ink);border-radius:20px}
+  .figs{gap:7px}
+  .fig b{font-size:23px}
+  .panel{padding:15px;border-radius:16px}
+  .bar{grid-template-columns:96px minmax(0,1fr) 30px;font-size:12px}
+  .lvlbtn{width:40px;height:40px}
+  .res{display:none}
+  .toast{bottom:86px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* ---------- print ---------- */
+@media print{
+  body{background:#fff}
+  .side,.topbar .ctl,.noprint,.toast,.modal,.demo{display:none!important}
+  .main{padding:0;max-width:none}
+  .topbar{display:none}
+  .print-title{display:block;font-family:var(--display);font-size:13px;color:#555;margin-bottom:8px}
+  .bilan{border:0;padding:0;border-radius:0;break-after:page;page-break-after:always}
+  .bilan:last-child{break-after:auto;page-break-after:auto}
+  .print-one .bilan{display:none}
+  .print-one .bilan.target{display:block}
+  .chip,.seg,.track i,.lvlbtn{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand">SKILL<span>POP</span><small>by BROT2YOU</small></div>
+    <nav class="nav" id="nav" aria-label="Navigation principale"></nav>
+    <div class="side-foot">V8, données gardées sur cet appareil</div>
+  </aside>
+  <main class="main" id="main">
+    <div class="topbar">
+      <div><div class="mbrand">SKILL<span>POP</span></div><h1 id="heading"></h1></div>
+      <div class="ctl" id="topctl"></div>
+    </div>
+    <div id="view"></div>
+  </main>
+</div>
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-labelledby="m-title">
+  <div class="modal-box">
+    <h2 id="m-title"></h2>
+    <div id="m-body"></div>
+    <div class="modal-actions">
+      <button class="btn ghost" id="m-cancel" type="button" onclick="closeModal()">Annuler</button>
+      <button class="btn" id="m-ok" type="button" onclick="modalConfirm()">Valider</button>
+    </div>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<input type="file" id="importFile" class="hidden" accept=".json,application/json" onchange="importJSON(this)">
+<script type="application/json" id="skillpop-config">{"labels":["Maîtrise insuffisante","Maîtrise fragile","Maîtrise satisfaisante","Très bonne maîtrise"],"colors":["#D9434A","#E8892A","#8FB12A","#1F9460"],"axes":["Compréhension orale","Compréhension écrite","Expression orale","Interaction orale","Expression écrite","Médiation"],"short":["Écouter","Lire","Parler","Interagir","Écrire","Médiation"],"extraAxes":["Compétences culturelles","Autre"],"life":[["Comportement","Respect des règles et des autres"],["Attitude face au travail","Engagement, autonomie, sérieux"],["Participation","Contribution aux échanges et aux activités"]],"grades":["6e","5e","4e","3e"],"gradeRefs":{"6e":"A1 / A1+","5e":"A1+ / A2","4e":"A2","3e":"A2 / B1 selon le parcours"},"noteCats":["Travail","Autonomie","Participation","Organisation","Progrès","Accompagnement","Entretien","Professeur principal"],"descriptors":{"6e":["Repérer des mots familiers dans un message oral court","Comprendre des consignes et des textes très courts","Se présenter avec des énoncés simples","Répondre à des questions sur des sujets familiers","Rédiger quelques phrases simples","Transmettre une information très simple d’une langue à l’autre"],"5e":["Comprendre l’essentiel d’un message oral simple","Repérer des informations dans un texte court","Décrire une personne, un lieu ou une habitude","Échanger des informations simples","Produire un court texte organisé","Expliquer à un camarade l’essentiel d’un document court"],"4e":["Identifier les informations essentielles d’un document oral","Comprendre un texte narratif ou informatif accessible","Présenter et raconter une expérience","Participer à un échange sur un sujet familier","Rédiger un récit ou une description structurée","Reformuler et transmettre les informations clés d’un document"],"3e":["Comprendre les idées principales d’un document oral accessible","Comprendre des informations et des points de vue simples","Présenter un propos suivi et justifié","Échanger, réagir et expliquer son point de vue","Rédiger un texte cohérent et argumenté","Résumer et expliquer un document pour un destinataire précis"]}}</script>
+<script type="application/json" id="skillpop-advice">{"Compréhension orale":{"c1":[["Écouter un message très court et lever la main dès qu’on reconnaît un mot connu.","S’aider des images et du ton de la voix pour deviner de quoi on parle."],["Repérer qui parle, où et de quoi avant de chercher les détails.","Réécouter avec une seule consigne à la fois : un prénom, un chiffre, un lieu."],["Noter quelques mots-clés pendant l’écoute puis reformuler le message en français.","Utiliser les mots transparents pour comprendre les passages nouveaux."],["Écouter des documents un peu plus longs et relever des détails précis.","Expliquer à un camarade quels indices ont permis de comprendre."]],"c2":[["Anticiper le contenu à partir du titre et des images avant l’écoute.","Repérer d’abord les mots accentués, ceux qui portent le sens."],["Compléter une grille qui, quoi, où, quand, pourquoi au fil des écoutes.","S’entraîner chez soi avec de courtes vidéos sous-titrées en anglais."],["Relier les informations entre elles pour dégager l’idée principale du document.","Repérer l’intention et le ton du locuteur : humour, colère, ironie."],["Écouter des documents authentiques variés, podcasts ou extraits de séries, sans sous-titres.","Distinguer faits et opinions et justifier son interprétation."]]},"Compréhension écrite":{"c1":[["Repérer le titre, les images et les noms propres avant de lire.","Chercher une seule information précise dans un texte court."],["Surligner les mots connus et les mots transparents pour deviner le thème.","Répondre à des questions simples en retrouvant la phrase du texte."],["Reformuler en français l’idée principale de chaque paragraphe.","Deviner le sens d’un mot nouveau grâce au contexte avant d’ouvrir le dictionnaire."],["Lire en autonomie des textes plus longs, petites histoires ou articles simplifiés.","Justifier chaque réponse avec une citation du texte."]],"c2":[["Identifier la nature du document, article, message ou récit, avant de lire.","Lire une première fois pour le thème, une deuxième fois pour les détails."],["Repérer les connecteurs (but, so, because) pour suivre la logique du texte.","Construire une liste de mots-clés par paragraphe."],["Distinguer l’explicite de l’implicite et formuler des hypothèses.","Résumer le texte en quelques phrases."],["Lire des textes authentiques, presse ou extraits de romans, et comparer des points de vue.","Analyser les choix de l’auteur : vocabulaire, ton, structure."]]},"Expression orale":{"c1":[["Apprendre deux ou trois phrases modèles et les répéter à voix haute.","S’appuyer sur des images ou un support pour parler."],["Enchaîner trois ou quatre phrases avec and, but, because.","S’enregistrer puis se réécouter pour améliorer la prononciation."],["Présenter un sujet familier en s’aidant seulement de mots-clés.","Ajouter des détails et des exemples pour enrichir son propos."],["Parler plus longtemps sans notes en variant le vocabulaire.","Travailler l’intonation et le rythme pour rendre son propos vivant."]],"c2":[["Préparer un court propos à partir d’une trame : introduction, idées, conclusion.","S’entraîner plusieurs fois à voix haute avant de passer devant la classe."],["Organiser son propos avec des connecteurs (first, then, finally).","Remplacer la lecture des notes par une carte mentale."],["Justifier ses idées avec des arguments et des exemples précis.","S’enregistrer et repérer ses erreurs récurrentes pour les corriger."],["Nuancer son propos (I’m not sure, on the other hand) et l’adapter à son public.","Prendre la parole spontanément sur un sujet d’actualité."]]},"Interaction orale":{"c1":[["Répondre à une question simple par une phrase courte.","Savoir dire « Can you repeat, please? » quand on ne comprend pas."],["Poser des questions simples à un camarade et noter ses réponses.","S’entraîner en binôme avec des cartes de dialogue."],["Réagir aux réponses de l’autre (Really? Me too!) pour faire vivre l’échange.","Relancer la conversation avec une nouvelle question."],["Tenir une conversation plus longue sans support écrit.","Prendre l’initiative de l’échange et changer de sujet si besoin."]],"c2":[["Garder sous les yeux une liste de formules utiles pour être d’accord, ne pas l’être, demander de l’aide.","Préparer deux ou trois questions avant un dialogue."],["Demander des précisions (What do you mean?) et reformuler ce que l’autre a dit.","S’entraîner aux jeux de rôle en binôme A/B."],["Exprimer son accord ou son désaccord en justifiant.","Rebondir sur les idées des autres au lieu de réciter les siennes."],["Participer à un débat en défendant un point de vue avec nuance.","Gérer les imprévus d’une conversation spontanée."]]},"Expression écrite":{"c1":[["Écrire des phrases courtes à partir d’un modèle et d’une banque de mots.","Relire chaque phrase en vérifiant majuscule, verbe et point."],["Écrire un petit texte de quatre ou cinq phrases dans un ordre logique.","Utiliser and, but, because pour relier ses idées."],["Organiser son texte en paragraphes, une idée par paragraphe.","Relire avec une grille de critères avant de rendre son travail."],["Enrichir ses textes avec des adjectifs, des adverbes et des connecteurs variés.","Écrire des textes plus longs en autonomie."]],"c2":[["Préparer un plan simple avant d’écrire.","Réutiliser les structures vues en cours dans ses propres phrases."],["Varier les connecteurs et vérifier les temps verbaux.","Utiliser le code de correction pour corriger ses propres erreurs."],["Développer et argumenter ses idées avec des exemples.","Relire en ciblant ses erreurs fréquentes : accords, temps, ordre des mots."],["Varier les structures (relatives, passif, modaux) et nuancer ses idées.","Adapter le registre au type de texte et au destinataire."]]},"Médiation":{"c1":[["Transmettre en français une information très simple entendue ou lue en anglais.","Montrer, mimer ou dessiner pour aider un camarade à comprendre."],["Expliquer à un camarade l’essentiel d’un document court.","Reformuler une consigne avec ses propres mots."],["Résumer un document court pour quelqu’un qui ne l’a pas lu.","Choisir les informations utiles selon la personne à qui l’on s’adresse."],["Expliquer un document en anglais en simplifiant les passages difficiles.","Aider un groupe à se mettre d’accord en reformulant les idées de chacun."]],"c2":[["Repérer les informations essentielles à transmettre avant de reformuler.","Utiliser un schéma ou une liste pour transmettre une information."],["Résumer un document pour un destinataire précis : un ami, un touriste, un parent.","Passer d’une langue à l’autre sans traduire mot à mot."],["Adapter le niveau de langue et les explications au destinataire.","Expliquer les références culturelles qui pourraient bloquer la compréhension."],["Synthétiser plusieurs documents pour un public précis.","Faciliter un échange de groupe en reformulant et en clarifiant les points de vue."]]},"Comportement":{"all":[["Choisir une règle de vie précise et un geste concret pour la respecter.","Faire un point rapide en fin d’heure sur ce qui s’est bien passé."],["Se fixer un objectif simple pour la semaine : arriver prêt, lever la main.","Repérer les moments plus difficiles et prévoir comment réagir."],["Garder les bonnes habitudes installées.","Aider à maintenir un climat calme dans le groupe."],["Continuer à être un appui pour le groupe.","Prendre des responsabilités dans la classe : rôle de groupe, tutorat."]]},"Attitude face au travail":{"all":[["Découper le travail en petites étapes et commencer par la première.","Vérifier son matériel en début d’heure."],["Utiliser une liste de vérification pour terminer chaque tâche.","Noter les devoirs et les relire le soir."],["Gagner en autonomie en relisant seul les consignes.","Anticiper le travail à rendre."],["Approfondir avec des activités supplémentaires.","Partager ses méthodes de travail avec les autres."]]},"Participation":{"all":[["Préparer une réponse courte par écrit avant la mise en commun.","Participer d’abord en binôme avant de parler devant la classe."],["Se fixer l’objectif d’intervenir au moins une fois par séance.","S’appuyer sur un camarade pour préparer ses interventions."],["Varier ses interventions : questions, réponses, réactions.","Prendre un rôle dans le travail de groupe : porte-parole, secrétaire."],["Approfondir ses interventions avec des exemples et des arguments.","Encourager les autres à participer."]]}}</script>
+<script type="application/json" id="skillpop-seed">{"periodMode":"trimestre","dates":["2026-09-01","2026-12-01","2027-03-01","2027-07-05"],"classes":[{"id":"c1","name":"5e B","grade":"5e","subject":"Anglais","year":"2026-2027"},{"id":"c2","name":"3e A","grade":"3e","subject":"Anglais","year":"2026-2027"}],"students":[{"id":"s1","name":"Camille Martin","classId":"c1"},{"id":"s2","name":"Alex Bernard","classId":"c1"},{"id":"s3","name":"Sam Dupont","classId":"c1"},{"id":"s4","name":"Inès Moreau","classId":"c1"},{"id":"s5","name":"Noah Laurent","classId":"c1"},{"id":"s6","name":"Jade Roux","classId":"c1"},{"id":"s7","name":"Lina Petit","classId":"c2"},{"id":"s8","name":"Hugo Garcia","classId":"c2"},{"id":"s9","name":"Maël Fontaine","classId":"c2"},{"id":"s10","name":"Zoé Lambert","classId":"c2"}],"assessments":[{"id":"a1","classId":"c1","skillId":"ref-5e-0","title":"Listening: daily life","date":"2026-09-22"},{"id":"a2","classId":"c1","skillId":"ref-5e-1","title":"Reading: my routine","date":"2026-10-06"},{"id":"a3","classId":"c1","skillId":"ref-5e-2","title":"My presentation","date":"2026-10-13"},{"id":"a4","classId":"c1","skillId":"ref-5e-3","title":"Pair interview","date":"2026-10-15"},{"id":"a5","classId":"c1","skillId":"ref-5e-4","title":"My week","date":"2026-11-03"},{"id":"a6","classId":"c1","skillId":"ref-5e-5","title":"Tell your friend","date":"2026-11-05"},{"id":"a7","classId":"c1","skillId":"ref-5e-0","title":"Listening checkpoint","date":"2026-11-06"},{"id":"a8","classId":"c2","skillId":"ref-3e-0","title":"Listening: news","date":"2026-10-09"},{"id":"a9","classId":"c2","skillId":"ref-3e-2","title":"Pitch your project","date":"2026-10-16"},{"id":"a10","classId":"c2","skillId":"ref-3e-4","title":"Opinion essay","date":"2026-11-04"}],"ratingTable":{"s1":{"a1":2,"a2":3,"a3":3,"a4":2,"a5":2,"a6":3,"a7":3},"s2":{"a1":1,"a2":2,"a3":2,"a4":2,"a5":1,"a6":2,"a7":2},"s3":{"a1":3,"a2":4,"a3":4,"a4":3,"a5":3,"a6":4,"a7":4},"s4":{"a1":2,"a2":2,"a3":3,"a4":3,"a5":2,"a6":2,"a7":3},"s5":{"a1":3,"a2":3,"a3":2,"a4":2,"a5":3,"a6":3,"a7":3},"s6":{"a1":1,"a2":1,"a3":2,"a4":1,"a5":2,"a6":1,"a7":2},"s7":{"a8":3,"a9":3,"a10":2},"s8":{"a8":2,"a9":2,"a10":3},"s9":{"a8":4,"a9":3,"a10":4},"s10":{"a8":2,"a9":1,"a10":2}},"notes":[{"id":"n1","studentId":"s1","date":"2026-10-18","category":"Progrès","body":"Participation plus régulière. Continuer à encourager la prise de parole."},{"id":"n2","studentId":"s6","date":"2026-11-02","category":"Accompagnement","body":"Travail en binôme avec un camarade tuteur pendant les activités d’écoute."}],"lifeRatings":[{"id":"l1","studentId":"s1","category":"Participation","date":"2026-10-20","value":3},{"id":"l2","studentId":"s1","category":"Comportement","date":"2026-10-20","value":4},{"id":"l3","studentId":"s1","category":"Attitude face au travail","date":"2026-10-20","value":3},{"id":"l4","studentId":"s6","category":"Participation","date":"2026-10-20","value":2},{"id":"l5","studentId":"s6","category":"Attitude face au travail","date":"2026-10-20","value":2}]}</script>
+<script>
 'use strict';
-const COLORS=['#df5555','#e99537','#a6bd3c','#2fa36b'],LABELS=['Maîtrise insuffisante','Maîtrise fragile','Maîtrise satisfaisante','Très bonne maîtrise'];
-const AXES=['Compréhension orale','Compréhension écrite','Expression orale','Interaction orale','Expression écrite'];
-const NAV=[['Accueil','⌂'],['Mes classes','▦'],['Référentiel','✦'],['Évaluer','★'],['Résultats','◈'],['Élèves','♙'],['Prof principal','♡'],['Conseils','💡'],['Bilans','▤'],['Paramètres','⚙']];
-const levels={'6e':'A1 / A1+','5e':'A1+ / A2','4e':'A2 (repères à contextualiser)','3e':'A2 / B1 (selon parcours)'};
-const descriptors={
-'6e':[['Compréhension orale','Repérer des mots familiers dans un message court'],['Compréhension écrite','Comprendre des consignes et textes très courts'],['Expression orale','Se présenter avec des énoncés simples'],['Interaction orale','Répondre à des questions familières'],['Expression écrite','Rédiger quelques phrases simples']],
-'5e':[['Compréhension orale','Comprendre l’essentiel d’un message simple'],['Compréhension écrite','Repérer des informations dans un texte court'],['Expression orale','Décrire une personne, un lieu ou une habitude'],['Interaction orale','Échanger des informations simples'],['Expression écrite','Produire un court texte organisé']],
-'4e':[['Compréhension orale','Identifier les informations essentielles d’un document'],['Compréhension écrite','Comprendre un texte narratif ou informatif accessible'],['Expression orale','Présenter et raconter une expérience'],['Interaction orale','Participer à un échange sur un sujet familier'],['Expression écrite','Rédiger un récit ou une description structurée']],
-'3e':[['Compréhension orale','Comprendre les idées principales d’un document accessible'],['Compréhension écrite','Comprendre des informations et des points de vue simples'],['Expression orale','Présenter un propos suivi et justifié'],['Interaction orale','Échanger, réagir et expliquer son point de vue'],['Expression écrite','Rédiger un texte cohérent et argumenté à son niveau']]};
-const seed={version:4,classes:[{id:'c1',name:'5e B',grade:'5e',subject:'Anglais',year:'2026-2027'},{id:'c2',name:'3e A',grade:'3e',subject:'Anglais',year:'2026-2027'}],students:[{id:'s1',name:'Camille Martin',classId:'c1'},{id:'s2',name:'Alex Bernard',classId:'c1'},{id:'s3',name:'Sam Dupont',classId:'c1'},{id:'s4',name:'Lina Petit',classId:'c2'}],skills:[],assessments:[],ratings:[],notes:[{id:'n1',studentId:'s1',date:'2026-10-18',scope:'pp',category:'Progrès',body:'Participation plus régulière ; poursuivre les encouragements à la prise de parole.'}],periodMode:'trimestre',dates:['2026-09-01','2027-01-01','2027-04-01','2027-09-01']};
-for(const grade of Object.keys(descriptors))descriptors[grade].forEach(([axis,name],i)=>seed.skills.push({id:'ref-'+grade+'-'+i,grade,subject:'Anglais',axis,name,origin:'Repère pédagogique indicatif — à vérifier dans les textes officiels',official:false}));
-for(const [id,classId,skillId,title,date] of [['a1','c1','ref-5e-0','Listening: daily life','2026-10-06'],['a2','c1','ref-5e-0','Listening checkpoint','2026-11-04'],['a3','c1','ref-5e-1','Reading: daily routine','2026-10-21'],['a4','c1','ref-5e-2','My presentation','2026-10-23'],['a5','c1','ref-5e-3','Pair interview','2026-11-03'],['a6','c1','ref-5e-4','My week','2026-10-25'],['a7','c2','ref-3e-0','Listening: news','2026-10-09']])seed.assessments.push({id,classId,skillId,title,date});
-for(const [studentId,values] of [['s1',[2,3,4,3,2,3]],['s2',[1,2,3,2,2,2]],['s3',[3,4,4,4,3,4]]])['a1','a2','a3','a4','a5','a6'].forEach((assessmentId,i)=>seed.ratings.push({id:studentId+'-'+assessmentId,studentId,assessmentId,value:values[i]}));seed.ratings.push({id:'r7',studentId:'s4',assessmentId:'a7',value:3});
-const KEY='skillpop-v4-demo';let db;try{db=JSON.parse(localStorage.getItem(KEY))||structuredClone(seed)}catch{db=structuredClone(seed)};if(!db||!Array.isArray(db.classes)||!Array.isArray(db.skills)||!Array.isArray(db.ratings))db=structuredClone(seed);
-if(!Array.isArray(db.lifeRatings))db.lifeRatings=[];
-let page='Accueil',classId=db.classes[0]?.id||'',studentId=db.students[0]?.id||'',assessmentId='',period='Année entière',comparison='Aucune',studentTab='radar';
-const $=s=>document.querySelector(s),esc=x=>String(x??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])),uid=()=>crypto.randomUUID?.()||('id'+Date.now()+Math.random()),save=()=>{try{localStorage.setItem(KEY,JSON.stringify(db))}catch{alert('Stockage local indisponible.')}};
-const cls=()=>db.classes.find(c=>c.id===classId),student=()=>db.students.find(s=>s.id===studentId),skill=id=>db.skills.find(s=>s.id===id),periodNames=()=>db.periodMode==='semestre'?['Semestre 1','Semestre 2']:['Trimestre 1','Trimestre 2','Trimestre 3'],periodRange=p=>{let i=periodNames().indexOf(p);return i<0?null:[db.dates[i],db.dates[i+1]]},inPeriod=(date,p=period)=>{let r=periodRange(p);return !r||(date>=r[0]&&date<r[1])},rating=(s,a)=>db.ratings.find(r=>r.studentId===s&&r.assessmentId===a)?.value||0;
-function assessments(c=classId,p=period){return db.assessments.filter(a=>a.classId===c&&inPeriod(a.date,p)).sort((a,b)=>a.date.localeCompare(b.date))}function latest(s,k,p=period){let aa=assessments(db.students.find(x=>x.id===s)?.classId,p).filter(a=>a.skillId===k);for(let i=aa.length-1;i>=0;i--){let v=rating(s,aa[i].id);if(v)return v}return 0}
-function axisValues(s,p=period){return AXES.map(axis=>{let values=db.skills.filter(k=>k.axis===axis).map(k=>latest(s,k.id,p)).filter(Boolean);return values.length?values.reduce((a,b)=>a+b,0)/values.length:0})}
-function level(v){return v?`<span class="pill" style="background:${COLORS[v-1]}20;color:${COLORS[v-1]}">● ${v} — ${LABELS[v-1]}</span>`:'<span class="mini">Non évalué</span>'}
-function radar(values,prior=null){let cx=210,cy=183,R=122,point=(i,r)=>[cx+Math.sin(i*2*Math.PI/5)*r,cy-Math.cos(i*2*Math.PI/5)*r],polygon=(vs)=>vs.map((v,i)=>point(i,R*v/4).map(n=>n.toFixed(1)).join(',')).join(' ');return `<svg class="radar" viewBox="0 0 420 385" role="img" aria-label="Diagramme radar de maîtrise sur cinq activités langagières, échelle de zéro à quatre">${[1,2,3,4].map(n=>`<polygon points="${polygon(Array(5).fill(n))}" fill="none" stroke="#dce2f0" stroke-width="1.4"/>`).join('')}${Array.from({length:5},(_,i)=>{let [x,y]=point(i,R);return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="#dce2f0"/>`}).join('')}${prior?`<polygon points="${polygon(prior)}" fill="#9679e8" fill-opacity=".10" stroke="#9679e8" stroke-width="2.5" stroke-dasharray="7 5"/>`:''}<polygon points="${polygon(values)}" fill="#13b8a6" fill-opacity=".23" stroke="#0da999" stroke-width="3"/>${values.map((v,i)=>{let [x,y]=point(i,R*v/4);return v?`<circle cx="${x}" cy="${y}" r="5" fill="${COLORS[Math.min(3,Math.max(0,Math.round(v)-1))]}" stroke="white" stroke-width="2"/>`:''}).join('')}${['Écouter','Lire','Parler','Interagir','Écrire'].map((label,i)=>{let [x,y]=point(i,157);return `<text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" font-size="13" font-weight="750" fill="#475675">${label}</text>`}).join('')}<text x="215" y="180" font-size="10" fill="#8592aa">0–4</text></svg>`}
-function chart(s,p=period){let values=axisValues(s,p),prior=comparison==='Aucune'?null:axisValues(s,comparison);return `<div class="grid"><div>${radar(values,prior)}<div class="legend"><span><i class="dot" style="background:#13b8a6"></i>${esc(p)}</span>${prior?'<span><i class="dot" style="background:#9679e8"></i>'+esc(comparison)+'</span>':''}</div></div><div><h3 style="margin-top:0">Maîtrise par activité</h3>${AXES.map((axis,i)=>`<div class="chartbar"><label>${esc(axis)}</label><div class="progress"><i style="width:${values[i]*25}%;background:${values[i]?COLORS[Math.min(3,Math.max(0,Math.round(values[i])-1))]:'#e8edf7'}"></i></div><b>${values[i]?values[i].toFixed(1):'—'}</b></div>`).join('')}<p class="mini">Les axes utilisent les dernières évaluations disponibles pour chaque compétence, sans convertir les niveaux de maîtrise en niveaux CECRL.</p></div></div>`}
-const card=(title,body)=>`<section class="card"><h2>${title}</h2>${body}</section>`,field=(label,html)=>`<div class="field"><label>${label}</label>${html}</div>`,opts=(arr,val)=>arr.map(x=>`<option value="${esc(x.id)}" ${x.id===val?'selected':''}>${esc(x.name)}</option>`).join(''),classSelector=()=>field('Classe',`<select onchange="setClass(this.value)">${opts(db.classes,classId)}</select>`),modeSelector=()=>field('Découpage de l’année',`<select onchange="mode(this.value)"><option value="trimestre" ${db.periodMode==='trimestre'?'selected':''}>3 trimestres</option><option value="semestre" ${db.periodMode==='semestre'?'selected':''}>2 semestres</option></select>`),periodSelector=()=>field('Période',`<select onchange="period=this.value;render()"><option>Année entière</option>${periodNames().map(p=>`<option ${p===period?'selected':''}>${p}</option>`).join('')}</select>`),studentSelector=()=>field('Élève',`<select onchange="studentId=this.value;render()">${opts(db.students.filter(s=>s.classId===classId),studentId)}</select>`),compSelector=()=>field('Comparer avec',`<select onchange="comparison=this.value;render()"><option>Aucune</option>${periodNames().map(p=>`<option ${p===comparison?'selected':''}>${p}</option>`).join('')}</select>`);
-function nav(){$('#nav').innerHTML=NAV.map(([n,i])=>`<button class="${page===n?'active':''}" onclick="go('${n}')" title="${n}"><span>${i}</span><span class="txt">${n}</span></button>`).join('')}function go(p){page=p;nav();render();window.scrollTo(0,0)}function setClass(id){classId=id;studentId=db.students.find(s=>s.classId===id)?.id||'';assessmentId='';render()}
-function home(){return `<div class="hero"><div><h2>Chaque progrès prend forme ✦</h2><p>Évalue selon des compétences, visualise les profils radar et accompagne chaque élève.</p></div><button class="btn" style="background:white;color:#4267e9" onclick="go('Évaluer')">Évaluation express</button></div><div class="stats">${[['Classes',db.classes.length],['Élèves',db.students.length],['Compétences',db.skills.length],['Résultats',db.ratings.length]].map(([n,v])=>`<div class="stat"><span class="muted">${n}</span><strong>${v}</strong></div>`).join('')}</div><div style="height:17px"></div><div class="toolbar">${classSelector()}${modeSelector()}${periodSelector()}</div>${card('◈ Profil radar • aperçu de classe',studentId?chart(studentId):'<div class="empty">Ajoute un élève</div>')}${card('🌈 Les quatre niveaux de maîtrise',`<div class="levels">${LABELS.map((l,i)=>`<span class="pill" style="background:${COLORS[i]}20;color:${COLORS[i]}">● ${i+1} ${l}</span>`).join('')}</div><div class="notice">Les données affichées sont fictives. Cette démonstration conserve ses données dans le navigateur, sans authentification ni chiffrement : ne pas saisir de données réelles d’élèves.</div>`)}`}
-function classes(){return card('Mes classes',`<div class="grid">${db.classes.map(c=>`<div class="card" style="margin:0"><h2>${esc(c.name)}</h2><p class="muted">${esc(c.subject)} • ${esc(c.grade)} • ${esc(c.year)}</p><p>${db.students.filter(s=>s.classId===c.id).length} élèves</p><button class="btn alt" onclick="setClass('${c.id}');go('Élèves')">Ouvrir la classe</button></div>`).join('')}</div>`)+card('Ajouter une classe',`<form onsubmit="addClass(event)" class="formgrid">${field('Nom',`<input name="name" required placeholder="4e C" maxlength="40">`)}${field('Niveau',`<select name="grade">${Object.keys(descriptors).map(g=>`<option>${g}</option>`).join('')}</select>`)}${field('Discipline',`<input name="subject" value="Anglais" required maxlength="70">`)}<div class="field"><label>Action</label><button class="btn mint">+ Ajouter</button></div></form>`)+card('Élèves de la classe',`<div class="toolbar">${classSelector()}</div>${db.students.filter(s=>s.classId===classId).map(s=>`<div class="item split"><strong>${esc(s.name)}</strong><button class="smallbtn" onclick="studentId='${s.id}';go('Élèves')">Voir le dossier</button></div>`).join('')||'<div class="empty">Aucun élève</div>'}<form onsubmit="addStudent(event)" class="toolbar" style="margin-top:15px">${field('Ajouter un élève fictif',`<input name="name" required placeholder="Prénom Nom" maxlength="80">`)}<button class="btn mint">Ajouter</button></form>`)}
-function refs(){let c=cls(),skills=db.skills.filter(k=>k.subject===c?.subject&&(k.grade===c?.grade||!k.grade));return `<div class="toolbar">${classSelector()}</div>${card('Référentiel • '+esc(c?.subject||'')+' • '+esc(c?.grade||''),`<div class="notice">Les descripteurs préchargés sont des <b>repères pédagogiques de démonstration</b>, inspirés des activités langagières du CECRL, et non des citations officielles certifiées. Vérifie et adapte-les aux programmes en vigueur, aux attendus et à la langue étudiée. Repères indicatifs : ${esc(levels[c?.grade]||'à configurer')}.</div>${skills.map(k=>`<div class="item"><span class="pill" style="background:#e9efff;color:#315de0">${esc(k.axis)}</span><div style="margin-top:8px"><strong>${esc(k.name)}</strong></div><div class="mini">${esc(k.origin||'Compétence personnalisée')}</div></div>`).join('')||'<div class="empty">Aucune compétence pour cette discipline</div>'}`)}${card('Créer une compétence personnalisée',`<form onsubmit="addSkill(event)" class="formgrid">${field('Activité / domaine',`<select name="axis">${AXES.concat(['Médiation','Compétences culturelles','Autre']).map(a=>`<option>${a}</option>`).join('')}</select>`)}${field('Descripteur observable',`<input name="name" required maxlength="220" placeholder="Ex. Identifier les informations essentielles">`)}<div><button class="btn mint">+ Ajouter au référentiel</button></div></form>`)}`}
-function evaluate(){let arr=assessments(),a=arr.find(x=>x.id===assessmentId)||arr.at(-1);if(a)assessmentId=a.id;let students=db.students.filter(s=>s.classId===classId),skills=db.skills.filter(k=>k.subject===cls()?.subject&&(k.grade===cls()?.grade||!k.grade));return card('Évaluation express • maîtrise en couleurs',`<div class="toolbar">${classSelector()}${modeSelector()}${periodSelector()}${field('Évaluation',`<select onchange="assessmentId=this.value;render()">${arr.map(a=>`<option value="${a.id}" ${a.id===assessmentId?'selected':''}>${esc(a.title)} • ${a.date}</option>`).join('')}</select>`)}</div><div class="levels">${LABELS.map((l,i)=>`<span class="pill" style="background:${COLORS[i]}1c;color:${COLORS[i]}">${i+1} ${l}</span>`).join('')}</div>${a?`<p><b>${esc(skill(a.skillId)?.name||'Compétence')}</b> <span class="mini">• ${a.date}</span></p><div class="tablewrap"><table><thead><tr><th>Élève</th><th>Attribuer le niveau</th><th>Résultat</th></tr></thead><tbody>${students.map(s=>`<tr><td>${esc(s.name)}</td><td><div class="levels">${COLORS.map((c,i)=>`<button title="${LABELS[i]}" aria-label="${LABELS[i]}" class="level ${rating(s.id,a.id)===i+1?'selected':''}" style="background:${c}" onclick="rate('${s.id}','${a.id}',${i+1})">${i+1}</button>`).join('')}</div></td><td>${level(rating(s.id,a.id))}</td></tr>`).join('')}</tbody></table></div><p class="mini">Clique une seconde fois sur le niveau sélectionné pour effacer l’évaluation.</p>`:'<div class="empty">Aucune évaluation pour cette période. Crée-en une ci-dessous.</div>'}`)+card('Créer une évaluation',`<form class="formgrid" onsubmit="addAssessment(event)">${field('Titre',`<input name="title" required maxlength="120" placeholder="Ex. Comprendre un dialogue">`)}${field('Compétence du référentiel',`<select name="skillId" required>${skills.map(k=>`<option value="${k.id}">${esc(k.axis)} — ${esc(k.name)}</option>`).join('')}</select>`)}${field('Date',`<input name="date" type="date" value="2026-11-07" required>`)}<div class="field"><label>Action</label><button class="btn mint" ${skills.length?'':'disabled'}>+ Créer</button></div></form>`) }
-function results(){let students=db.students.filter(s=>s.classId===classId),used=db.skills.filter(k=>assessments(classId).some(a=>a.skillId===k.id));return `<div class="toolbar">${classSelector()}${modeSelector()}${periodSelector()}${studentSelector()}${compSelector()}</div>${card('◈ Diagramme radar individuel',studentId?chart(studentId):'<div class="empty">Aucun élève</div>')}${card('Grille de maîtrise • classe',`<div class="tablewrap"><table><thead><tr><th>Élève</th>${used.map(k=>`<th title="${esc(k.name)}">${esc(k.axis)}</th>`).join('')}</tr></thead><tbody>${students.map(s=>`<tr><td>${esc(s.name)}</td>${used.map(k=>`<td>${level(latest(s.id,k.id))}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`)}${card('Répartition des niveaux • résultats saisis',`<div class="grid">${LABELS.map((l,i)=>{let n=assessments().flatMap(a=>students.map(s=>rating(s.id,a.id))).filter(v=>v===i+1).length;return `<div class="stat"><span class="muted">${esc(l)}</span><strong style="color:${COLORS[i]}">${n}</strong></div>`}).join('')}</div>`)}`}
-function pupils(){let students=db.students.filter(s=>s.classId===classId),s=student();return `<div class="toolbar">${classSelector()}${studentSelector()}${modeSelector()}${periodSelector()}${compSelector()}</div>${s?card('Dossier • '+esc(s.name),`<div class="tabs"><button class="${studentTab==='radar'?'active':''}" onclick="studentTab='radar';render()">Radar</button><button class="${studentTab==='historique'?'active':''}" onclick="studentTab='historique';render()">Historique</button><button class="${studentTab==='notes'?'active':''}" onclick="studentTab='notes';render()">Observations</button></div>${studentTab==='radar'?chart(s.id)+lifePanel(s):studentTab==='historique'?assessments().map(a=>`<div class="item split"><div><b>${esc(a.title)}</b><div class="mini">${a.date} • ${esc(skill(a.skillId)?.name)}</div></div>${level(rating(s.id,a.id))}</div>`).join('')||'<div class="empty">Aucune évaluation</div>':db.notes.filter(n=>n.studentId===s.id&&inPeriod(n.date)).map(n=>`<div class="item"><b>${esc(n.category)}</b> <span class="mini">${n.date} • ${esc(n.scope)}</span><p>${esc(n.body)}</p></div>`).join('')||'<div class="empty">Aucune observation</div>'}`):card('Dossier',`<div class="empty">Ajoute un élève</div>`)}`}
-const LIFE=[['Comportement','Respect des règles et des autres'],['Attitude face au travail','Engagement, autonomie et sérieux'],['Participation','Contribution aux échanges et activités']];
-function lifeLatest(s,category,p=period){return db.lifeRatings.filter(x=>x.studentId===s&&x.category===category&&inPeriod(x.date,p)).sort((a,b)=>b.date.localeCompare(a.date))[0]||null}
-function lifePanel(s){if(!s)return '';return card('🌈 Vie de classe • comportement, attitude et participation',`<p class="muted">Suivi distinct des compétences disciplinaires. Choisis une période et attribue un niveau avec une observation datée.</p><div class="levels">${LABELS.map((l,i)=>`<span class="pill" style="background:${COLORS[i]}20;color:${COLORS[i]}">${i+1} · ${l}</span>`).join('')}</div><div style="height:12px"></div>${LIFE.map(([cat,desc])=>{let r=lifeLatest(s.id,cat);return `<div class="item"><div class="split"><div><b>${esc(cat)}</b><div class="mini">${esc(desc)}</div></div><div>${r?level(r.value):'<span class="mini">Non renseigné</span>'}</div></div><div class="levels" style="margin-top:10px">${COLORS.map((c,i)=>`<button class="level ${r&&r.value===i+1?'selected':''}" style="background:${c}" title="${esc(LABELS[i])}" aria-label="${esc(cat)} : ${esc(LABELS[i])}" onclick="lifeRate('${s.id}','${cat}',${i+1})">${i+1}</button>`).join('')}</div></div>`}).join('')}<p class="mini">Une seconde sélection sur le même niveau retire l'évaluation. Les observations sont datées et filtrées par période.</p><div class="item"><b>Historique • vie de classe</b>${db.lifeRatings.filter(x=>x.studentId===s.id&&inPeriod(x.date)).sort((a,b)=>b.date.localeCompare(a.date)).slice(0,12).map(x=>`<div class="split mini" style="padding:7px 0"><span>${esc(x.date)} · ${esc(x.category)}</span>${level(x.value)}</div>`).join('')||'<p class="mini">Aucune observation sur cette période.</p>'}</div>`)}
-function lifeRate(s,category,v){let date=new Date().toISOString().slice(0,10);let existing=db.lifeRatings.find(x=>x.studentId===s&&x.category===category&&x.date===date);if(existing){if(existing.value===v)db.lifeRatings=db.lifeRatings.filter(x=>x!==existing);else existing.value=v}else db.lifeRatings.push({id:uid(),studentId:s,category,date,value:v});save();render()}
-function pp(){let students=db.students.filter(s=>s.classId===classId),s=student();return `<div class="toolbar">${classSelector()}${studentSelector()}${modeSelector()}${periodSelector()}</div>${card('Suivi professeur principal',`<p class="muted">Observations factuelles et datées, séparées des niveaux de maîtrise disciplinaire.</p>${s?`<h3>${esc(s.name)}</h3><form onsubmit="addNote(event)">${field('Catégorie',`<select name="category">${['Travail','Autonomie','Participation','Organisation','Progrès','Accompagnement','Entretien'].map(x=>`<option>${x}</option>`).join('')}</select>`)}${field('Observation',`<textarea name="body" maxlength="2500" required placeholder="Faits observés, contexte, progrès, pistes d’accompagnement..."></textarea>`)}<div style="margin-top:12px"><button class="btn mint">+ Ajouter une observation</button></div></form>`:''}`)}${s?lifePanel(s):''}${card('Historique des observations',s?db.notes.filter(n=>n.studentId===s.id&&inPeriod(n.date)).map(n=>`<div class="item"><div class="split"><b>${esc(n.category)}</b><span class="mini">${n.date}</span></div><p>${esc(n.body)}</p><button class="smallbtn" onclick="removeNote('${n.id}')">Supprimer</button></div>`).join('')||'<div class="empty">Aucune observation</div>':'<div class="empty">Sélectionne un élève</div>')}`}
-function bilans(){let students=db.students.filter(s=>s.classId===classId);return `<div class="toolbar">${classSelector()}${modeSelector()}${periodSelector()}<button class="btn alt" onclick="exportCSV()">Exporter CSV</button><button class="btn alt" onclick="window.print()">Imprimer / PDF</button></div>${card('Bilans • '+esc(cls()?.name||'')+' • '+esc(period),students.map(s=>`<div class="item"><div class="split"><h3>${esc(s.name)}</h3><span class="pill" style="background:#e9efff;color:#315de0">${esc(period)}</span></div><div class="grid"><div>${radar(axisValues(s.id))}</div><div>${db.skills.filter(k=>assessments().some(a=>a.skillId===k.id)).map(k=>`<p class="mini">${esc(k.name)} : ${level(latest(s.id,k.id))}</p>`).join('')||'<p class="mini">Aucun résultat</p>'}<p class="mini">${LIFE.map(([cat])=>cat+' : '+(lifeLatest(s.id,cat)?.value||'—')+'/4').join(' · ')}</p><p class="mini">${esc(db.notes.filter(n=>n.studentId===s.id&&inPeriod(n.date)).at(-1)?.body||'Aucune observation pour cette période')}</p></div></div></div>`).join('')||'<div class="empty">Aucun élève</div>')}`}
-function settings(){return card('Calendrier des périodes',`${field('Organisation',`<select onchange="mode(this.value)"><option value="trimestre" ${db.periodMode==='trimestre'?'selected':''}>3 trimestres</option><option value="semestre" ${db.periodMode==='semestre'?'selected':''}>2 semestres</option></select>`)}<div class="formgrid" style="margin-top:14px">${db.dates.map((d,i)=>field(i===0?'Début année':i===db.dates.length-1?'Fin année':'Début période '+(i+1),`<input type="date" value="${d}" onchange="setDate(${i},this.value)">`)).join('')}</div><p class="mini">La date de fin est exclusive. Les filtres s'appliquent réellement aux résultats, radars et bilans.</p>`)+card('Confidentialité et sécurité',`<div class="notice"><b>Mode démonstration : aucune donnée nominative réelle.</b> Les données sont enregistrées en clair dans le stockage local du navigateur. Cette application n’a ni compte utilisateur, ni contrôle d’accès, ni chiffrement. Elle ne constitue pas une solution conforme pour les dossiers scolaires réels.</div><p>Pour un usage institutionnel : validation par l’établissement et son DPD, hébergement autorisé, authentification forte, chiffrement, gestion des habilitations, politique de conservation et sauvegardes sécurisées.</p><div class="toolbar"><button class="btn alt" onclick="exportJSON()">Exporter JSON</button><label class="btn alt" style="cursor:pointer">Importer JSON <input class="hide" type="file" accept=".json,application/json" onchange="importJSON(event)"></label><button class="btn danger" onclick="reset()">Réinitialiser la démonstration</button></div>`)+card('Références pédagogiques',`<p>Les référentiels intégrés sont des exemples de formulation, à personnaliser et vérifier à partir des programmes en vigueur par niveau et année scolaire. Les niveaux de maîtrise 1–4 ne sont pas des niveaux CECRL.</p><p><a href="https://eduscol.education.gouv.fr/" target="_blank" rel="noopener">Éduscol</a> • <a href="https://www.education.gouv.fr/bo" target="_blank" rel="noopener">Bulletin officiel</a> • <a href="https://www.coe.int/en/web/common-european-framework-reference-languages" target="_blank" rel="noopener">CECRL</a></p>`) }
+/* SKILLPOP V8 — by BROT2YOU. ES5 uniquement (compatibilité iOS Safari). */
 
-// V7 — Banque de conseils rédigés par l'enseignant, inspirés des activités langagières CECRL.
-// Les conseils sont des propositions pédagogiques, pas des citations des textes officiels.
-const ADVICE_BANK={
-'Compréhension orale':[
-['Écouter un message très court, repérer les mots déjà connus et identifier qui parle et de quoi.','Réécouter avec une consigne unique et utiliser les images ou le contexte pour identifier les informations.'],
-['Repérer les mots-clés et les informations explicites après plusieurs écoutes.','S’appuyer sur le contexte, les mots transparents et les indices sonores pour construire le sens.'],
-['Identifier les informations essentielles puis les relier pour reformuler le message.','Vérifier sa compréhension à partir d’indices précis du document.'],
-['Comparer plusieurs informations et expliquer les indices qui permettent de comprendre.','Écouter des documents plus variés et justifier les interprétations.']],
-'Compréhension écrite':[
-['Repérer les mots connus, les noms propres et les indices visuels.','Lire un court texte en recherchant une information précise.'],
-['Identifier le thème et les informations explicites d’un texte court.','Surligner les indices qui permettent de répondre à une question.'],
-['Mettre en relation les informations et reformuler l’idée principale.','Justifier les réponses en citant un indice pertinent.'],
-['Distinguer les informations explicites et implicites simples.','Comparer deux textes et expliquer les indices utilisés.']],
-'Expression orale':[
-['Préparer quelques énoncés courts à l’aide d’un modèle.','S’entraîner à prononcer clairement des phrases familières.'],
-['Enchaîner plusieurs phrases simples et utiliser des mots de liaison courants.','S’enregistrer puis réécouter pour améliorer intelligibilité et rythme.'],
-['Présenter un propos organisé avec des précisions et des exemples.','Reformuler une idée sans lire intégralement ses notes.'],
-['Développer un propos personnel plus autonome et nuancé.','Varier le lexique et adapter son discours au destinataire.']],
-'Interaction orale':[
-['Répondre à une question simple et apprendre à demander de répéter.','Utiliser les formules de salutation et les questions étudiées.'],
-['Poser des questions simples et réagir aux réponses.','S’entraîner en binôme avec des cartes de dialogue.'],
-['Relancer un échange et demander une précision.','Prendre des initiatives en utilisant des expressions de réaction.'],
-['Adapter ses réponses et soutenir un échange plus spontané.','Reformuler et rebondir sur les propos de l’interlocuteur.']],
-'Expression écrite':[
-['Écrire des phrases courtes à partir de modèles et d’une banque de mots.','Relire en vérifiant sujet, verbe et ponctuation.'],
-['Rédiger un texte court avec un ordre logique.','Utiliser quelques connecteurs et vérifier les formes verbales étudiées.'],
-['Développer des idées et organiser un texte en paragraphes simples.','Relire en utilisant une grille de critères.'],
-['Enrichir et nuancer une production écrite autonome.','Varier les formulations et réviser la cohérence du texte.']],
-'Comportement':[
-['Rappeler une règle de vie précise et identifier une action observable à améliorer.'],
-['Fixer un objectif court et réalisable de respect des consignes.'],
-['Maintenir les habitudes positives et valoriser les progrès constatés.'],
-['Poursuivre les comportements coopératifs et contribuer au climat de classe.']],
-'Attitude face au travail':[
-['Découper le travail en étapes courtes et expliciter le premier objectif.'],
-['Utiliser une liste de vérification pour préparer et terminer le travail.'],
-['Renforcer l’autonomie en vérifiant régulièrement les consignes.'],
-['Développer des stratégies personnelles d’organisation et d’entraide.']],
-'Participation':[
-['Préparer une réponse courte avant la mise en commun, sans imposer la prise de parole.'],
-['S’appuyer sur des échanges en binôme pour participer progressivement.'],
-['Diversifier les contributions orales ou écrites aux activités.'],
-['Approfondir les interventions et encourager les échanges constructifs.']]
-};
-let adviceAxis='Compréhension orale',adviceValue=2,adviceStyle='Élève',adviceIndex=0;
-function adviceText(){let grade=cls()?.grade||'5e',items=ADVICE_BANK[adviceAxis]?.[adviceValue-1]||[],base=items[adviceIndex%items.length]||'';return adviceStyle==='Famille'?'Pour progresser, il est conseillé de '+base.charAt(0).toLowerCase()+base.slice(1):adviceStyle==='Bilan'?'Piste de progression : '+base:'Objectif pour la prochaine étape : '+base}
-function advicePage(){let grade=cls()?.grade||'5e',available=Object.keys(ADVICE_BANK),txt=adviceText(),life=['Comportement','Attitude face au travail','Participation'].includes(adviceAxis);return `<div class="toolbar">${classSelector()}${modeSelector()}${periodSelector()}</div>`+card('💡 Conseils pédagogiques prédéfinis',`<p class="muted">Sélectionne une compétence, un niveau de maîtrise et le destinataire. Les propositions sont modifiables avant utilisation.</p><div class="formgrid">${field('Domaine / activité',`<select onchange="adviceAxis=this.value;adviceIndex=0;render()">${available.map(a=>`<option ${a===adviceAxis?'selected':''}>${esc(a)}</option>`).join('')}</select>`)}${field('Niveau de maîtrise',`<select onchange="adviceValue=Number(this.value);adviceIndex=0;render()">${LABELS.map((l,i)=>`<option value="${i+1}" ${adviceValue===i+1?'selected':''}>${i+1} — ${esc(l)}</option>`).join('')}</select>`)}${field('Formulation',`<select onchange="adviceStyle=this.value;render()">${['Élève','Famille','Bilan'].map(t=>`<option ${t===adviceStyle?'selected':''}>${t}</option>`).join('')}</select>`)}${field('Classe',`<input value="${esc(grade)} — Anglais" disabled>`)} </div><div class="advice-box"><div class="split"><b>Conseil suggéré</b>${level(adviceValue)}</div><p id="advice-preview">${esc(txt)}</p><p class="mini">Adaptation pédagogique indicative : le niveau de maîtrise ne correspond pas automatiquement à A1, A2 ou B1.</p></div><div class="toolbar"><button class="btn alt" onclick="adviceIndex++;render()">Autre suggestion ↻</button><button class="btn mint" onclick="copyAdvice()">Copier le conseil</button><button class="btn" onclick="applyAdvice()">Préparer une observation</button></div>`)+card('✎ Adapter le conseil',`${field('Version personnalisée (non enregistrée automatiquement)',`<textarea id="advice-edit" rows="4">${esc(txt)}</textarea>`)}<div class="toolbar"><button class="btn alt" onclick="copyEditedAdvice()">Copier ma version</button><button class="btn mint" onclick="saveAdviceNote()">Enregistrer pour l’élève sélectionné</button></div><p class="mini">La sauvegarde crée une observation datée dans le dossier fictif de l’élève. Vérifie toujours que le conseil correspond à la situation réelle.</p>`)+card('Références et limites',`<div class="notice">Les propositions sont des <b>conseils originaux d’accompagnement</b>, organisés selon les activités langagières du CECRL et les attendus de l’anglais au collège. Ce ne sont pas des extraits officiels. Vérifier la version du programme applicable en ${esc(grade)} pour l’année scolaire concernée.</div><p class="mini">Sources de référence : <a href="https://eduscol.education.gouv.fr/" target="_blank" rel="noopener">Éduscol</a> · <a href="https://www.education.gouv.fr/bo" target="_blank" rel="noopener">Bulletin officiel</a> · <a href="https://www.coe.int/en/web/common-european-framework-reference-languages" target="_blank" rel="noopener">CECRL</a>.</p><p class="mini">Pour les indicateurs de vie de classe, privilégier des observations factuelles, contextualisées et sans jugement sur la personne.</p>`)}
-function copyAdvice(){navigator.clipboard?.writeText(adviceText()).then(()=>alert('Conseil copié.'),()=>alert('Copie non disponible sur ce navigateur.'))}
-function copyEditedAdvice(){navigator.clipboard?.writeText(document.getElementById('advice-edit').value).then(()=>alert('Conseil copié.'),()=>alert('Copie non disponible.'))}
-function applyAdvice(){let el=document.getElementById('advice-edit');el.focus();el.select();el.scrollIntoView({block:'center',behavior:'smooth'})}
-function saveAdviceNote(){let s=student(),el=document.getElementById('advice-edit'),body=el?.value.trim();if(!s||!body)return alert('Sélectionne un élève et saisis un conseil.');if(!confirm('Enregistrer ce conseil dans le dossier fictif de '+s.name+' ?'))return;db.notes.push({id:uid(),studentId:s.id,body,category:'Conseil • '+adviceAxis,scope:'pp',date:new Date().toISOString().slice(0,10)});save();alert('Conseil enregistré dans les observations.');}
+function readJSON(id){ return JSON.parse(document.getElementById(id).textContent); }
+var CFG = readJSON('skillpop-config');
+var ADVICE = readJSON('skillpop-advice');
+var SEED = readJSON('skillpop-seed');
 
-function render(){$('#heading').textContent=page+' ✦';$('#view').innerHTML=({'Accueil':home,'Mes classes':classes,'Référentiel':refs,'Évaluer':evaluate,'Résultats':results,'Élèves':pupils,'Prof principal':pp,'Conseils':advicePage,'Bilans':bilans,'Paramètres':settings}[page]||home)()}
-function addClass(e){e.preventDefault();let f=new FormData(e.target),name=String(f.get('name')).trim(),grade=String(f.get('grade')),subject=String(f.get('subject')).trim();if(!name||!subject)return;let c={id:uid(),name,grade,subject,year:'2026-2027'};db.classes.push(c);classId=c.id;studentId='';save();render()}
-function addStudent(e){e.preventDefault();let name=String(new FormData(e.target).get('name')).trim();if(!name)return;let s={id:uid(),name,classId};db.students.push(s);studentId=s.id;save();render()}
-function addSkill(e){e.preventDefault();let f=new FormData(e.target),name=String(f.get('name')).trim();if(!name)return;db.skills.push({id:uid(),name,axis:String(f.get('axis')),subject:cls()?.subject,grade:cls()?.grade,origin:'Personnalisée',official:false});save();render()}
-function addAssessment(e){e.preventDefault();let f=new FormData(e.target),title=String(f.get('title')).trim(),skillId=String(f.get('skillId')),date=String(f.get('date'));if(!title||!skill(skillId)||!/^\d{4}-\d{2}-\d{2}$/.test(date))return;let a={id:uid(),classId,skillId,date,title};db.assessments.push(a);assessmentId=a.id;period='Année entière';save();render()}
-function rate(s,a,v){let old=db.ratings.find(r=>r.studentId===s&&r.assessmentId===a);if(old){if(old.value===v)db.ratings=db.ratings.filter(r=>r!==old);else old.value=v}else db.ratings.push({id:uid(),studentId:s,assessmentId:a,value:v});save();render()}
-function addNote(e){e.preventDefault();if(!student())return;let f=new FormData(e.target),body=String(f.get('body')).trim();if(!body)return;db.notes.push({id:uid(),studentId,body,category:String(f.get('category')),scope:'pp',date:new Date().toISOString().slice(0,10)});save();render()}
-function removeNote(id){if(confirm('Supprimer cette observation ?')){db.notes=db.notes.filter(n=>n.id!==id);save();render()}}
-function mode(m){if(m===db.periodMode)return;db.periodMode=m;const year=cls()?.year||'2026-2027';const startYear=/^\d{4}/.test(year)?Number(year.slice(0,4)):2026;db.dates=m==='semestre'?[`${startYear}-09-01`,`${startYear+1}-02-01`,`${startYear+1}-09-01`]:[`${startYear}-09-01`,`${startYear+1}-01-01`,`${startYear+1}-04-01`,`${startYear+1}-09-01`];period='Année entière';comparison='Aucune';save();render()}
-function setDate(i,v){let d=[...db.dates];d[i]=v;if(d.some((x,j)=>j&&x<=d[j-1])){alert('Les dates doivent être strictement croissantes.');render();return}db.dates=d;save();render()}
-function download(name,content,type){let url=URL.createObjectURL(new Blob([content],{type})),a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000)}
-function exportJSON(){download('skillpop-demo-sauvegarde.json',JSON.stringify(db,null,2),'application/json')}
-function exportCSV(){let students=db.students.filter(s=>s.classId===classId),skills=db.skills.filter(k=>assessments().some(a=>a.skillId===k.id)),rows=[['Élève','Classe','Période',...skills.map(k=>k.name)],...students.map(s=>[s.name,cls()?.name,period,...skills.map(k=>latest(s.id,k.id)||'')])];download('skillpop-bilan-demo.csv','\ufeff'+rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(';')).join('\r\n'),'text/csv;charset=utf-8')}
-async function importJSON(e){let file=e.target.files?.[0];if(!file)return;try{let x=JSON.parse(await file.text());if(!x||!['classes','students','skills','assessments','ratings','notes','dates'].every(k=>Array.isArray(x[k]))||!['trimestre','semestre'].includes(x.periodMode))throw Error('format');if(!confirm('Remplacer les données de démonstration ?'))return;db=x;if(!Array.isArray(db.lifeRatings))db.lifeRatings=[];classId=db.classes[0]?.id||'';studentId=db.students.find(s=>s.classId===classId)?.id||'';save();go('Accueil')}catch{alert('Fichier non reconnu.')}}function reset(){if(confirm('Effacer les données de démonstration et recommencer ?')){db=structuredClone(seed);db.lifeRatings=[];classId='c1';studentId='s1';save();go('Accueil')}}nav();render();
-</script></body></html>
+var KEY = 'skillpop-data';
+var OLD_KEYS = ['skillpop-v4-demo'];
+var PAGES = [
+  ['accueil','Accueil','◉'],
+  ['classes','Classes','▦'],
+  ['referentiel','Référentiel','✦'],
+  ['evaluer','Évaluer','★'],
+  ['eleves','Élèves','☺'],
+  ['conseils','Conseils','✎'],
+  ['bilans','Bilans','▤'],
+  ['reglages','Réglages','⚙']
+];
+var ALL_AXES = CFG.axes.concat(CFG.extraAxes);
+
+/* ---------- utilitaires ---------- */
+function $(id){ return document.getElementById(id); }
+function esc(x){ return String(x == null ? '' : x).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+function uid(){ return 'id' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8); }
+function find(a, f){ for (var i = 0; i < a.length; i++) { if (f(a[i])) return a[i]; } return null; }
+function byId(a, id){ return find(a, function(x){ return x.id === id; }); }
+function pad(n){ return n < 10 ? '0' + n : '' + n; }
+function today(){ var d = new Date(); return d.getFullYear() + '-' + pad(d.getMonth() + 1) + '-' + pad(d.getDate()); }
+function clone(o){ return JSON.parse(JSON.stringify(o)); }
+function avg(a){ if (!a.length) return 0; var s = 0; for (var i = 0; i < a.length; i++) s += a[i]; return s / a.length; }
+function frDate(d){ if (!d || d.length < 10) return d || ''; return d.slice(8, 10) + '/' + d.slice(5, 7) + '/' + d.slice(0, 4); }
+function lowerFirst(s){ return s ? s.charAt(0).toLowerCase() + s.slice(1) : ''; }
+function isDate(s){ return /^\d{4}-\d{2}-\d{2}$/.test(s || ''); }
+function clampLevel(v){ return Math.max(1, Math.min(4, Math.round(v))); }
+function plural(n, one, many){ return n + ' ' + (n > 1 ? many : one); }
+
+/* ---------- données ---------- */
+function refSkills(){
+  var out = [];
+  CFG.grades.forEach(function(g){
+    CFG.descriptors[g].forEach(function(name, i){
+      out.push({ id: 'ref-' + g + '-' + i, grade: g, subject: null, axis: CFG.axes[i], name: name, custom: false });
+    });
+  });
+  return out;
+}
+function defaultDates(mode, year){
+  var y = /^\d{4}/.test(year || '') ? Number(year.slice(0, 4)) : 2026;
+  return mode === 'semestre'
+    ? [y + '-09-01', (y + 1) + '-02-01', (y + 1) + '-07-05']
+    : [y + '-09-01', y + '-12-01', (y + 1) + '-03-01', (y + 1) + '-07-05'];
+}
+function seedDb(){
+  var d = clone(SEED);
+  d.version = 8; d.demo = true; d.skills = refSkills(); d.ratings = [];
+  Object.keys(d.ratingTable).forEach(function(sid){
+    Object.keys(d.ratingTable[sid]).forEach(function(aid){
+      d.ratings.push({ id: sid + '-' + aid, studentId: sid, assessmentId: aid, value: d.ratingTable[sid][aid] });
+    });
+  });
+  delete d.ratingTable;
+  return d;
+}
+function emptyDb(){
+  return { version: 8, demo: false, classes: [], students: [], skills: refSkills(), assessments: [], ratings: [], lifeRatings: [], notes: [], periodMode: 'trimestre', dates: defaultDates('trimestre', '2026-2027') };
+}
+function migrate(x){
+  if (!x || typeof x !== 'object') return null;
+  var need = ['classes', 'students', 'skills', 'assessments', 'ratings'];
+  for (var i = 0; i < need.length; i++) { if (!Array.isArray(x[need[i]])) return null; }
+  if (!Array.isArray(x.notes)) x.notes = [];
+  if (!Array.isArray(x.lifeRatings)) x.lifeRatings = [];
+  if (!(x.version >= 8)) {
+    x.skills.forEach(function(k){
+      if (String(k.id).indexOf('ref-') === 0) { k.subject = null; k.custom = false; } else { k.custom = true; }
+    });
+    refSkills().forEach(function(r){ if (!byId(x.skills, r.id)) x.skills.push(r); });
+    x.notes.forEach(function(n){ delete n.scope; });
+    x.version = 8;
+    x.demo = false;
+  }
+  if (x.periodMode !== 'trimestre' && x.periodMode !== 'semestre') x.periodMode = 'trimestre';
+  var len = x.periodMode === 'semestre' ? 3 : 4;
+  if (!Array.isArray(x.dates) || x.dates.length !== len || !x.dates.every(isDate)) x.dates = defaultDates(x.periodMode, x.classes[0] && x.classes[0].year);
+  return x;
+}
+function load(){
+  var raw = null, keys = [KEY].concat(OLD_KEYS);
+  try {
+    for (var i = 0; i < keys.length && !raw; i++) raw = localStorage.getItem(keys[i]);
+  } catch (e) { raw = null; }
+  if (raw) { try { var m = migrate(JSON.parse(raw)); if (m) return m; } catch (e2) {} }
+  return seedDb();
+}
+var db = load();
+var storageOk = true;
+function save(){
+  try { localStorage.setItem(KEY, JSON.stringify(db)); storageOk = true; }
+  catch (e) { if (storageOk) toast('Enregistrement impossible sur ce navigateur. Exporte tes données dans Réglages.'); storageOk = false; }
+}
+save();
+
+/* ---------- état d'interface ---------- */
+var page = 'accueil';
+var classId = db.classes[0] ? db.classes[0].id : '';
+var studentId = '';
+var assessmentId = '';
+var period = 'Année entière';
+var comparison = 'Aucune';
+var studentTab = 'profil';
+var advice = { axis: CFG.axes[0], level: 2, style: 'Élève', index: 0 };
+var adviceDraft = null;
+var RIDX = {};
+
+function cls(){ return byId(db.classes, classId); }
+function classStudents(cid){ var id = cid || classId; return db.students.filter(function(s){ return s.classId === id; }).sort(function(a, b){ return a.name.localeCompare(b.name, 'fr'); }); }
+function student(){ var s = byId(db.students, studentId); return s && s.classId === classId ? s : null; }
+function ensureStudent(){ if (!student()) { var l = classStudents(); studentId = l.length ? l[0].id : ''; } }
+function skill(id){ return byId(db.skills, id); }
+function skillsFor(c){
+  if (!c) return [];
+  return db.skills.filter(function(k){ return k.grade === c.grade && (k.subject == null || k.subject === c.subject); })
+    .sort(function(a, b){ var d = ALL_AXES.indexOf(a.axis) - ALL_AXES.indexOf(b.axis); return d || (a.custom ? 1 : 0) - (b.custom ? 1 : 0) || a.name.localeCompare(b.name, 'fr'); });
+}
+function axisShort(axis){ var i = CFG.axes.indexOf(axis); return i < 0 ? axis : CFG.short[i]; }
+
+/* ---------- périodes ---------- */
+function periodNames(){ return db.periodMode === 'semestre' ? ['Semestre 1', 'Semestre 2'] : ['Trimestre 1', 'Trimestre 2', 'Trimestre 3']; }
+function periodRange(p){ var i = periodNames().indexOf(p); return i < 0 ? null : [db.dates[i], db.dates[i + 1]]; }
+function inPeriod(date, p){ var r = periodRange(p === undefined ? period : p); return !r || (date >= r[0] && date < r[1]); }
+function periodOfDate(d){ var n = periodNames(); for (var i = 0; i < n.length; i++) { if (inPeriod(d, n[i])) return n[i]; } return 'Année entière'; }
+
+/* ---------- résultats ---------- */
+function indexRatings(){ RIDX = {}; db.ratings.forEach(function(r){ RIDX[r.studentId + '|' + r.assessmentId] = r.value; }); }
+function val(sid, aid){ return RIDX[sid + '|' + aid] || 0; }
+function assessmentsOf(cid, p){
+  return db.assessments.filter(function(a){ return a.classId === cid && inPeriod(a.date, p); })
+    .sort(function(a, b){ return a.date < b.date ? -1 : a.date > b.date ? 1 : 0; });
+}
+function latest(sid, kid, p){
+  var s = byId(db.students, sid); if (!s) return 0;
+  var aa = assessmentsOf(s.classId, p).filter(function(a){ return a.skillId === kid; });
+  for (var i = aa.length - 1; i >= 0; i--) { var v = val(sid, aa[i].id); if (v) return v; }
+  return 0;
+}
+function axisValues(sid, p){
+  var s = byId(db.students, sid); var c = s && byId(db.classes, s.classId); var ks = skillsFor(c);
+  return CFG.axes.map(function(axis){
+    var vs = [];
+    ks.forEach(function(k){ if (k.axis === axis) { var v = latest(sid, k.id, p); if (v) vs.push(v); } });
+    return avg(vs);
+  });
+}
+function classAverage(cid, p){
+  var all = classStudents(cid).map(function(s){ return axisValues(s.id, p); });
+  return CFG.axes.map(function(_, i){ return avg(all.map(function(v){ return v[i]; }).filter(function(v){ return v > 0; })); });
+}
+function usedSkills(cid, p){
+  var c = byId(db.classes, cid), ids = {};
+  assessmentsOf(cid, p).forEach(function(a){ ids[a.skillId] = true; });
+  return skillsFor(c).filter(function(k){ return ids[k.id]; });
+}
+function lifeLatest(sid, cat, p){
+  var l = db.lifeRatings.filter(function(x){ return x.studentId === sid && x.category === cat && inPeriod(x.date, p); })
+    .sort(function(a, b){ return a.date < b.date ? 1 : a.date > b.date ? -1 : 0; });
+  return l[0] || null;
+}
+function levelColor(v){ return v ? CFG.colors[clampLevel(v) - 1] : '#EEF1F7'; }
+
+/* ---------- composants ---------- */
+function chip(v){ return v ? '<span class="chip l' + v + '" title="' + esc(CFG.labels[v - 1]) + '">' + v + '</span>' : '<span class="chip none" title="Non évalué">–</span>'; }
+function pill(v){ return v ? '<span class="pill">' + chip(v) + esc(CFG.labels[v - 1]) + '</span>' : '<span class="pill none">Non évalué</span>'; }
+function legend(){ return '<div class="legend">' + CFG.labels.map(function(l, i){ return '<span class="pill">' + chip(i + 1) + esc(l) + '</span>'; }).join('') + '</div>'; }
+function field(label, html){ return '<label class="field"><span>' + esc(label) + '</span>' + html + '</label>'; }
+function options(list, current){ return list.map(function(o){ var v = typeof o === 'string' ? o : o[0], t = typeof o === 'string' ? o : o[1]; return '<option value="' + esc(v) + '"' + (v === current ? ' selected' : '') + '>' + esc(t) + '</option>'; }).join(''); }
+function panel(title, body, extra){ return '<section class="panel">' + (title ? '<h2>' + title + (extra || '') + '</h2>' : '') + body + '</section>'; }
+function emptyState(msg, btn){ return '<div class="empty">' + esc(msg) + (btn ? '<br>' + btn : '') + '</div>'; }
+
+function radar(values, prior){
+  var n = values.length, cx = 210, cy = 192, R = 122;
+  function pt(i, r){ var a = i * 2 * Math.PI / n; return [cx + Math.sin(a) * r, cy - Math.cos(a) * r]; }
+  function poly(vs){ return vs.map(function(v, i){ var p = pt(i, R * v / 4); return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' '); }
+  var s = '<svg class="radar" viewBox="0 0 420 384" role="img" aria-label="Profil radar sur ' + n + ' activités langagières, échelle de 0 à 4">';
+  for (var g = 1; g <= 4; g++) {
+    var ring = []; for (var j = 0; j < n; j++) ring.push(g);
+    s += '<polygon points="' + poly(ring) + '" fill="' + (g === 4 ? '#F7F9FD' : 'none') + '" stroke="#DCE1EE" stroke-width="1.3"/>';
+  }
+  for (var k = 0; k < n; k++) { var e = pt(k, R); s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + e[0].toFixed(1) + '" y2="' + e[1].toFixed(1) + '" stroke="#DCE1EE"/>'; }
+  if (prior) s += '<polygon points="' + poly(prior) + '" fill="#7A5AF0" fill-opacity=".08" stroke="#7A5AF0" stroke-width="2.5" stroke-dasharray="7 5"/>';
+  s += '<polygon points="' + poly(values) + '" fill="#0FA191" fill-opacity=".22" stroke="#0FA191" stroke-width="3" stroke-linejoin="round"/>';
+  values.forEach(function(v, i){ if (v) { var p = pt(i, R * v / 4); s += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="6" fill="' + levelColor(v) + '" stroke="#fff" stroke-width="2.5"/>'; } });
+  CFG.short.slice(0, n).forEach(function(label, i){
+    var p = pt(i, 152), anchor = p[0] < cx - 12 ? 'end' : p[0] > cx + 12 ? 'start' : 'middle';
+    s += '<text x="' + p[0].toFixed(1) + '" y="' + p[1].toFixed(1) + '" text-anchor="' + anchor + '" dominant-baseline="middle" font-size="14" font-weight="700" fill="#1D2340" font-family="system-ui,sans-serif">' + esc(label) + '</text>';
+  });
+  return s + '</svg>';
+}
+function bars(values){
+  return CFG.axes.map(function(axis, i){
+    var v = values[i];
+    return '<div class="bar"><span>' + esc(axis) + '</span><div class="track"><i style="width:' + (v * 25) + '%;background:' + levelColor(v) + '"></i></div><b>' + (v ? v.toFixed(1).replace('.', ',') : '–') + '</b></div>';
+  }).join('');
+}
+
+/* ---------- modale et toast ---------- */
+var modalOk = null, toastTimer = null;
+function openModal(o){
+  $('m-title').textContent = o.title;
+  $('m-body').innerHTML = o.html || '';
+  var ok = $('m-ok');
+  ok.textContent = o.ok || 'Valider';
+  ok.className = 'btn' + (o.danger ? ' danger' : '');
+  modalOk = o.onOk || null;
+  $('modal').className = 'modal open';
+  var f = $('m-body').querySelector('input,textarea,select');
+  setTimeout(function(){ (f || ok).focus(); }, 30);
+}
+function closeModal(){ $('modal').className = 'modal'; modalOk = null; }
+function modalConfirm(){ var fn = modalOk; if (fn && fn() === false) return; closeModal(); }
+function confirmBox(title, msg, okLabel, danger, fn){ openModal({ title: title, html: '<p>' + msg + '</p>', ok: okLabel, danger: danger, onOk: fn }); }
+function toast(m){ var t = $('toast'); t.textContent = m; t.className = 'toast show'; clearTimeout(toastTimer); toastTimer = setTimeout(function(){ t.className = 'toast'; }, 2800); }
+document.addEventListener('keydown', function(e){
+  if ($('modal').className.indexOf('open') < 0) return;
+  if (e.key === 'Escape') closeModal();
+  if (e.key === 'Enter' && e.target.tagName === 'INPUT') { e.preventDefault(); modalConfirm(); }
+});
+function inputVal(id){ var el = $(id); return el ? String(el.value).replace(/\s+/g, ' ').trim() : ''; }
+
+/* ---------- navigation ---------- */
+function nav(){
+  $('nav').innerHTML = PAGES.map(function(p){
+    return '<button type="button" class="' + (page === p[0] ? 'on' : '') + '" onclick="go(\'' + p[0] + '\')" aria-label="' + esc(p[1]) + '"' + (page === p[0] ? ' aria-current="page"' : '') + '><span class="ic" aria-hidden="true">' + p[2] + '</span><span class="tx">' + esc(p[1]) + '</span></button>';
+  }).join('');
+}
+function go(p){ page = p; render(); window.scrollTo(0, 0); }
+function setClass(id){ classId = id; studentId = ''; assessmentId = ''; adviceDraft = null; ensureStudent(); render(); }
+function setPeriod(p){ period = p; if (comparison === p) comparison = 'Aucune'; render(); }
+function openStudent(id){ studentId = id; studentTab = 'profil'; go('eleves'); }
+function topControls(){
+  if (!db.classes.length) return '';
+  var h = field('Classe', '<select onchange="setClass(this.value)">' + options(db.classes.map(function(c){ return [c.id, c.name]; }), classId) + '</select>');
+  if (page !== 'reglages' && page !== 'classes' && page !== 'referentiel') h += field('Période', '<select onchange="setPeriod(this.value)">' + options(['Année entière'].concat(periodNames()), period) + '</select>');
+  return h;
+}
+function demoBanner(){
+  if (!db.demo) return '';
+  return '<div class="demo noprint"><span>Tu regardes des données d’exemple. Explore librement, puis repars d’une app vide.</span><button class="btn" type="button" onclick="startEmpty()">Commencer avec mes classes</button></div>';
+}
+function noClass(){ return panel('', emptyState('Aucune classe pour l’instant. Crée ta première classe pour commencer.', '<button class="btn pop" type="button" onclick="go(\'classes\')">Créer une classe</button>')); }
+
+/* ---------- Accueil ---------- */
+function pageAccueil(){
+  var c = cls(); if (!c) return noClass();
+  var st = classStudents(), aa = assessmentsOf(classId), vals = classAverage(classId), counts = [0, 0, 0, 0], total = 0;
+  aa.forEach(function(a){ st.forEach(function(s){ var v = val(s.id, a.id); if (v) { counts[v - 1]++; total++; } }); });
+  var dist = total ? counts.map(function(n, i){ return n ? '<div class="seg l' + (i + 1) + '" style="width:' + (n / total * 100) + '%" title="' + esc(CFG.labels[i]) + ' : ' + n + '"></div>' : ''; }).join('') : '';
+  var h = '<section class="hero"><div>' + radar(vals) + '<p class="tiny" style="text-align:center;margin:4px 0 0">Moyenne de la classe, dernière évaluation de chaque compétence</p></div><div>' +
+    '<h2>' + esc(c.name) + '</h2><p class="meta">' + esc(c.subject) + ', ' + esc(c.grade) + ', ' + esc(c.year) + (period !== 'Année entière' ? ', ' + esc(period) : '') + '</p>' +
+    '<div class="figs"><div class="fig"><b>' + st.length + '</b><span>' + (st.length > 1 ? 'élèves' : 'élève') + '</span></div><div class="fig"><b>' + aa.length + '</b><span>' + (aa.length > 1 ? 'évaluations' : 'évaluation') + '</span></div><div class="fig"><b>' + total + '</b><span>niveaux saisis</span></div></div>' +
+    '<div class="small"><b>Répartition des niveaux saisis</b></div><div class="dist">' + dist + '</div>' +
+    '<div class="row small">' + counts.map(function(n, i){ return '<span class="row" style="gap:5px">' + chip(i + 1) + n + '</span>'; }).join('') + '</div>' +
+    '<div class="row" style="margin-top:18px"><button class="btn pop" type="button" onclick="go(\'evaluer\')">Évaluer maintenant</button><button class="btn ghost" type="button" onclick="go(\'bilans\')">Voir les bilans</button></div>' +
+    '</div></section>';
+  var used = usedSkills(classId, period);
+  var grid;
+  if (!st.length) grid = emptyState('Ajoute tes élèves pour voir la grille de la classe.', '<button class="btn" type="button" onclick="go(\'classes\')">Ajouter des élèves</button>');
+  else if (!used.length) grid = emptyState('Aucune évaluation sur cette période.', '<button class="btn" type="button" onclick="go(\'evaluer\')">Créer une évaluation</button>');
+  else {
+    grid = '<div class="tablewrap"><table class="grid-table"><thead><tr><th>Élève</th>' + used.map(function(k){ return '<th title="' + esc(k.name) + '">' + esc(axisShort(k.axis)) + '<span class="sk">' + esc(k.name) + '</span></th>'; }).join('') + '</tr></thead><tbody>' +
+      st.map(function(s){ return '<tr class="clickable" onclick="openStudent(\'' + s.id + '\')"><td class="name">' + esc(s.name) + '</td>' + used.map(function(k){ return '<td>' + chip(latest(s.id, k.id)) + '</td>'; }).join('') + '</tr>'; }).join('') +
+      '</tbody></table></div><p class="tiny">Clique sur un élève pour ouvrir son dossier.</p>';
+  }
+  return h + panel('Grille de maîtrise', grid);
+}
+
+/* ---------- Classes ---------- */
+function pageClasses(){
+  var c = cls();
+  var list = db.classes.length ? db.classes.map(function(k){
+    var n = classStudents(k.id).length;
+    return '<div class="list-item' + (k.id === classId ? ' sel' : '') + '"><div><b>' + esc(k.name) + '</b> <span class="tiny">' + esc(k.subject) + ', ' + esc(k.grade) + ', ' + esc(k.year) + ', ' + plural(n, 'élève', 'élèves') + '</span></div><div class="row">' +
+      (k.id === classId ? '<span class="tiny">Classe ouverte</span>' : '<button class="link" type="button" onclick="setClass(\'' + k.id + '\')">Ouvrir</button>') +
+      '<button class="link" type="button" onclick="editClass(\'' + k.id + '\')">Modifier</button><button class="link del" type="button" onclick="deleteClass(\'' + k.id + '\')">Supprimer</button></div></div>';
+  }).join('') : emptyState('Aucune classe.');
+  var add = '<div class="form">' + field('Nom de la classe', '<input id="nc-name" maxlength="40" placeholder="4e C">') +
+    field('Niveau', '<select id="nc-grade">' + options(CFG.grades, '5e') + '</select>') +
+    field('Discipline', '<input id="nc-subject" maxlength="60" value="Anglais">') +
+    field('Année scolaire', '<input id="nc-year" maxlength="20" value="' + esc(c ? c.year : '2026-2027') + '">') +
+    '<button class="btn pop" type="button" onclick="addClass()">Ajouter la classe</button></div>';
+  var h = panel('Tes classes', list) + panel('Nouvelle classe', add);
+  if (c) {
+    var st = classStudents();
+    var sl = st.length ? st.map(function(s){
+      return '<div class="list-item"><b>' + esc(s.name) + '</b><div class="row"><button class="link" type="button" onclick="openStudent(\'' + s.id + '\')">Dossier</button><button class="link" type="button" onclick="renameStudent(\'' + s.id + '\')">Renommer</button><button class="link del" type="button" onclick="deleteStudent(\'' + s.id + '\')">Supprimer</button></div></div>';
+    }).join('') : emptyState('Aucun élève dans cette classe. Colle ta liste ci-dessous.');
+    var imp = '<div class="cols"><div>' + field('Coller une liste d’élèves', '<textarea id="imp-list" placeholder="Un élève par ligne, par exemple copié depuis Pronote ou un tableur&#10;MARTIN Camille&#10;BERNARD Alex"></textarea>') +
+      '<div class="row" style="margin-top:10px"><button class="btn" type="button" onclick="importStudents()">Importer la liste</button><span class="tiny">Les doublons sont ignorés.</span></div></div>' +
+      '<div>' + field('Ajouter un seul élève', '<input id="ns-name" maxlength="80" placeholder="Prénom Nom" onkeydown="if(event.key===\'Enter\')addStudent()">') +
+      '<div class="row" style="margin-top:10px"><button class="btn ghost" type="button" onclick="addStudent()">Ajouter</button></div></div></div>';
+    h += panel('Élèves de ' + esc(c.name), sl, '<span class="count">' + plural(st.length, 'élève', 'élèves') + '</span>') + panel('Ajouter des élèves', imp);
+  }
+  return h;
+}
+function addClass(){
+  var name = inputVal('nc-name'), subject = inputVal('nc-subject') || 'Anglais', year = inputVal('nc-year') || '2026-2027', grade = $('nc-grade').value;
+  if (!name) { toast('Donne un nom à la classe.'); $('nc-name').focus(); return; }
+  var c = { id: uid(), name: name, grade: grade, subject: subject, year: year };
+  db.classes.push(c); save(); setClass(c.id); toast('Classe ' + name + ' créée');
+}
+function editClass(id){
+  var c = byId(db.classes, id); if (!c) return;
+  var locked = db.assessments.some(function(a){ return a.classId === id; });
+  openModal({ title: 'Modifier la classe', ok: 'Enregistrer', html:
+    field('Nom', '<input id="ec-name" maxlength="40" value="' + esc(c.name) + '">') +
+    field('Niveau', '<select id="ec-grade"' + (locked ? ' disabled' : '') + '>' + options(CFG.grades, c.grade) + '</select>') +
+    (locked ? '<p class="tiny">Le niveau ne peut plus changer : des évaluations utilisent déjà le référentiel de ' + esc(c.grade) + '.</p>' : '') +
+    field('Discipline', '<input id="ec-subject" maxlength="60" value="' + esc(c.subject) + '">') +
+    field('Année scolaire', '<input id="ec-year" maxlength="20" value="' + esc(c.year) + '">'),
+    onOk: function(){
+      var n = inputVal('ec-name'); if (!n) { toast('Le nom ne peut pas être vide.'); return false; }
+      c.name = n; c.subject = inputVal('ec-subject') || c.subject; c.year = inputVal('ec-year') || c.year;
+      if (!locked) c.grade = $('ec-grade').value;
+      save(); render(); toast('Classe modifiée');
+    } });
+}
+function deleteClass(id){
+  var c = byId(db.classes, id); if (!c) return;
+  var sids = classStudents(id).map(function(s){ return s.id; }), aids = db.assessments.filter(function(a){ return a.classId === id; }).map(function(a){ return a.id; });
+  confirmBox('Supprimer ' + esc(c.name) + ' ?', 'La classe, ses ' + plural(sids.length, 'élève', 'élèves') + ', ses ' + plural(aids.length, 'évaluation', 'évaluations') + ' et toutes les observations associées seront effacées. Cette action est définitive.', 'Supprimer la classe', true, function(){
+    db.classes = db.classes.filter(function(x){ return x.id !== id; });
+    db.students = db.students.filter(function(s){ return s.classId !== id; });
+    db.assessments = db.assessments.filter(function(a){ return a.classId !== id; });
+    db.ratings = db.ratings.filter(function(r){ return sids.indexOf(r.studentId) < 0 && aids.indexOf(r.assessmentId) < 0; });
+    db.notes = db.notes.filter(function(n){ return sids.indexOf(n.studentId) < 0; });
+    db.lifeRatings = db.lifeRatings.filter(function(n){ return sids.indexOf(n.studentId) < 0; });
+    save(); setClass(db.classes[0] ? db.classes[0].id : ''); toast('Classe supprimée');
+  });
+}
+function nameKey(n){ return n.toLowerCase().split(' ').sort().join(' '); }
+function cleanName(s){ return String(s).replace(/[\t;,|]+/g, ' ').replace(/\s+/g, ' ').trim(); }
+function addStudent(){
+  var name = cleanName(inputVal('ns-name'));
+  if (!name) { toast('Saisis le nom de l’élève.'); return; }
+  var exists = find(classStudents(), function(s){ return nameKey(s.name) === nameKey(name); });
+  if (exists) { toast(name + ' est déjà dans la classe.'); return; }
+  var s = { id: uid(), name: name, classId: classId };
+  db.students.push(s); studentId = s.id; save(); render(); toast(name + ' ajouté'); setTimeout(function(){ var el = $('ns-name'); if (el) el.focus(); }, 20);
+}
+function importStudents(){
+  var raw = $('imp-list').value, existing = {}, added = 0, skipped = 0;
+  classStudents().forEach(function(s){ existing[nameKey(s.name)] = true; });
+  raw.split(/\r?\n/).forEach(function(line){
+    var name = cleanName(line);
+    if (!name || /^(nom|élève|eleve|nom prénom|nom prenom|élèves)$/i.test(name)) return;
+    if (existing[nameKey(name)]) { skipped++; return; }
+    existing[nameKey(name)] = true;
+    db.students.push({ id: uid(), name: name, classId: classId }); added++;
+  });
+  if (!added && !skipped) { toast('Colle au moins un nom, un par ligne.'); return; }
+  save(); ensureStudent(); render();
+  toast(plural(added, 'élève importé', 'élèves importés') + (skipped ? ', ' + skipped + ' déjà présent' + (skipped > 1 ? 's' : '') : ''));
+}
+function renameStudent(id){
+  var s = byId(db.students, id); if (!s) return;
+  openModal({ title: 'Renommer l’élève', ok: 'Enregistrer', html: field('Nom', '<input id="rs-name" maxlength="80" value="' + esc(s.name) + '">'), onOk: function(){
+    var n = cleanName(inputVal('rs-name')); if (!n) { toast('Le nom ne peut pas être vide.'); return false; }
+    s.name = n; save(); render(); toast('Élève renommé');
+  } });
+}
+function deleteStudent(id){
+  var s = byId(db.students, id); if (!s) return;
+  confirmBox('Supprimer ' + esc(s.name) + ' ?', 'Ses niveaux, ses observations et son suivi de vie de classe seront effacés. Cette action est définitive.', 'Supprimer l’élève', true, function(){
+    db.students = db.students.filter(function(x){ return x.id !== id; });
+    db.ratings = db.ratings.filter(function(r){ return r.studentId !== id; });
+    db.notes = db.notes.filter(function(n){ return n.studentId !== id; });
+    db.lifeRatings = db.lifeRatings.filter(function(n){ return n.studentId !== id; });
+    if (studentId === id) studentId = '';
+    save(); ensureStudent(); render(); toast('Élève supprimé');
+  });
+}
+
+/* ---------- Référentiel ---------- */
+function pageReferentiel(){
+  var c = cls(); if (!c) return noClass();
+  var ks = skillsFor(c);
+  var groups = ALL_AXES.map(function(axis){
+    var items = ks.filter(function(k){ return k.axis === axis; });
+    if (!items.length) return '';
+    return '<div style="margin-bottom:14px"><span class="skill-axis">' + esc(axis) + (CFG.axes.indexOf(axis) < 0 ? ', hors radar' : '') + '</span>' + items.map(function(k){
+      var n = db.assessments.filter(function(a){ return a.skillId === k.id && a.classId === classId; }).length;
+      return '<div class="list-item"><div><b>' + esc(k.name) + '</b><div class="tiny">' + (k.custom ? 'Compétence personnalisée' : 'Repère SkillPop') + (n ? ', ' + plural(n, 'évaluation', 'évaluations') + ' dans cette classe' : '') + '</div></div><div class="row"><button class="link" type="button" onclick="editSkill(\'' + k.id + '\')">Modifier</button><button class="link del" type="button" onclick="deleteSkill(\'' + k.id + '\')">Supprimer</button></div></div>';
+    }).join('') + '</div>';
+  }).join('');
+  var h = panel('Compétences de ' + esc(c.grade) + ', ' + esc(c.subject), '<p class="note" style="margin-top:0">Les repères proposés sont inspirés des activités langagières du CECRL (repères indicatifs ' + esc(CFG.gradeRefs[c.grade] || '') + '). Ce ne sont pas des citations des programmes : modifie-les librement. Les repères servent à toutes les langues vivantes du même niveau.</p>' + (groups || emptyState('Aucune compétence. Ajoute la première ci-dessous.')));
+  h += panel('Ajouter une compétence', '<div class="form">' + field('Activité ou domaine', '<select id="nk-axis">' + options(ALL_AXES, CFG.axes[0]) + '</select>') +
+    '<label class="field span2"><span>Descripteur observable</span><input id="nk-name" maxlength="220" placeholder="Identifier les informations essentielles d’un dialogue"></label>' +
+    '<button class="btn pop" type="button" onclick="addSkill()">Ajouter</button></div><p class="tiny">Les compétences culturelles et « Autre » apparaissent dans la grille et les bilans, pas sur le radar. La compétence est ajoutée pour les classes de ' + esc(c.grade) + ' en ' + esc(c.subject) + '.</p>');
+  return h;
+}
+function addSkill(){
+  var c = cls(), name = inputVal('nk-name');
+  if (!name) { toast('Écris le descripteur de la compétence.'); return; }
+  db.skills.push({ id: uid(), grade: c.grade, subject: c.subject, axis: $('nk-axis').value, name: name, custom: true });
+  save(); render(); toast('Compétence ajoutée');
+}
+function editSkill(id){
+  var k = skill(id); if (!k) return;
+  openModal({ title: 'Modifier la compétence', ok: 'Enregistrer', html: field('Activité ou domaine', '<select id="ek-axis">' + options(ALL_AXES, k.axis) + '</select>') + field('Descripteur', '<input id="ek-name" maxlength="220" value="' + esc(k.name) + '">'), onOk: function(){
+    var n = inputVal('ek-name'); if (!n) { toast('Le descripteur ne peut pas être vide.'); return false; }
+    k.name = n; k.axis = $('ek-axis').value; save(); render(); toast('Compétence modifiée');
+  } });
+}
+function deleteSkill(id){
+  var k = skill(id); if (!k) return;
+  var aids = db.assessments.filter(function(a){ return a.skillId === id; }).map(function(a){ return a.id; });
+  var msg = aids.length ? plural(aids.length, 'évaluation utilise', 'évaluations utilisent') + ' cette compétence (toutes classes confondues). Elles seront supprimées avec leurs niveaux. Cette action est définitive.' : 'Aucune évaluation ne l’utilise. Cette action est définitive.';
+  confirmBox('Supprimer cette compétence ?', esc(k.name) + '<br><br>' + msg, 'Supprimer', true, function(){
+    db.skills = db.skills.filter(function(x){ return x.id !== id; });
+    db.assessments = db.assessments.filter(function(a){ return a.skillId !== id; });
+    db.ratings = db.ratings.filter(function(r){ return aids.indexOf(r.assessmentId) < 0; });
+    save(); render(); toast('Compétence supprimée');
+  });
+}
+
+/* ---------- Évaluer ---------- */
+function pageEvaluer(){
+  var c = cls(); if (!c) return noClass();
+  var arr = assessmentsOf(classId), a = byId(arr, assessmentId) || arr[arr.length - 1] || null, st = classStudents(), ks = skillsFor(c);
+  assessmentId = a ? a.id : '';
+  var h = '';
+  if (a) {
+    var k = skill(a.skillId), done = st.filter(function(s){ return val(s.id, a.id); }).length;
+    h += panel('Saisie express', '<div class="between" style="align-items:flex-end;margin-bottom:12px">' + field('Évaluation', '<select onchange="assessmentId=this.value;render()">' + options(arr.slice().reverse().map(function(x){ return [x.id, x.title + ', ' + frDate(x.date)]; }), a.id) + '</select>') +
+      '<div class="row"><button class="link" type="button" onclick="editAssessment(\'' + a.id + '\')">Modifier</button><button class="link del" type="button" onclick="deleteAssessment(\'' + a.id + '\')">Supprimer</button></div></div>' +
+      '<p style="margin:0 0 4px"><span class="skill-axis">' + esc(k ? k.axis : '') + '</span></p><p style="margin:0 0 12px"><b>' + esc(k ? k.name : 'Compétence supprimée') + '</b></p>' +
+      '<div class="between" style="margin-bottom:6px">' + legend() + '<span class="small"><b>' + done + '</b> / ' + st.length + ' élèves évalués</span></div>' +
+      (st.length ? '<div class="tablewrap"><table><thead><tr><th>Élève</th><th>Niveau</th><th class="res">Résultat</th></tr></thead><tbody>' + st.map(function(s){
+        var v = val(s.id, a.id);
+        return '<tr><td class="name">' + esc(s.name) + '</td><td><div class="lvlbtns">' + [1, 2, 3, 4].map(function(i){ return '<button type="button" class="lvlbtn l' + i + (v === i ? ' on' : '') + '" aria-pressed="' + (v === i) + '" aria-label="' + esc(s.name) + ' : ' + esc(CFG.labels[i - 1]) + '" onclick="rate(\'' + s.id + '\',\'' + a.id + '\',' + i + ')">' + i + '</button>'; }).join('') + '</div></td><td class="res">' + pill(v) + '</td></tr>';
+      }).join('') + '</tbody></table></div><p class="tiny">Touche une seconde fois le niveau choisi pour l’effacer.</p>' : emptyState('Ajoute des élèves à la classe pour saisir des niveaux.', '<button class="btn" type="button" onclick="go(\'classes\')">Ajouter des élèves</button>')));
+  } else {
+    h += panel('Saisie express', emptyState(period === 'Année entière' ? 'Aucune évaluation pour cette classe. Crée la première ci-dessous.' : 'Aucune évaluation sur ' + period + '. Change de période ou crée une évaluation.'));
+  }
+  var opts = ALL_AXES.map(function(axis){ var items = ks.filter(function(k){ return k.axis === axis; }); return items.length ? '<optgroup label="' + esc(axis) + '">' + items.map(function(k){ return '<option value="' + k.id + '">' + esc(k.name) + '</option>'; }).join('') + '</optgroup>' : ''; }).join('');
+  h += panel('Nouvelle évaluation', ks.length ? '<div class="form">' + field('Titre', '<input id="na-title" maxlength="120" placeholder="Listening: at the station">') +
+    '<label class="field span2"><span>Compétence évaluée</span><select id="na-skill">' + opts + '</select></label>' +
+    field('Date', '<input id="na-date" type="date" value="' + today() + '">') + '<button class="btn pop" type="button" onclick="addAssessment()">Créer l’évaluation</button></div>'
+    : emptyState('Aucune compétence pour ce niveau.', '<button class="btn" type="button" onclick="go(\'referentiel\')">Ouvrir le référentiel</button>'));
+  return h;
+}
+function addAssessment(){
+  var title = inputVal('na-title'), sk = $('na-skill').value, date = $('na-date').value;
+  if (!title) { toast('Donne un titre à l’évaluation.'); $('na-title').focus(); return; }
+  if (!skill(sk)) { toast('Choisis une compétence.'); return; }
+  if (!isDate(date)) { toast('Choisis une date valide.'); return; }
+  var a = { id: uid(), classId: classId, skillId: sk, title: title, date: date };
+  db.assessments.push(a); assessmentId = a.id;
+  if (!inPeriod(date)) period = periodOfDate(date);
+  save(); render(); toast('Évaluation créée');
+}
+function editAssessment(id){
+  var a = byId(db.assessments, id); if (!a) return;
+  openModal({ title: 'Modifier l’évaluation', ok: 'Enregistrer', html: field('Titre', '<input id="ea-title" maxlength="120" value="' + esc(a.title) + '">') + field('Date', '<input id="ea-date" type="date" value="' + esc(a.date) + '">'), onOk: function(){
+    var t = inputVal('ea-title'), d = $('ea-date').value;
+    if (!t || !isDate(d)) { toast('Titre et date obligatoires.'); return false; }
+    a.title = t; a.date = d; if (!inPeriod(d)) period = periodOfDate(d);
+    save(); render(); toast('Évaluation modifiée');
+  } });
+}
+function deleteAssessment(id){
+  var a = byId(db.assessments, id); if (!a) return;
+  var n = db.ratings.filter(function(r){ return r.assessmentId === id; }).length;
+  confirmBox('Supprimer « ' + esc(a.title) + ' » ?', plural(n, 'niveau saisi sera effacé', 'niveaux saisis seront effacés') + '. Cette action est définitive.', 'Supprimer', true, function(){
+    db.assessments = db.assessments.filter(function(x){ return x.id !== id; });
+    db.ratings = db.ratings.filter(function(r){ return r.assessmentId !== id; });
+    assessmentId = ''; save(); render(); toast('Évaluation supprimée');
+  });
+}
+function rate(sid, aid, v){
+  var old = find(db.ratings, function(r){ return r.studentId === sid && r.assessmentId === aid; });
+  if (old) { if (old.value === v) db.ratings = db.ratings.filter(function(r){ return r !== old; }); else old.value = v; }
+  else db.ratings.push({ id: uid(), studentId: sid, assessmentId: aid, value: v });
+  var y = window.pageYOffset; save(); render(); window.scrollTo(0, y);
+}
+
+/* ---------- Élèves ---------- */
+function studentPicker(){
+  var st = classStudents(), i = -1;
+  for (var j = 0; j < st.length; j++) { if (st[j].id === studentId) i = j; }
+  return '<div class="stepper noprint"><button class="btn ghost" type="button" aria-label="Élève précédent" onclick="stepStudent(-1)"' + (i <= 0 ? ' disabled' : '') + '>‹</button>' +
+    field('Élève', '<select onchange="studentId=this.value;adviceDraft=null;render()">' + options(st.map(function(s){ return [s.id, s.name]; }), studentId) + '</select>') +
+    '<button class="btn ghost" type="button" aria-label="Élève suivant" onclick="stepStudent(1)"' + (i < 0 || i >= st.length - 1 ? ' disabled' : '') + '>›</button></div>';
+}
+function stepStudent(d){ var st = classStudents(); for (var j = 0; j < st.length; j++) { if (st[j].id === studentId && st[j + d]) { studentId = st[j + d].id; adviceDraft = null; render(); return; } } }
+function pageEleves(){
+  var c = cls(); if (!c) return noClass();
+  ensureStudent(); var s = student();
+  if (!s) return panel('', emptyState('Aucun élève dans cette classe.', '<button class="btn pop" type="button" onclick="go(\'classes\')">Ajouter des élèves</button>'));
+  var tabs = [['profil', 'Profil'], ['vie', 'Vie de classe'], ['obs', 'Observations'], ['histo', 'Historique']];
+  var h = '<div class="between" style="margin-bottom:16px;align-items:flex-end">' + studentPicker() + '<button class="btn ghost" type="button" onclick="printStudent(\'' + s.id + '\')">Imprimer son bilan</button></div>';
+  var body = '<div class="tabs" role="tablist">' + tabs.map(function(t){ return '<button type="button" role="tab" aria-selected="' + (studentTab === t[0]) + '" class="' + (studentTab === t[0] ? 'on' : '') + '" onclick="studentTab=\'' + t[0] + '\';render()">' + t[1] + '</button>'; }).join('') + '</div>';
+  if (studentTab === 'profil') body += profileTab(s);
+  else if (studentTab === 'vie') body += lifeTab(s);
+  else if (studentTab === 'obs') body += notesTab(s);
+  else body += historyTab(s);
+  return h + panel(esc(s.name), body);
+}
+function profileTab(s){
+  var vals = axisValues(s.id), prior = comparison === 'Aucune' ? null : axisValues(s.id, comparison);
+  var others = periodNames().filter(function(p){ return p !== period; });
+  var extra = usedSkills(classId, period).filter(function(k){ return CFG.axes.indexOf(k.axis) < 0; });
+  if (period === 'Année entière') prior = null;
+  var h = period === 'Année entière' ? '<p class="tiny" style="margin:0 0 6px">Choisis une période en haut de page pour la comparer à une autre.</p>' : '<div class="row" style="margin-bottom:6px">' + field('Comparer avec', '<select onchange="comparison=this.value;render()">' + options(['Aucune'].concat(others), comparison) + '</select>') + '</div>';
+  h += '<div class="cols"><div>' + radar(vals, prior) + '<div class="legend small" style="justify-content:center"><span class="row" style="gap:6px"><svg width="22" height="8" aria-hidden="true"><line x1="0" y1="4" x2="22" y2="4" stroke="#0FA191" stroke-width="3"/></svg>' + esc(period) + '</span>' +
+    (prior ? '<span class="row" style="gap:6px"><svg width="22" height="8" aria-hidden="true"><line x1="0" y1="4" x2="22" y2="4" stroke="#7A5AF0" stroke-width="3" stroke-dasharray="5 3"/></svg>' + esc(comparison) + '</span>' : '') + '</div></div>';
+  h += '<div><h3>Maîtrise par activité</h3>' + bars(vals) +
+    (extra.length ? '<h3 style="margin-top:16px">Hors radar</h3>' + extra.map(function(k){ return '<div class="list-item"><span class="small">' + esc(k.name) + '</span>' + chip(latest(s.id, k.id)) + '</div>'; }).join('') : '') +
+    '<p class="tiny">Chaque axe reprend la dernière évaluation de chaque compétence. Les niveaux 1 à 4 ne sont pas des niveaux du CECRL.</p>' +
+    '<button class="btn ghost" type="button" onclick="adviceFor(\'' + s.id + '\')">Proposer un conseil</button></div></div>';
+  return h;
+}
+function lifeTab(s){
+  var h = '<p class="muted small" style="margin-top:0">Suivi séparé des compétences. Chaque niveau est daté du jour de la saisie.</p>';
+  h += CFG.life.map(function(l, ci){
+    var r = lifeLatest(s.id, l[0]), td = find(db.lifeRatings, function(x){ return x.studentId === s.id && x.category === l[0] && x.date === today(); });
+    return '<div class="list-item"><div><b>' + esc(l[0]) + '</b><div class="tiny">' + esc(l[1]) + (r ? ', dernier niveau le ' + frDate(r.date) : '') + '</div></div><div class="lvlbtns">' + [1, 2, 3, 4].map(function(i){
+      return '<button type="button" class="lvlbtn l' + i + (td && td.value === i ? ' on' : (!td && r && r.value === i ? ' on' : '')) + '" aria-label="' + esc(l[0]) + ' : ' + esc(CFG.labels[i - 1]) + '" onclick="lifeRate(\'' + s.id + '\',' + ci + ',' + i + ')">' + i + '</button>';
+    }).join('') + '</div></div>';
+  }).join('');
+  var hist = db.lifeRatings.filter(function(x){ return x.studentId === s.id && inPeriod(x.date); }).sort(function(a, b){ return a.date < b.date ? 1 : -1; });
+  h += '<h3 style="margin-top:20px">Historique</h3>' + (hist.length ? hist.map(function(x){
+    return '<div class="list-item"><span class="small">' + frDate(x.date) + ', ' + esc(x.category) + '</span><div class="row">' + pill(x.value) + '<button class="link del" type="button" aria-label="Supprimer" onclick="deleteLife(\'' + x.id + '\')">Retirer</button></div></div>';
+  }).join('') : '<p class="tiny">Aucun niveau sur cette période.</p>');
+  return h;
+}
+function lifeRate(sid, ci, v){
+  var cat = CFG.life[ci][0], d = today();
+  var ex = find(db.lifeRatings, function(x){ return x.studentId === sid && x.category === cat && x.date === d; });
+  if (ex) { if (ex.value === v) db.lifeRatings = db.lifeRatings.filter(function(x){ return x !== ex; }); else ex.value = v; }
+  else db.lifeRatings.push({ id: uid(), studentId: sid, category: cat, date: d, value: v });
+  save(); render();
+}
+function deleteLife(id){ db.lifeRatings = db.lifeRatings.filter(function(x){ return x.id !== id; }); save(); render(); toast('Niveau retiré'); }
+function notesTab(s){
+  var notes = db.notes.filter(function(n){ return n.studentId === s.id && inPeriod(n.date); }).sort(function(a, b){ return a.date < b.date ? 1 : -1; });
+  var h = '<div class="form">' + field('Catégorie', '<select id="nn-cat">' + options(CFG.noteCats, 'Travail') + '</select>') + field('Date', '<input id="nn-date" type="date" value="' + today() + '">') + '</div>' +
+    '<div style="margin-top:12px">' + field('Observation', '<textarea id="nn-body" maxlength="2500" placeholder="Faits observés, contexte, progrès, pistes d’accompagnement"></textarea>') + '</div>' +
+    '<div class="row" style="margin-top:10px"><button class="btn pop" type="button" onclick="addNote()">Ajouter l’observation</button></div>';
+  h += '<h3 style="margin-top:22px">Observations' + (period !== 'Année entière' ? ' du ' + esc(period.toLowerCase()) : '') + '</h3>' + (notes.length ? notes.map(function(n){
+    return '<div class="list-item obs" style="display:block"><div class="between"><span><b>' + esc(n.category) + '</b> <span class="tiny">' + frDate(n.date) + '</span></span><span><button class="link" type="button" onclick="editNote(\'' + n.id + '\')">Modifier</button><button class="link del" type="button" onclick="deleteNote(\'' + n.id + '\')">Supprimer</button></span></div><p>' + esc(n.body) + '</p></div>';
+  }).join('') : '<p class="tiny">Aucune observation sur cette période.</p>');
+  return h;
+}
+function addNote(){
+  var s = student(), body = $('nn-body').value.trim(), d = $('nn-date').value;
+  if (!s) return;
+  if (!body) { toast('Écris l’observation.'); $('nn-body').focus(); return; }
+  db.notes.push({ id: uid(), studentId: s.id, date: isDate(d) ? d : today(), category: $('nn-cat').value, body: body });
+  save(); render(); toast('Observation ajoutée');
+}
+function editNote(id){
+  var n = byId(db.notes, id); if (!n) return;
+  openModal({ title: 'Modifier l’observation', ok: 'Enregistrer', html: field('Catégorie', '<select id="en-cat">' + options(CFG.noteCats.indexOf(n.category) < 0 ? [n.category].concat(CFG.noteCats) : CFG.noteCats, n.category) + '</select>') + field('Observation', '<textarea id="en-body" maxlength="2500">' + esc(n.body) + '</textarea>'), onOk: function(){
+    var b = $('en-body').value.trim(); if (!b) { toast('L’observation ne peut pas être vide.'); return false; }
+    n.body = b; n.category = $('en-cat').value; save(); render(); toast('Observation modifiée');
+  } });
+}
+function deleteNote(id){ confirmBox('Supprimer cette observation ?', 'Cette action est définitive.', 'Supprimer', true, function(){ db.notes = db.notes.filter(function(n){ return n.id !== id; }); save(); render(); toast('Observation supprimée'); }); }
+function historyTab(s){
+  var aa = assessmentsOf(classId).slice().reverse();
+  return aa.length ? aa.map(function(a){ var k = skill(a.skillId); return '<div class="list-item"><div><b>' + esc(a.title) + '</b><div class="tiny">' + frDate(a.date) + ', ' + esc(k ? k.name : '') + '</div></div>' + pill(val(s.id, a.id)) + '</div>'; }).join('') : '<p class="tiny">Aucune évaluation sur cette période.</p>';
+}
+
+/* ---------- Conseils ---------- */
+function band(){ var c = cls(); return c && (c.grade === '6e' || c.grade === '5e') ? 'c1' : 'c2'; }
+function adviceItems(){ var e = ADVICE[advice.axis]; if (!e) return []; var l = e[band()] || e.all || []; return l[advice.level - 1] || []; }
+function adviceText(){
+  var items = adviceItems(); if (!items.length) return '';
+  var base = items[advice.index % items.length], low = lowerFirst(base);
+  if (advice.style === 'Famille') return 'Pour progresser, il est conseillé ' + (/^[aeiouyhéèêàâîôû]/i.test(low) ? 'd’' : 'de ') + low;
+  if (advice.style === 'Bilan') return 'Piste de progression : ' + low;
+  return 'Ton objectif : ' + low;
+}
+function adviceFor(sid){ studentId = sid; go('conseils'); fromProfile(true); }
+function fromProfile(silent){
+  var s = student(); if (!s) return;
+  var vals = axisValues(s.id), best = -1;
+  vals.forEach(function(v, i){ if (v && (best < 0 || v < vals[best])) best = i; });
+  if (best < 0) { if (!silent) toast('Aucune compétence évaluée pour cet élève sur cette période.'); render(); return; }
+  advice.axis = CFG.axes[best]; advice.level = Math.min(4, Math.max(1, Math.floor(vals[best] + 0.5))); advice.index = 0; adviceDraft = null;
+  render(); toast('Point d’appui : ' + CFG.axes[best].toLowerCase() + ', niveau ' + advice.level);
+}
+function setAdvice(k, v){ advice[k] = v; if (k !== 'style') advice.index = 0; adviceDraft = null; render(); }
+function pageConseils(){
+  var c = cls(); if (!c) return noClass();
+  ensureStudent(); var s = student(), txt = adviceText(), shown = adviceDraft == null ? txt : adviceDraft;
+  var axes = Object.keys(ADVICE);
+  var h = panel('Choisir un conseil', '<div class="between" style="align-items:flex-end;margin-bottom:14px">' + (s ? studentPicker() : '<span class="muted">Aucun élève dans la classe.</span>') + (s ? '<button class="btn ghost" type="button" onclick="fromProfile(false)">Partir du profil de ' + esc(s.name.split(' ')[0]) + '</button>' : '') + '</div>' +
+    '<div class="form">' + field('Domaine', '<select onchange="setAdvice(\'axis\',this.value)">' + options(axes, advice.axis) + '</select>') +
+    field('Niveau de maîtrise', '<select onchange="setAdvice(\'level\',Number(this.value))">' + options(CFG.labels.map(function(l, i){ return [String(i + 1), (i + 1) + ', ' + l]; }), String(advice.level)) + '</select>') +
+    field('Formulation', '<select onchange="setAdvice(\'style\',this.value)">' + options([['Élève', 'Pour l’élève'], ['Famille', 'Pour la famille'], ['Bilan', 'Pour un bilan']], advice.style) + '</select>') + '</div>' +
+    '<div class="advice"><div class="between"><b>Conseil adapté à la ' + esc(c.grade) + '</b>' + pill(advice.level) + '</div><p>' + esc(txt) + '</p></div>' +
+    '<div class="row"><button class="btn ghost" type="button" onclick="advice.index++;adviceDraft=null;render()">Autre suggestion</button><button class="btn" type="button" onclick="copyText(adviceText())">Copier</button></div>');
+  h += panel('Adapter et enregistrer', field('Ta version', '<textarea id="advice-edit" oninput="adviceDraft=this.value">' + esc(shown) + '</textarea>') +
+    '<div class="row" style="margin-top:10px"><button class="btn ghost" type="button" onclick="copyText($(\'advice-edit\').value)">Copier ma version</button>' +
+    (s ? '<button class="btn pop" type="button" onclick="saveAdvice()">Ajouter aux observations de ' + esc(s.name) + '</button>' : '') + '</div>' +
+    '<p class="tiny">Le conseil est enregistré dans l’onglet Observations de l’élève, avec la date du jour. Vérifie qu’il correspond à la situation réelle.</p>');
+  return h;
+}
+function saveAdvice(){
+  var s = student(), body = $('advice-edit').value.trim();
+  if (!s || !body) { toast('Le conseil est vide.'); return; }
+  confirmBox('Enregistrer ce conseil ?', 'Il sera ajouté aux observations de <b>' + esc(s.name) + '</b>.', 'Enregistrer', false, function(){
+    db.notes.push({ id: uid(), studentId: s.id, date: today(), category: 'Conseil, ' + advice.axis.toLowerCase(), body: body });
+    save(); render(); toast('Conseil ajouté au dossier de ' + s.name);
+  });
+}
+function copyText(txt){
+  function fallback(){
+    var t = document.createElement('textarea'); t.value = txt; t.setAttribute('readonly', ''); t.style.position = 'fixed'; t.style.top = '-1000px';
+    document.body.appendChild(t); t.select(); t.setSelectionRange(0, txt.length);
+    var ok = false; try { ok = document.execCommand('copy'); } catch (e) {}
+    document.body.removeChild(t); toast(ok ? 'Texte copié' : 'Copie impossible : sélectionne le texte à la main.');
+  }
+  if (!txt) { toast('Rien à copier.'); return; }
+  if (navigator.clipboard && window.isSecureContext) navigator.clipboard.writeText(txt).then(function(){ toast('Texte copié'); }, fallback);
+  else fallback();
+}
+
+/* ---------- Bilans ---------- */
+function bilanBlock(s){
+  var c = byId(db.classes, s.classId), used = usedSkills(s.classId, period);
+  var notes = db.notes.filter(function(n){ return n.studentId === s.id && inPeriod(n.date); }).sort(function(a, b){ return a.date < b.date ? 1 : -1; }).slice(0, 3);
+  return '<article class="bilan" id="bilan-' + s.id + '"><div class="bilan-head"><h3>' + esc(s.name) + '</h3><span class="small muted">' + esc(c.name) + ', ' + esc(c.subject) + ', ' + esc(period) + '</span></div>' +
+    '<div class="cols"><div>' + radar(axisValues(s.id)) + bars(axisValues(s.id)) + '</div><div>' +
+    '<h3>Compétences évaluées</h3>' + (used.length ? '<ul>' + used.map(function(k){ return '<li><span>' + esc(k.name) + '</span>' + chip(latest(s.id, k.id)) + '</li>'; }).join('') + '</ul>' : '<p class="tiny">Aucune évaluation sur cette période.</p>') +
+    '<h3 style="margin-top:14px">Vie de classe</h3><ul>' + CFG.life.map(function(l){ var r = lifeLatest(s.id, l[0]); return '<li><span>' + esc(l[0]) + '</span>' + chip(r ? r.value : 0) + '</li>'; }).join('') + '</ul>' +
+    '<h3 style="margin-top:14px">Observations</h3>' + (notes.length ? notes.map(function(n){ return '<p class="small" style="margin:4px 0 8px"><b>' + esc(n.category) + '</b>, ' + frDate(n.date) + ' : ' + esc(n.body) + '</p>'; }).join('') : '<p class="tiny">Aucune observation sur cette période.</p>') +
+    '</div></div><div class="noprint" style="margin-top:12px"><button class="link" type="button" onclick="printStudent(\'' + s.id + '\')">Imprimer ce bilan seul</button></div></article>';
+}
+function pageBilans(){
+  var c = cls(); if (!c) return noClass();
+  var st = classStudents();
+  var h = '<div class="row noprint" style="margin-bottom:16px"><button class="btn pop" type="button" onclick="printAll()"' + (st.length ? '' : ' disabled') + '>Imprimer tous les bilans</button><button class="btn ghost" type="button" onclick="exportCSV()"' + (st.length ? '' : ' disabled') + '>Exporter en CSV</button><span class="tiny">Un élève par page à l’impression. Choisis « Enregistrer en PDF » pour obtenir un fichier.</span></div>';
+  h += '<div class="print-title">SKILLPOP, bilans ' + esc(c.name) + ', ' + esc(period) + '</div>';
+  return h + (st.length ? st.map(bilanBlock).join('') : panel('', emptyState('Aucun élève dans cette classe.')));
+}
+function clearPrint(){ document.body.className = ''; var t = document.querySelectorAll('.bilan.target'); for (var i = 0; i < t.length; i++) t[i].className = 'bilan'; }
+function printAll(){ clearPrint(); window.print(); }
+function printStudent(id){
+  if (page !== 'bilans') { page = 'bilans'; render(); }
+  clearPrint();
+  var el = $('bilan-' + id); if (!el) return;
+  el.className = 'bilan target'; document.body.className = 'print-one';
+  setTimeout(function(){ window.print(); setTimeout(clearPrint, 800); }, 60);
+}
+window.onafterprint = clearPrint;
+function csvCell(v){ return '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"'; }
+function buildCSV(){
+  var c = cls(), st = classStudents(), used = usedSkills(classId, period);
+  var head = ['Élève', 'Classe', 'Période'].concat(used.map(function(k){ return axisShort(k.axis) + ' : ' + k.name; })).concat(CFG.axes.map(function(a){ return 'Moyenne ' + a; })).concat(CFG.life.map(function(l){ return l[0]; }));
+  var rows = [head].concat(st.map(function(s){
+    var av = axisValues(s.id);
+    return [s.name, c.name, period].concat(used.map(function(k){ return latest(s.id, k.id) || ''; }))
+      .concat(av.map(function(v){ return v ? v.toFixed(1).replace('.', ',') : ''; }))
+      .concat(CFG.life.map(function(l){ var r = lifeLatest(s.id, l[0]); return r ? r.value : ''; }));
+  }));
+  return '\ufeff' + rows.map(function(r){ return r.map(csvCell).join(';'); }).join('\r\n');
+}
+function download(name, content, type){
+  var url = URL.createObjectURL(new Blob([content], { type: type })), a = document.createElement('a');
+  a.href = url; a.download = name; document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 3000);
+}
+function slug(s){ return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+function exportCSV(){ var c = cls(); download('skillpop-' + slug(c.name) + '-' + slug(period) + '.csv', buildCSV(), 'text/csv;charset=utf-8'); toast('Fichier CSV exporté'); }
+
+/* ---------- Réglages ---------- */
+function pageReglages(){
+  var names = db.periodMode === 'semestre' ? ['Début de l’année', 'Début du semestre 2', 'Fin de l’année'] : ['Début de l’année', 'Début du trimestre 2', 'Début du trimestre 3', 'Fin de l’année'];
+  var h = panel('Périodes', '<div class="form">' + field('Organisation', '<select onchange="setMode(this.value)">' + options([['trimestre', '3 trimestres'], ['semestre', '2 semestres']], db.periodMode) + '</select>') +
+    db.dates.map(function(d, i){ return field(names[i], '<input type="date" value="' + esc(d) + '" onchange="setDate(' + i + ',this)">'); }).join('') + '</div><p class="tiny">La date de fin est exclue de la période. Les filtres s’appliquent aux résultats, aux radars et aux bilans.</p>');
+  h += panel('Sauvegarde', '<p class="small muted" style="margin-top:0">Tes données restent dans ce navigateur, sur cet appareil. Exporte régulièrement une sauvegarde : elle permet aussi de passer d’un ordinateur à un autre.</p><div class="row"><button class="btn" type="button" onclick="exportJSON()">Exporter une sauvegarde</button><button class="btn ghost" type="button" onclick="$(\'importFile\').click()">Importer une sauvegarde</button></div>' +
+    '<h3 style="margin-top:20px">Repartir de zéro</h3><div class="row"><button class="btn ghost" type="button" onclick="startEmpty()">Effacer toutes les données</button><button class="btn ghost" type="button" onclick="reloadDemo()">Recharger les exemples</button></div>');
+  h += panel('Confidentialité', '<div class="note">Aucune donnée ne quitte l’appareil : pas de compte, pas de serveur. Les données sont stockées en clair dans le navigateur, sans mot de passe. Utilise de préférence un appareil professionnel, des prénoms ou initiales plutôt que des noms complets, et des observations factuelles. Pour un usage généralisé dans l’établissement, rapproche-toi de ton chef d’établissement et du DPD académique.</div>');
+  h += panel('Références', '<p class="small" style="margin-top:0">Les repères et conseils sont des propositions pédagogiques à adapter. Les niveaux 1 à 4 correspondent aux niveaux de maîtrise du livret scolaire, pas aux niveaux du CECRL.</p><p class="small"><a href="https://eduscol.education.gouv.fr/" target="_blank" rel="noopener">Éduscol</a>, <a href="https://www.education.gouv.fr/bo" target="_blank" rel="noopener">Bulletin officiel</a>, <a href="https://www.coe.int/fr/web/common-european-framework-reference-languages" target="_blank" rel="noopener">CECRL</a></p><p class="tiny">SKILLPOP V8, by BROT2YOU</p>');
+  return h;
+}
+function setMode(m){
+  if (m === db.periodMode) return;
+  var c = cls() || db.classes[0];
+  db.periodMode = m; db.dates = defaultDates(m, c && c.year); period = 'Année entière'; comparison = 'Aucune';
+  save(); render(); toast(m === 'semestre' ? 'Année découpée en 2 semestres' : 'Année découpée en 3 trimestres');
+}
+function setDate(i, el){
+  var d = db.dates.slice(); d[i] = el.value;
+  var ok = d.every(isDate) && d.every(function(x, j){ return !j || x > d[j - 1]; });
+  if (!ok) { toast('Les dates doivent se suivre dans l’ordre.'); render(); return; }
+  db.dates = d; save(); toast('Dates enregistrées');
+}
+function exportJSON(){ download('skillpop-sauvegarde-' + today() + '.json', JSON.stringify(db, null, 2), 'application/json'); toast('Sauvegarde exportée'); }
+function importJSON(input){
+  var file = input.files && input.files[0]; if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(){
+    var x = null; try { x = migrate(JSON.parse(reader.result)); } catch (e) { x = null; }
+    input.value = '';
+    if (!x) { toast('Ce fichier n’est pas une sauvegarde SkillPop.'); return; }
+    confirmBox('Remplacer les données actuelles ?', 'La sauvegarde contient ' + plural(x.classes.length, 'classe', 'classes') + ' et ' + plural(x.students.length, 'élève', 'élèves') + '. Les données actuelles seront remplacées.', 'Importer', true, function(){
+      db = x; resetState(); save(); go('accueil'); toast('Sauvegarde importée');
+    });
+  };
+  reader.readAsText(file);
+}
+function resetState(){ classId = db.classes[0] ? db.classes[0].id : ''; studentId = ''; assessmentId = ''; period = 'Année entière'; comparison = 'Aucune'; adviceDraft = null; ensureStudent(); }
+function startEmpty(){
+  confirmBox('Effacer toutes les données ?', db.demo ? 'Les exemples seront supprimés. Tu repars avec le référentiel de compétences et aucune classe.' : 'Toutes tes classes, tes élèves, tes évaluations et tes observations seront effacés. Exporte une sauvegarde avant si besoin. Cette action est définitive.', 'Tout effacer', true, function(){
+    db = emptyDb(); resetState(); save(); go('classes'); toast('Données effacées. Crée ta première classe.');
+  });
+}
+function reloadDemo(){
+  confirmBox('Recharger les exemples ?', 'Tes données actuelles seront remplacées par les classes d’exemple. Exporte une sauvegarde avant si besoin.', 'Recharger', true, function(){
+    db = seedDb(); resetState(); save(); go('accueil'); toast('Exemples rechargés');
+  });
+}
+
+/* ---------- rendu ---------- */
+var TITLES = { accueil: 'Accueil', classes: 'Classes et élèves', referentiel: 'Référentiel', evaluer: 'Évaluer', eleves: 'Dossier élève', conseils: 'Conseils', bilans: 'Bilans', reglages: 'Réglages' };
+var VIEWS = { accueil: pageAccueil, classes: pageClasses, referentiel: pageReferentiel, evaluer: pageEvaluer, eleves: pageEleves, conseils: pageConseils, bilans: pageBilans, reglages: pageReglages };
+function render(){
+  if (!byId(db.classes, classId)) classId = db.classes[0] ? db.classes[0].id : '';
+  if (period !== 'Année entière' && periodNames().indexOf(period) < 0) period = 'Année entière';
+  if (comparison !== 'Aucune' && periodNames().indexOf(comparison) < 0) comparison = 'Aucune';
+  ensureStudent(); indexRatings(); nav();
+  $('heading').textContent = TITLES[page];
+  $('topctl').innerHTML = topControls();
+  $('view').innerHTML = demoBanner() + (VIEWS[page] || pageAccueil)();
+  document.title = TITLES[page] + ' — SKILLPOP V8';
+}
+render();
+</script>
+</body>
+</html>
